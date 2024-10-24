@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Workout Logger</title>
+    
+    <link rel="stylesheet" href="../styles/colors.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+    <link rel="stylesheet" href="../styles/buttons.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+</head>
+
+<body>
+    <div>
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>Workout Logger</h2>
+                <ul class="nav-links">
+                    <li><a href="../../index.html" id="home-link">Home</a></li>
+                    <li><a href="#" id="workout-history">Workout History</a></li>
+                    <li><a href="./login.html" id="auth-link">Login/Register</a></li>
+                </ul>
+            </div>
+
+            <!-- Theme Toggle Button -->
+            <div class="theme-toggle-wrapper" id="theme-toggle-wrapper">
+                <div class="toggle-slider" id="theme-toggle">
+                    <div class="slider-circle"></div>
+                </div>
+                <span class="theme-label">Light Mode</span>
+            </div>
+        </nav>
+
+        <main class="auth-container">
+            <h2>Register</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" required>
+                </div>
+                <button type="submit" class="btn-primary">Register</button>
+                <p class="auth-switch">Already have an account? <a href="login.html">Login here</a>.</p>
+            </form>
+        </main>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./src/scripts/auth.js"></script>
+    <script src="./src/scripts/theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+/* buttons.css */
+
+.theme-toggle-wrapper {
+    margin: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.theme-label {
+    color: var(--text-color);
+    font-size: 0.875rem;
+    min-width: 5rem;
+}
+
+.toggle-slider {
+    position: relative;
+    width: 3.75rem;
+    height: 2rem;
+    background-color: var(--toggle-background);
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.slider-circle {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--toggle-button);
+    border-radius: 50%;
+    transition: transform 0.3s;
+    pointer-events: none;
+}
+
+/* Class added when dark mode is active */
+.toggle-slider.active {
+    background-color: var(--accent-color);
+}
+
+.toggle-slider.active .slider-circle {
+    transform: translateX(1.75rem);
+}

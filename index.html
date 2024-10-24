@@ -1,0 +1,57 @@
+<!-- ./index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Workout Logger</title>
+
+        <link rel="stylesheet" href="./src/styles/theme.css">
+        <link rel="stylesheet" href="./src/styles/colors.css">
+        <link rel="stylesheet" href="./src/styles/index.css">
+        <link rel="stylesheet" href="./src/styles/sidebar.css">
+        <link rel="stylesheet" href="./src/styles/buttons.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <div class="logo">
+                    <h2>Workout Logger</h2>
+                    <ul class="nav-links">
+                        <li><a href="index.html" id="home-link">Home</a></li>
+                        <li><a href="#" id="workout-history">Workout History</a></li>
+                        <li><a href="./src/pages/login.html" id="auth-link">Login/Register</a></li>
+                    </ul>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <div class="theme-toggle-wrapper" id="theme-toggle-wrapper">
+                    <div class="toggle-slider" id="theme-toggle">
+                        <div class="slider-circle"></div>
+                    </div>
+                    <span class="theme-label">Light Mode</span>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-container">
+                <header>
+                    <h1>Welcome to Your Workout Logger</h1>
+                </header>
+                <section id="last-workout">
+                    <h2>Last Workout</h2>
+                    <div class="workout-info">
+                        <!-- This section will display the last workout if user is logged in and has history -->
+                        <p>No workout history found. Please log in and start tracking your workouts!</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Placeholder for future JavaScript -->
+        <script src="./src/scripts/theme-toggle.js"></script>
+    </body>
+</html>
