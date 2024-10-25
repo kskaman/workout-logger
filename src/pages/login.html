@@ -20,7 +20,7 @@
                 <ul class="nav-links">
                     <li><a href="../../index.html" id="home-link">Home</a></li>
                     <li><a href="#" id="workout-history">Workout History</a></li>
-                    <li><a href="./login.html" id="auth-link">Login/Register</a></li>
+                    <li><a href="#" id="auth-link"></a></li>
                 </ul>
             </div>
 
@@ -34,24 +34,29 @@
         </nav>
 
         <main class="main-container">
-            <h2>Login</h2>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="login-username">Username</label>
-                    <input type="text" id="login-username" required>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" required>
-                </div>
-                <button type="submit" class="btn-primary">Login</button>
-                <p class="auth-switch">Don't have an account? <a href="register.html">Register here</a>.</p>
-            </form>
+            <div class="auth-container">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p class="auth-switch">Don't have an account? <a href="register.html">Register here</a>.</p>
+                </form>
+            </div>
         </main>
     </div>
 
     <!-- JavaScript -->
-    <script src="./src/scripts/auth.js"></script>
-    <script src="./src/scripts/theme-toggle.js"></script>
+    
+    <script src="../scripts/login-logout.js"></script>
+    <script src="../scripts/theme-toggle.js"></script>
+
+    <script src="../scripts/auth.js"></script>
 </body>
 </html>

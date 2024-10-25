@@ -11,7 +11,7 @@ html {
 
 body {
     font-family: 'Sege UI', Verdana, sans-serif;
-    background-color: car(--background-color);
+    background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
     font-size: 1rem;
@@ -20,7 +20,9 @@ body {
 .container {
     display: flex;
     height: 100vh;
+    
 }
+
 
 .main-container {
     flex: 2;

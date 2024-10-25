@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Workout Logger</title>
     
+    
+    <link rel="stylesheet" href="../styles/theme.css">
     <link rel="stylesheet" href="../styles/colors.css">
     <link rel="stylesheet" href="../styles/auth.css">
     <link rel="stylesheet" href="../styles/buttons.css">
     <link rel="stylesheet" href="../styles/sidebar.css">
-    <link rel="stylesheet" href="../styles/theme.css">
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="logo">
@@ -34,30 +35,33 @@
             </div>
         </nav>
 
-        <main class="auth-container">
-            <h2>Register</h2>
-            <form id="register-form">
-                <div class="form-group">
-                    <label for="register-username">Username</label>
-                    <input type="text" id="register-username" required>
-                </div>
-                <div class="form-group">
-                    <label for="register-password">Password</label>
-                    <input type="password" id="register-password" required>
-                </div>
-                <div class="form-group">
-                    <label for="register-confirm-password">Confirm Password</label>
-                    <input type="password" id="register-confirm-password" required>
-                </div>
-                <button type="submit" class="btn-primary">Register</button>
-                <p class="auth-switch">Already have an account? <a href="login.html">Login here</a>.</p>
-            </form>
+        <main class="main-container">
+            <div class="auth-container">
+                <h2>Register</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" id="register-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password</label>
+                        <input type="password" id="register-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                    <p class="auth-switch">Already have an account? <a href="login.html">Login here</a>.</p>    
+                </form>
+            </div>
         </main>
-
     </div>
 
     <!-- JavaScript -->
-    <script src="./src/scripts/auth.js"></script>
-    <script src="./src/scripts/theme-toggle.js"></script>
+    <script src="../scripts/login-logout.js"></script>
+    <script src="../scripts/theme-toggle.js"></script>
+
+    <script src="../scripts/auth.js"></script>
 </body>
 </html>

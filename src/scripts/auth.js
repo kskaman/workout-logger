@@ -3,6 +3,8 @@
 // Password validation regex
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/
 
+
+
 // Event Listener for Registartion form
 const registerForm = document.getElementById('register-form')
 if (registerForm) {
@@ -39,7 +41,7 @@ function registerUser() {
 
     
     const hashedPassword = btoa(password)
-
+    
     // Store user in localStorage
     const users = JSON.parse(localStorage.getItem('users')) || {}
     if (users[username]) {
@@ -50,7 +52,7 @@ function registerUser() {
     users[username] = hashedPassword
     localStorage.setItem('users', JSON.stringify(users))
     alert('Registration successful! You can now log in.')
-    window.location.href = 'login.html'
+    window.location.href = './login.html'
 }
 
 // Login User Function
@@ -63,9 +65,10 @@ function loginUser() {
     const hashedPassword = btoa(password)
 
     if (users[username] && users[username] === hashedPassword) {
-        localStorage.setItem('currentUSer', username)
+        localStorage.setItem('currentUser', username)
+        localStorage.setItem('lastLogin', Date.now().toString())
         alert('Login successful!')
-        window.location.href = 'index.html'
+        window.location.href = '../../index.html'
     } else {
         alert('Invalid username or password')
     }
