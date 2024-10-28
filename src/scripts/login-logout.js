@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('currentUser')
             localStorage.removeItem('lastLogin')
             authLink.textContent = 'Login/Register'
-            authLink.href = '../pages/login.html'
+            authLink.href = './src/pages/login.html';
         } 
     } else {
         authLink.textContent = 'Login/Register'
-        authLink.href = '/workout-logger/src/pages/login.html'
+        authLink.href = './src/pages/login.html';
     }
 })
 
@@ -28,5 +28,5 @@ document.addEventListener('DOMContentLoaded', () => {
 function logoutUser() {
     localStorage.removeItem('currentUser')
     localStorage.removeItem('lastLogin')
-    window.location.href = '/workout-logger/src/pages/login.html'
+    window.location.href = './src/pages/login.html';
 }
