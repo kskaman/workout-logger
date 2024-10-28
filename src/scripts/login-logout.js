@@ -1,10 +1,9 @@
+// ../src/scripts/login-logout.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const authLink = document.getElementById('auth-link')
     const currentUser = localStorage.getItem('currentUser')
     const lastLogin = localStorage.getItem('lastLogin')
-
-    console.log(currentUser)
-    console.log(lastLogin)
 
     if (currentUser && lastLogin) {
         const timeElapsed = Date.now() - parseInt(lastLogin)
@@ -29,5 +28,5 @@ document.addEventListener('DOMContentLoaded', () => {
 function logoutUser() {
     localStorage.removeItem('currentUser')
     localStorage.removeItem('lastLogin')
-    window.location.href = '../../index.html'
+    window.location.href = '/workout-logger/src/pages/login.html'
 }

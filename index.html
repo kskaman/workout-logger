@@ -7,15 +7,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Workout Logger</title>
 
-        <link rel="stylesheet" href="./src/styles/theme.css">
         <link rel="stylesheet" href="./src/styles/colors.css">
+        <link rel="stylesheet" href="./src/styles/theme.css">
         <link rel="stylesheet" href="./src/styles/index.css">
         <link rel="stylesheet" href="./src/styles/sidebar.css">
         <link rel="stylesheet" href="./src/styles/buttons.css">
+        <link rel="stylesheet" href="./src/styles/modal.css">
     </head>
 
     <body>
-        <div class="container">
+        <div class="container" id="container">
             <!-- Sidebar Navigation -->
             <nav class="sidebar">
                 <div class="logo">
@@ -51,8 +52,28 @@
             </main>
         </div>
 
+        <!-- Log Workout button -->
+        <button id="log-workout-button" class="log-workout-button">
+            <span class="plus-icon">+</span>Log Wokout
+        </button>
+
+        <!-- Login.Register Modal -->
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" id="close-modal">&times;</span>
+                <h2>You're not logeed in</h2>
+                <p>
+                    To log your workout and track your progress, please log in.
+                </p>
+                <div class="modal-buttons">
+                    <a href="./src/pages/login.html" class="btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Placeholder for future JavaScript -->
         <script src="./src/scripts/theme-toggle.js"></script>
         <script src="./src/scripts/login-logout.js"></script>
+        <script src="./src/scripts/log-workout-modal.js"></script>
     </body>
 </html>
