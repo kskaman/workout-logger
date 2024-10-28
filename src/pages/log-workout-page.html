@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../styles/colors.css">
     <link rel="stylesheet" href="../styles/sidebar.css">
     <link rel="stylesheet" href="../styles/buttons.css">
+    <link rel="stylesheet" href="../styles/log-workout.css">
     <!-- Include any additional stylesheets here -->
 </head>
 <body>
@@ -39,13 +40,44 @@
             <header>
                 <h1>Log Your Workout</h1>
             </header>
-            <!-- Future content for logging workouts will go here -->
+
+            <form id="log-workout-form">
+                <!-- Workout Name -->
+                <div class="form-group">
+                    <label for="workout-name">Workout Name : </label>
+                    <input type="text" id="workout-name" name="workout-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="workout-date">Date : </label>
+                    <input type="date" id="workout-date" name="workout-date" required>
+                </div>
+
+                <!-- Exercise Section -->
+                <div id="exercise-container">
+                    <!-- Exercises will be added here dynamically -->
+                </div>
+
+
+                <div class="buttons-section">
+                    <!-- Add Exercise Button -->
+                    <button type="button" id="add-exercise-button" class="btn-primary">
+                        Add Exercise
+                    </button>
+
+                    <!-- Complete Workout Button -->
+                    <button type="button" id="complete-workout-button" class="btn-primary">
+                        Save workout
+                    </button>
+                </div>
+            </form>
         </main>
     </div>
 
     <!-- JavaScript -->
     <script src="../scripts/login-logout.js"></script>
     <script src="../scripts/theme-toggle.js"></script>
+    <script src="../scripts/log-workout.js"></script>
     <!-- Include any additional scripts here -->
 </body>
 </html>
