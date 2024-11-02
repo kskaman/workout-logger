@@ -1,79 +1,31 @@
-<!-- ./index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Workout Logger</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Workout Logger</title>
+    <link rel="stylesheet" href="./src/styles/colors.css">
+    <link rel="stylesheet" href="./src/styles/index.css">
+</head>
 
-        <link rel="stylesheet" href="./src/styles/colors.css">
-        <link rel="stylesheet" href="./src/styles/theme.css">
-        <link rel="stylesheet" href="./src/styles/index.css">
-        <link rel="stylesheet" href="./src/styles/sidebar.css">
-        <link rel="stylesheet" href="./src/styles/buttons.css">
-        <link rel="stylesheet" href="./src/styles/modal.css">
-    </head>
-
-    <body>
-        <div class="container" id="container">
-            <!-- Sidebar Navigation -->
-            <nav class="sidebar">
-                <div class="logo">
-                    <h2>Workout Logger</h2>
-                    <ul class="nav-links">
-                        <li><a href="index.html" id="home-link">Home</a></li>
-                        <li><a href="#" id="workout-history">Workout History</a></li>
-                        <li><a href="#" id="auth-link"></a></li>
-                    </ul>
-                </div>
-
-                <!-- Theme Toggle Button -->
-                <div class="theme-toggle-wrapper" id="theme-toggle-wrapper">
-                    <div class="toggle-slider" id="theme-toggle">
-                        <div class="slider-circle"></div>
-                    </div>
-                    <span class="theme-label">Light Mode</span>
-                </div>
-            </nav>
-
-            <!-- Main Content -->
-            <main class="main-container">
-                <header>
-                    <h1>Welcome to Your Workout Logger</h1>
-                </header>
-                <section id="last-workout">
-                    <h2>Last Workout</h2>
-                    <div class="workout-info">
-                        <!-- This section will display the last workout if user is logged in and has history -->
-                        <p>No workout history found. Please log in and start tracking your workouts!</p>
-                    </div>
-                </section>
-            </main>
-        </div>
-
-        <!-- Log Workout button -->
-        <button id="log-workout-button" class="log-workout-button">
-            <span class="plus-icon">+</span>Log Wokout
-        </button>
-
-        <!-- Login.Register Modal -->
-        <div id="auth-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-button" id="close-modal">&times;</span>
-                <h2>You're not logeed in</h2>
-                <p>
-                    To log your workout and track your progress, please log in.
-                </p>
-                <div class="modal-buttons">
-                    <a href="./src/pages/login.html" class="btn-primary">Login</a>
-                </div>
+<body>
+    <!-- Header/Navbar -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="./index.html">Workout Logger</a>
             </div>
-        </div>
+            <div class="navbar-right">
+                <a href="./src/pages/login.html">Log In</a>
+                <a href="./src/pages/register.html">Register</a>
+            </div>
+        </nav>
+    </header>
 
-        <!-- Placeholder for future JavaScript -->
-        <script src="./src/scripts/theme-toggle.js"></script>
-        <script src="./src/scripts/login-logout.js"></script>
-        <script src="./src/scripts/log-workout-modal.js"></script>
-    </body>
+    <!-- Main Content -->
+    <main>
+        <div class="landing-content">
+            <h1>Workout Logger</h1>
+        </div>
+    </main>
+</body>
 </html>

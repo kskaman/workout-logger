@@ -1,29 +1,61 @@
-/* ../src/styles/index.css */
-
-/* Main container content styling */
-header {
-    margin-bottom: 2rem;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    color: var(--heading-color);
+html {
+    font-size: 16px;
 }
 
-#last-workout {
-    background-color: var(--input-background);
-    padding: 2rem;
-    border-radius: 0.3125rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#last-workout h2 {
-    margin-bottom: 0.9375rem;
-    color: var(--subheading-color);
-    font-size: 1.75rem;
-}
-
-.workout-info p {
-    font-size: 1rem;
+body {
+    font-family: 'Sege UI', Verdana, sans-serif;
+    background-color: var(--background-color);
     color: var(--text-color);
+    font-size: 1rem;
+}
+
+/* Header/Navbar Styles */
+.header {
+    background-color: var(--background-color);
+    padding: 1rem 2rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.navbar-right a {
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: var(--sidebar-text-color);
+    text-decoration: none;
+    transition: background-color 0.3s, ease color 0.3s ease;
+    border-radius: 0.5rem;
+    padding: 10px;
+}
+
+.navbar-right a:hover {
+    color: var(--button-text-color);
+    background-color: var(--secondary-color);
+}
+
+/* Main Content Styles */
+.landing-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px); /* Adjust height based on header size */
+}
+
+.landing-content h1 {
+    font-size: 4rem;
 }

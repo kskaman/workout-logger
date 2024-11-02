@@ -1,0 +1,29 @@
+/* ../src/styles/index.css */
+
+/* Main container content styling */
+header {
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--heading-color);
+}
+
+#last-workout {
+    background-color: var(--input-background);
+    padding: 2rem;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#last-workout h2 {
+    margin-bottom: 0.9375rem;
+    color: var(--subheading-color);
+    font-size: 1.75rem;
+}
+
+.workout-info p {
+    font-size: 1rem;
+    color: var(--text-color);
+}

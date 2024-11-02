@@ -1,9 +1,18 @@
 /* ../src/styles/auth.css */
 
+.header {
+    background-color: var(--background-color);
+    padding: 1rem 2rem;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
 .main-container {
-    flex: 2;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

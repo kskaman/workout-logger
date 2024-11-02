@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalButton = document.getElementById('close-modal')
     const homePage = document.getElementById('container')
 
+    
     if (logWorkoutButton) {
         logWorkoutButton.addEventListener('click', () => {
             const currentUser = localStorage.getItem('currentUser')
             if (currentUser) {
                 // User is logged in; redirect to log workout page
-                window.location.href = '/workout-logger/src/pages/log-workout-page.html'
+                window.location.href = '/src/pages/log-workout-page.html'
             } else {
                 // User is not logged in; show modal
                 authModal.style.display = 'block'
