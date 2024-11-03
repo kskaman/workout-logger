@@ -1,6 +1,5 @@
 /* ../src/styles/buttons.css */
 
-
 /* Toggle theme button styles */
 .theme-toggle-wrapper {
     margin: 1.25rem;
@@ -62,11 +61,9 @@
     padding: 0.75rem 1.5rem;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 2;
     transition: background-color 0.3s;
     font-size: 1rem;
-    display: flex;
-    align-items: center;
 }
 
 .log-workout-button:hover {

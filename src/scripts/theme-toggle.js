@@ -11,11 +11,11 @@ if (themeToggle) {
         const theme= document.body.classList.contains('dark-theme')
           ? 'Dark Mode' : 'Light Mode'
         themeLabel.textContent = theme
-        localStorage.setItem('theme', theme)
+        sessionStorage.setItem('theme', theme)
     })
 
     // Load saved theme
-    const savedTheme = localStorage.getItem('theme')
+    const savedTheme = sessionStorage.getItem('theme')
     if (savedTheme === 'Dark Mode') {
         document.body.classList.add('dark-theme')
         themeToggle.classList.add('active')

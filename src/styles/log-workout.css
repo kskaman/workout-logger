@@ -1,3 +1,19 @@
+/* ../src/styles/index.css */
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+
+.main-container {
+    flex: 2;
+    padding: 2.5rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Form Styles */
 #log-workout-form {
     width: 80%;

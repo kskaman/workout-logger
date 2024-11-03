@@ -1,20 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 16px;
-}
-
-body {
-    font-family: 'Sege UI', Verdana, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-size: 1rem;
-}
-
 /* Header/Navbar Styles */
 .header {
     background-color: var(--background-color);
@@ -33,7 +16,7 @@ body {
     text-decoration: none;
 }
 
-.navbar-right a {
+.navbar-right a, #login-link {
     margin-left: 1rem;
     font-size: 1rem;
     color: var(--sidebar-text-color);
@@ -43,9 +26,10 @@ body {
     padding: 10px;
 }
 
-.navbar-right a:hover {
+.navbar-right a:hover, #login-link:hover {
     color: var(--button-text-color);
     background-color: var(--secondary-color);
+    cursor: pointer;
 }
 
 /* Main Content Styles */

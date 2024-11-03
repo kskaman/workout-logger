@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Workout Logger</title>
     <link rel="stylesheet" href="./src/styles/colors.css">
+    <link rel="stylesheet" href="./src/styles/theme.css">
     <link rel="stylesheet" href="./src/styles/index.css">
 </head>
 
@@ -12,10 +13,10 @@
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="./index.html">Workout Logger</a>
+                <a href="/">Workout Logger</a>
             </div>
             <div class="navbar-right">
-                <a href="./src/pages/login.html">Log In</a>
+                <span id="login-link">Log In</span>
                 <a href="./src/pages/register.html">Register</a>
             </div>
         </nav>
@@ -27,5 +28,7 @@
             <h1>Workout Logger</h1>
         </div>
     </main>
+
+    <script src="./src/scripts/index-login.js"></script>
 </body>
 </html>

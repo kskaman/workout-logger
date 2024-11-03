@@ -8,6 +8,8 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/
 // Event Listener for Registartion form
 const registerForm = document.getElementById('register-form')
 if (registerForm) {
+    sessionStorage.removeItem('currentUser')
+    sessionStorage.removeItem('theme')
     registerForm.addEventListener('submit', (event) => {
         event.preventDefault()
         registerUser()
@@ -25,6 +27,7 @@ if (loginForm) {
 
 // Register User Function
 function registerUser() {
+
     const username = document.getElementById('register-username').value.trim()
     const password = document.getElementById('register-password').value.trim()
     const confirmPassword = document.getElementById('register-confirm-password').value.trim()
@@ -57,6 +60,7 @@ function registerUser() {
 
 // Login User Function
 function loginUser() {
+
     const username = document.getElementById('login-username').value.trim()
     const password = document.getElementById('login-password').value
 
@@ -65,10 +69,9 @@ function loginUser() {
     const hashedPassword = btoa(password)
 
     if (users[username] && users[username] === hashedPassword) {
-        localStorage.setItem('currentUser', username)
-        localStorage.setItem('lastLogin', Date.now().toString())
+        sessionStorage.setItem('currentUser', username)
         alert('Login successful!')
-        window.location.href = '../../index.html'
+        window.location.href = './home-page.html'
     } else {
         alert('Invalid username or password')
     }
