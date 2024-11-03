@@ -52,7 +52,11 @@ function registerUser() {
         return
     }
 
-    users[username] = hashedPassword
+    users[username] = {
+        passwordHash: hashedPassword,
+        workouts: []
+    }
+
     localStorage.setItem('users', JSON.stringify(users))
     alert('Registration successful! You can now log in.')
     window.location.href = './login.html'
@@ -68,7 +72,7 @@ function loginUser() {
 
     const hashedPassword = btoa(password)
 
-    if (users[username] && users[username] === hashedPassword) {
+    if (users[username] && users[username].passwordHash === hashedPassword) {
         sessionStorage.setItem('currentUser', username)
         alert('Login successful!')
         window.location.href = './home-page.html'

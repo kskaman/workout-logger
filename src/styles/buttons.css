@@ -1,6 +1,6 @@
 /* ../src/styles/buttons.css */
 
-/* Toggle theme button styles */
+/* Toggle Theme Button Styles */
 .theme-toggle-wrapper {
     margin: 1.25rem;
     display: flex;
@@ -45,11 +45,7 @@
     transform: translateX(1.75rem);
 }
 
-
-
-
-
-/* Log Workout Button Styles */
+/* Log Workout Floating Button Styles */
 .log-workout-button {
     position: fixed;
     bottom: 2rem;
@@ -75,29 +71,35 @@
     margin-right: 0.5rem;
 }
 
-
-
-/* Styles for buttons */
-.btn-primary {
-    width: 50%;
-    min-width: fit-content;
-    padding: 0.75rem;
-    background-color: var(--button-background);
-    color: var(--button-text-color);
+/* Styles for Buttons */
+.btn-primary, .btn-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
-    font-size: 1rem;
-    display: block;
-    margin: 1rem auto 0;
     transition: background-color 0.3s;
+    text-align: center;
+}
+
+
+.btn-primary {
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    display: block;
+    width: 25%;
+    margin: 2rem auto;
 }
 
 .btn-primary:hover {
     background-color: var(--accent-color);
 }
 
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--button-text-color);
+}
 
-.modal-buttons .btn-primary {
-    width: fit-content !important;
+.btn-secondary:hover {
+    background-color: var(--button-background);
 }

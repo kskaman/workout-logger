@@ -1,3 +1,5 @@
+//* ./src/scripts/log-workout.js
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const exercisesContainer = document.getElementById('exercise-container')
@@ -6,13 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const workoutNameInput = document.getElementById('workout-name')
     const workoutDateInput = document.getElementById('workout-date')
 
-    let exerciseCount = 0
+    let exerciseCount = 0 // Used to generate unique IDs for exercises
 
     addExerciseButton.addEventListener('click', addExercise)
     saveWorkoutButton.addEventListener('click', saveWorkout)
-
-    workoutNameInput.addEventListener('input', checkSaveWorkoutButtonVisibility)
-    workoutDateInput.addEventListener('input', checkSaveWorkoutButtonVisibility)
 
     function addExercise() {
         exerciseCount++
@@ -20,8 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
         exerciseDiv.classList.add('exercise')
         exerciseDiv.dataset.exerciseId = exerciseCount
 
+        // Fixed the typo in the innerHTML (changed id to class for add-set-button)
         exerciseDiv.innerHTML = `
-            <span class="remove-exercise-button">&times;</span>
+            <div class="remove-exercise-button">&times;</div>
             <div class="form-group">
                 <label for="exercise-name-${exerciseCount}">Exercise Name</label>
                 <input type="text" id="exercise-name-${exerciseCount}" name="exercise-name-${exerciseCount}" required>
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- Sets will be added here dynamically -->
             </div>
             <div class="exercise-buttons">
-                <button type="button" class="add-set-button">Add Set</button>
+                <button type="button" class="add-set-button btn-secondary">Add Set</button>
             </div>
         `
 
@@ -47,8 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const removeExerciseButton = exerciseDiv.querySelector('.remove-exercise-button')
         const addSetButton = exerciseDiv.querySelector('.add-set-button')
-        const exerciseNameInput = exerciseDiv.querySelector(`#exercise-name-${exerciseCount}`)
+
         const exerciseTypeSelect = exerciseDiv.querySelector(`#exercise-type-${exerciseCount}`)
+
+        // Fixed the event listener to pass correct parameters
+        exerciseTypeSelect.addEventListener('change', () => {
+            changeExerciseType(exerciseDiv, exerciseTypeSelect)
+        })
 
         removeExerciseButton.addEventListener('click', () => {
             exercisesContainer.removeChild(exerciseDiv)
@@ -56,14 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
         addSetButton.addEventListener('click', () => addSet(exerciseDiv))
-
-        exerciseNameInput.addEventListener('input', checkSaveWorkoutButtonVisibility)
-        exerciseTypeSelect.addEventListener('change', () => {
-            // Clear sets when exercise type changes
-            const setsContainer = exerciseDiv.querySelector('.sets-container')
-            setsContainer.innerHTML = ''
-            checkSaveWorkoutButtonVisibility()
-        })
     }
 
     function addSet(exerciseDiv) {
@@ -79,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentSetCount = setsContainer.children.length + 1
 
         const setRow = document.createElement('div')
+        setRow.dataset.setNumber = currentSetCount
         setRow.classList.add('set-row')
 
         let weightInputHTML = ''
@@ -103,56 +101,78 @@ document.addEventListener('DOMContentLoaded', () => {
                 required
             >
             ${weightInputHTML}
+            <span class="remove-set-button">&times;</span>
         `
 
         setsContainer.appendChild(setRow)
 
-        const repsInput = setRow.querySelector(`input[name="reps-${exerciseId}-${currentSetCount}"]`)
-        const weightInput = setRow.querySelector(`input[name="weight-${exerciseId}-${currentSetCount}"]`)
-
-        repsInput.addEventListener('input', checkSaveWorkoutButtonVisibility)
-        if (weightInput) {
-            weightInput.addEventListener('input', checkSaveWorkoutButtonVisibility)
-        }
+        // Add event listener to remove set button
+        const removeSetButton = setRow.querySelector('.remove-set-button')
+        removeSetButton.addEventListener('click', () => {
+            removeSet(exerciseDiv, setRow)
+        })
 
         checkSaveWorkoutButtonVisibility()
     }
 
-    function checkSaveWorkoutButtonVisibility() {
-        const workoutName = workoutNameInput.value.trim()
-        const workoutDate = workoutDateInput.value.trim()
-        const exerciseDivs = exercisesContainer.querySelectorAll('.exercise')
+    function removeSet(exerciseDiv, setRow) {
+        const setsContainer = exerciseDiv.querySelector('.sets-container')
+        setsContainer.removeChild(setRow)
 
-        let allExercisesValid = true
-
-        exerciseDivs.forEach(exerciseDiv => {
+        // Adjust set numbers after removal
+        const setRows = setsContainer.querySelectorAll('.set-row')
+        setRows.forEach((row, index) => {
+            const setNumber = index + 1
+            row.dataset.setNumber = setNumber
+            row.querySelector('.set-number').textContent = setNumber
             const exerciseId = exerciseDiv.dataset.exerciseId
-            const exerciseNameInput = exerciseDiv.querySelector(`#exercise-name-${exerciseId}`)
-            const exerciseTypeSelect = exerciseDiv.querySelector(`#exercise-type-${exerciseId}`)
-            const setsContainer = exerciseDiv.querySelector('.sets-container')
-
-            if (exerciseNameInput.value.trim() === '' || exerciseTypeSelect.value === '') {
-                allExercisesValid = false
-                return
+            const repsInput = row.querySelector(`input[name^="reps-"]`)
+            const weightInput = row.querySelector(`input[name^="weight-"]`)
+            repsInput.name = `reps-${exerciseId}-${setNumber}`
+            if (weightInput) {
+                weightInput.name = `weight-${exerciseId}-${setNumber}`
             }
-
-            const setRows = setsContainer.querySelectorAll('.set-row')
-            if (setRows.length === 0) {
-                allExercisesValid = false
-                return
-            }
-
-            setRows.forEach(setRow => {
-                const repsInput = setRow.querySelector(`input[name^="reps-"]`)
-                const weightInput = setRow.querySelector(`input[name^="weight-"]`)
-                if (!repsInput.value || (weightInput && !weightInput.value)) {
-                    allExercisesValid = false
-                    return
-                }
-            })
         })
+        checkSaveWorkoutButtonVisibility()
+    }
 
-        if (workoutName !== '' && workoutDate !== '' && exerciseDivs.length > 0 && allExercisesValid) {
+    function changeExerciseType(exerciseDiv, exerciseTypeSelect) {
+        const exerciseType = exerciseTypeSelect.value
+        const setsContainer = exerciseDiv.querySelector('.sets-container')
+        const setRows = setsContainer.querySelectorAll('.set-row')
+
+        setRows.forEach(setRow => {
+            const exerciseId = exerciseDiv.dataset.exerciseId
+            const setNumber = setRow.dataset.setNumber
+            let weightInput = setRow.querySelector(`input[name="weight-${exerciseId}-${setNumber}"]`)
+
+            if (exerciseType === 'resistance-band' || exerciseType === 'weighted') {
+                if (!weightInput) {
+                    // Add weight input
+                    weightInput = document.createElement('input')
+                    weightInput.type = 'number'
+                    weightInput.name = `weight-${exerciseId}-${setNumber}`
+                    weightInput.placeholder = 'Weight'
+                    weightInput.required = true
+
+                    // Insert the weight input after the reps input
+                    const repsInput = setRow.querySelector(`input[name="reps-${exerciseId}-${setNumber}"]`)
+                    setRow.insertBefore(weightInput, repsInput.nextSibling)
+                }
+            } else {
+                if (weightInput) {
+                    // Remove weight input
+                    weightInput.parentNode.removeChild(weightInput)
+                }
+            }
+        })
+    }
+
+    function checkSaveWorkoutButtonVisibility() {
+        const exerciseDivs = exercisesContainer.querySelectorAll('.exercise')
+        const setRows = exercisesContainer.querySelectorAll('.set-row')
+
+        if (exerciseDivs.length > 0 && setRows.length > 0) {
             saveWorkoutButton.style.display = 'block'
         } else {
             saveWorkoutButton.style.display = 'none'
@@ -176,6 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return
         }
 
+        let allExercisesValid = true
+
         exerciseDivs.forEach(exerciseDiv => {
             const exerciseId = exerciseDiv.dataset.exerciseId
             const exerciseNameInput = exerciseDiv.querySelector(`#exercise-name-${exerciseId}`)
@@ -187,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (exerciseName === '' || exerciseType === '') {
                 alert('Enter name and type for each exercise.')
+                allExercisesValid = false
                 return
             }
 
@@ -194,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (setRows.length === 0) {
                 alert('Each exercise must have at least one set.')
+                allExercisesValid = false
                 return
             }
 
@@ -203,7 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
             setRows.forEach(setRow => {
                 const repsInput = setRow.querySelector(`input[name^="reps-"]`)
                 const weightInput = setRow.querySelector(`input[name^="weight-"]`)
-                if (!repsInput.value || (weightInput && !weightInput.value)) {
+                if (!repsInput.value ||
+                    (weightInput && weightInput.required && !weightInput.value)) {
                     allSetsValid = false
                     return
                 } else {
@@ -219,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!allSetsValid) {
                 alert('Each set of every exercise should have valid entries.')
+                allExercisesValid = false
                 return
             }
 
@@ -229,6 +255,10 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
 
+        if (!allExercisesValid) {
+            return
+        }
+
         const workoutData = {
             name: workoutName,
             date: workoutDate,
@@ -237,22 +267,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Save to localStorage
         const users = JSON.parse(localStorage.getItem('users')) || {}
-        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null
+        const currentUser = sessionStorage.getItem('currentUser') || null
 
         if (!currentUser) {
             alert('No user is currently logged in.')
             return
         }
 
-        const userId = currentUser.id
+        const userId = currentUser
 
         if (!users[userId]) {
             alert('User not found.')
             return
-        }
-
-        if (!users[userId].workouts) {
-            users[userId].workouts = []
         }
 
         users[userId].workouts.push(workoutData)

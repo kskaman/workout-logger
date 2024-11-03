@@ -1,10 +1,9 @@
-/* ../src/styles/index.css */
+/* ../src/styles/log-workout.css */
 
 .container {
     display: flex;
     height: 100vh;
 }
-
 
 .main-container {
     flex: 2;
@@ -16,7 +15,7 @@
 
 /* Form Styles */
 #log-workout-form {
-    width: 80%;
+    width: 90%;
     margin: 5rem auto;
     font-size: 1.2rem;
 }
@@ -24,7 +23,6 @@
 .form-group {
     margin-bottom: 1.5rem;
     display: flex;
-    width: 40rem;
 }
 
 .form-group label {
@@ -36,8 +34,8 @@
 .form-group input,
 .form-group select {
     flex: 1;
+    max-width: 40%;
     font-size: 1.2rem;
-    max-width: 30rem;
     padding: 0.25rem;
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
@@ -51,22 +49,6 @@
     border-color: var(--secondary-color);
 }
 
-#save-workout-button {
-    display: none;
-    margin-top: 2rem;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    background-color: var(--button-background);
-    color: var(--button-text-color);
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-}
-
-#save-workout-button:hover {
-    background-color: var(--button-hover-background);
-}
-
 /* Exercise Container Styles */
 #exercise-container {
     margin-top: 3rem;
@@ -76,9 +58,10 @@
     position: relative;
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 2rem;
     margin-bottom: 1.5rem;
     background-color: var(--input-background);
+    box-sizing: border-box;
 }
 
 .remove-exercise-button {
@@ -93,27 +76,8 @@
 
 .exercise-buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-top: 1rem;
-}
-
-.exercise-buttons.centered {
-    justify-content: center;
-}
-
-.complete-exercise-button {
-    display: none;
-    margin-left: 1rem;
-    background-color: var(--accent-color);
-    color: var(--button-text-color);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-}
-
-.complete-exercise-button:hover {
-    background-color: var(--accent-hover-color);
 }
 
 /* Set Row Styles */
@@ -124,67 +88,39 @@
 .set-row {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 1rem;
     margin-bottom: 1rem;
+    font-size: 1rem;
 }
 
 .set-row input {
     flex: 1;
+    max-width: 30%;
+    font-size: 1.25rem;
 }
 
 .set-row .set-number {
-    width: 2rem;
+    width: 1rem;
     text-align: center;
 }
 
-.add-set-button {
-    background-color: var(--button-background);
-    color: var(--button-text-color);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
+.remove-set-button {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
     cursor: pointer;
+    font-weight: 500;
 }
 
-.add-set-button:hover {
-    background-color: var(--button-hover-background);
+/* Remove Button Hover Effect */
+.remove-exercise-button:hover,
+.remove-set-button:hover {
+    color: var(--accent-color);
 }
 
-/* Button Styling */
-#add-exercise-button {
-    background-color: var(--button-background);
-    color: var(--button-text-color);
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-}
 
-#add-exercise-button:hover {
-    background-color: var(--button-hover-background);
-}
 
-#add-exercise-button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 2rem;
-}
-
-#add-exercise-button-container.centered {
-    justify-content: center;
-}
-
-/* Consistent Color Scheme */
-:root {
-    --text-color: #333;
-    --border-color: #ccc;
-    --input-background: #f9f9f9;
-    --input-text-color: #333;
-    --button-background: #007BFF;
-    --button-hover-background: #0056b3;
-    --button-text-color: #fff;
-    --secondary-color: #dc3545;
-    --accent-color: #28a745;
-    --accent-hover-color: #218838;
+/* save workout button */
+#save-workout-button {
+    display: none;
 }
