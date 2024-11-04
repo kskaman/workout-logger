@@ -2,70 +2,73 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Workout Logger</title>
-    
-    <link rel="stylesheet" href="../styles/colors.css">
-    <link rel="stylesheet" href="../styles/theme.css">
-    <link rel="stylesheet" href="../styles/auth.css">
-    <link rel="stylesheet" href="../styles/buttons.css">
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-    />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Workout Logger</title>
+  
+  <link rel="stylesheet" href="../styles/colors.css">
+  <link rel="stylesheet" href="../styles/theme.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+  <link rel="stylesheet" href="../styles/buttons.css">
+  <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+  />
 </head>
 
 <body>
-    <div class="container">
-        <!-- Header/Navbar -->
-        <header class="header">
-            <div class="logo">
-                <a href="../../">Workout Logger</a>
-            </div>
-        </header>
+  <div class="container">
+    <!-- Header/Navbar -->
+    <header class="header">
+      <div class="logo">
+        <a href="../../">Workout Logger</a>
+      </div>
+    </header>
         
         
-        <main class="main-container">
-            <div class="auth-container">
-                <h2>Register</h2>
-                <form id="register-form">
-                    <div class="form-group">
-                        <label for="register-username">Username</label>
-                        <input type="text" id="register-username" name="register-username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="register-password">Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="register-password" name="register-password" required>
-                            <span class="material-symbols-outlined toggle-password" id="toggle-register-password">
-                                visibility
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="register-confirm-password">Confirm Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="register-confirm-password" name="register-confirm-password" required>
-                            <span class="material-symbols-outlined toggle-password" id="toggle-confirm-password">
-                                visibility
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary">Register</button>
-                    <p class="auth-switch">Already have an account? <a href="./login.html">Login here</a>.</p>    
-                </form>
+    <main class="main-container">
+      <div class="auth-container">
+        <h2>Register</h2>
+        <form id="register-form">
+          
+            <div class="form-group">
+            <label for="register-username">Username</label>
+            <input type="text" id="register-username" name="register-username" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="register-password" name="register-password" required>
+              <span class="material-symbols-outlined toggle-password" id="toggle-register-password">
+                visibility
+              </span>
             </div>
-        </main>
-    </div>
+          </div>
+                    
+          <div class="form-group">
+          <label for="register-confirm-password">Confirm Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="register-confirm-password" name="register-confirm-password" required>
+              <span class="material-symbols-outlined toggle-password" id="toggle-confirm-password">
+                visibility
+              </span>
+            </div>
+          </div>
+                    
+          <button type="submit" class="btn-primary">Register</button>
+          <p class="auth-switch">Already have an account? <a href="./login.html">Login here</a>.</p>    
+        </form>
+      </div>
+    </main>
+  </div>
 
-    <!-- JavaScript -->
-    <script src="../scripts/theme-toggle.js"></script>
-
-    <script src="../scripts/auth.js"></script>
-    <script src="../scripts/toggle-password.js"></script>
+  <!-- JavaScript -->
+  <script src="../scripts/theme-toggle.js"></script>
+  <script src="../scripts/auth.js"></script>
+  <script src="../scripts/toggle-password.js"></script>
 </body>
+
 </html>
