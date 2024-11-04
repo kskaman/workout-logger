@@ -12,3 +12,41 @@
     display: flex;
     flex-direction: column;
 }
+
+#history-container {
+    width: 85%;
+    margin: 2rem 2rem 0 0;
+    background-color: var(--input-background);
+    border-radius: 0.3125rem;
+    padding: 1rem;
+}
+
+/* Styling for workout info */
+.workout-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.workout-item:hover {
+    background-color: var(--background-color);
+}
+
+
+.workout-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.workout-actions .btn-secondary {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.workout-actions .btn-secondary:hover {
+    background-color: var(--accent-color);
+}
