@@ -2,27 +2,31 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workout History | Workout Logger</title>
-  
-  <link rel="stylesheet" href="../styles/colors.css">
-  <link rel="stylesheet" href="../styles/theme.css">
-  <link rel="stylesheet" href="../styles/sidebar.css">
-  <link rel="stylesheet" href="../styles/buttons.css">
-  <link rel="stylesheet" href="../styles/modal.css">
-  <link rel="stylesheet" href="../styles/workout-history.css">
-</head>
-<body>
-  <div class="container" id="container">
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-      <div class="logo">
-        <h2>Workout Logger</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout History | Workout Logger</title>
+
+    <link rel="stylesheet" href="../styles/colors.css" />
+    <link rel="stylesheet" href="../styles/theme.css" />
+    <link rel="stylesheet" href="../styles/sidebar.css" />
+    <link rel="stylesheet" href="../styles/buttons.css" />
+    <link rel="stylesheet" href="../styles/modal.css" />
+    <link rel="stylesheet" href="../styles/workout-history.css" />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <!-- Sidebar Navigation -->
+      <nav class="sidebar">
+        <div class="logo">
+          <h2>Workout Logger</h2>
           <ul class="nav-links">
             <li><a href="./home-page.html" id="home-link">Home</a></li>
-            <li><a href="./workout-history.html" id="workout-history">Workout History</a></li>
+            <li>
+              <a href="./workout-history.html" id="workout-history"
+                >Workout History</a
+              >
+            </li>
             <li><a href="" id="logout-link">Log Out</a></li>
           </ul>
         </div>
@@ -32,42 +36,39 @@
           <div class="toggle-slider" id="theme-toggle">
             <div class="slider-circle"></div>
           </div>
-        <span class="theme-label">Light Mode</span>
-      </div>
-    </nav>
+          <span class="theme-label">Light Mode</span>
+        </div>
+      </nav>
 
-    <main class="main-container">
-      <header>
-        <h1>
-          Workout History
-        </h1>
-      </header>
+      <main class="main-container">
+        <header>
+          <h1>Workout History</h1>
+        </header>
 
-      <div id="history-container">
-      <!-- Previous workouts will be added here dynamically -->
-      </div>
-    </main>
+        <div id="history-container">
+          <!-- Previous workouts will be added here dynamically -->
+        </div>
+      </main>
 
-    <!-- Log Workout button -->
-    <button id="log-workout-button" class="log-workout-button">
-      <span class="plus-icon">+</span>Log Workout
-    </button>
+      <!-- Log Workout button -->
+      <button id="log-workout-button" class="log-workout-button">
+        <span class="plus-icon">+</span>Log Workout
+      </button>
 
-    <!-- Modal Overlay -->
-    <div id="modal-overlay" class="modal-overlay">
-      <div class="modal-container">
-        <div id="close-modal-button" class="close-modal-button">&times;</div>
-        <div id="modal-content" class="modal-content">
-          <!-- Modal content will be added here dynamically -->
+      <!-- Modal Overlay -->
+      <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-container">
+          <div id="close-modal-button" class="close-modal-button">&times;</div>
+          <div id="modal-content" class="modal-content">
+            <!-- Modal content will be added here dynamically -->
+          </div>
         </div>
       </div>
-    </div>
-
     </div>
 
     <!-- JavaScript -->
     <script src="../scripts/theme-toggle.js"></script>
     <script src="../scripts/workout-history.js"></script>
     <script src="../scripts/log-workout.js"></script>
-</body>
+  </body>
 </html>
