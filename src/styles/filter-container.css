@@ -1,0 +1,45 @@
+/* Filter Options Container */
+.filter-options-container {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-background);
+  border-radius: 0.5rem;
+}
+
+/* Filter Group */
+.filter-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filter-group label {
+  margin-right: 0.5rem;
+  color: var(--text-color);
+}
+
+.filter-group input {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  background-color: var(--input-background);
+  color: var(--input-text-color);
+  max-width: 30%;
+}
+
+/* Adjust input widths as needed */
+.filter-group input[type="text"] {
+  flex: 1;
+}
+
+.filter-group input[type="date"] {
+  width: auto;
+  margin-right: 1rem;
+}
+
+/* Apply Filters Button */
+#filter-form .btn-primary {
+  margin-top: 1rem;
+  min-width: fit-content;
+}
