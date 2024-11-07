@@ -1,81 +1,145 @@
-/* ./src/styles/modals.css */
+/* ./src/styles/modal.css */
 
-/* Modal Styles */
-.modal {
+/* ./src/styles/modal.css */
+
+/* Modal Overlay */
+.modal-overlay {
     display: none; /* Hidden by default */
     position: fixed;
-    z-index: 1;
     top: 0;
-    left: 0;
+    left: 0; 
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1; /* Ensure it stays on top */
+    overflow: hidden; /* Prevent background scrolling */
 }
 
-.modal-content {
-    background-color: var(--input-background);
-    margin: 10% auto;
-    padding: 2rem;
-    border: 1px solid var(--border-color);
-    width: 90%;
-    max-width: 25rem;
-    border-radius: 0.5rem;
+/* Modal Container */
+.modal-container {
     position: relative;
+    margin: 5% auto;
+    width: 80%;
+    max-width: 800px;
+    max-height: 95vh;
+    background-color: var(--input-background);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    overflow: auto;
+    box-sizing: border-box;
 }
 
-.modal-content h2 {
-    color: var(--heading-color);
+/* Close Button */
+.close-modal-button {
+    position: sticky;
+    top: 0; /* Stick to the top */
+    right: 0;
+    margin-right: auto; /* Push to the right in flex container */
+    font-size: 2rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+}
+
+/* Modal Content */
+.modal-content {
+    padding: 1rem;
+    max-height: 85vh;
+    box-sizing: border-box;
+}
+
+
+/* Common styles for forms inside modal */
+.modal-content .form-group {
     margin-bottom: 1rem;
 }
 
-.modal-content p {
+.modal-content label {
+    display: block;
+    margin-bottom: 0.5rem;
     color: var(--text-color);
-    margin-bottom: 1.5rem;
 }
 
-.modal-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.modal-buttons .btn-primary,
-.modal-buttons .btn-secondary {
+.modal-content input,
+.modal-content select {
     width: 100%;
-    text-align: center;
-    padding: 0.75rem;
-    border: none;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
     border-radius: 0.25rem;
+    background-color: var(--input-background);
+    color: var(--input-text-color);
+}
+
+.modal-content .exercise {
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.modal-content .remove-exercise-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
     cursor: pointer;
-    text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
 }
 
-.modal-buttons .btn-primary {
-    background-color: var(--button-background);
-    color: var(--button-text-color);
+.modal-content .sets-container {
+    margin-top: 1rem;
 }
 
-.modal-buttons .btn-secondary {
+.modal-content .set-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.modal-content .set-number {
+    width: 2rem;
+}
+
+.modal-content .set-row input {
+    flex: 1;
+    margin-right: 0.5rem;
+    padding: 0.25rem;
+}
+
+.modal-content .remove-set-button {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.modal-content .exercise-buttons {
+    margin-top: 1rem;
+}
+
+.modal-content button {
+    margin-top: 1rem;
+}
+
+
+/* Suggestions Container */
+.suggestions-container {
+    position: absolute;
+    background-color: var(--input-background);
+    border: 1px solid var(--border-color);
+    max-height: 150px;
+    overflow-y: auto;
+    width: calc(100% - 1rem);
+    z-index: 10;
+}
+
+.suggestion-item {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
     background-color: var(--secondary-color);
     color: var(--button-text-color);
-}
-
-.modal-buttons .btn-link {
-    background: none;
-    border: none;
-    color: var(--link-color);
-    cursor: pointer;
-    text-decoration: underline;
-    font-size: 1rem;
-}
-
-.close-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    color: var(--subheading-color);
-    font-size: 1.5rem;
-    cursor: pointer;
 }

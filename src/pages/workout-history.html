@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../styles/theme.css">
   <link rel="stylesheet" href="../styles/sidebar.css">
   <link rel="stylesheet" href="../styles/buttons.css">
+  <link rel="stylesheet" href="../styles/modal.css">
   <link rel="stylesheet" href="../styles/workout-history.css">
 </head>
 <body>
@@ -48,15 +49,17 @@
     </main>
 
     <!-- Log Workout button -->
-    <button id="log-workout-button" class="log-workout-button" onclick="window.location.href='./log-workout.html'">
+    <button id="log-workout-button" class="log-workout-button">
       <span class="plus-icon">+</span>Log Workout
     </button>
 
     <!-- Modal Overlay -->
     <div id="modal-overlay" class="modal-overlay">
-      <div id="close-modal-button" class="close-modal-button">&times;</div>
-      <div id="modal-content" class="modal-content">
-        <!-- Modal content will be added here dynamically -->
+      <div class="modal-container">
+        <div id="close-modal-button" class="close-modal-button">&times;</div>
+        <div id="modal-content" class="modal-content">
+          <!-- Modal content will be added here dynamically -->
+        </div>
       </div>
     </div>
 
