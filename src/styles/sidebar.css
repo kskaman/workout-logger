@@ -1,47 +1,50 @@
 /* ../src/styles/sidebar.css */
 
 .sidebar {
-    flex: 1;
-    max-width: 20vw;
-    background-color: var(--sidebar-background);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem 1rem;
-    transition: background-color 0.3s, color 0.3s;
+  flex: 1;
+  max-width: 20vw;
+  background-color: var(--sidebar-background);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .logo h2 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .nav-links {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .nav-links li {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .nav-links a {
-    color: var(--sidebar-text-color);
-    font-size: 1.1rem;
-    display: block;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s, color 0.3s;
+  color: var(--sidebar-text-color);
+  font-size: 1.1rem;
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-links a:hover {
-    background-color: var(--secondary-color);
-    color: var(--button-text-color);
+  background-color: var(--secondary-color);
+  color: var(--button-text-color);
 }
 
 .nav-links a.active {
-    background-color: var(--secondary-color);
-    color: var(--button-text-color);
+  background-color: var(--secondary-color);
+  color: var(--button-text-color);
+}
+
+.theme-toggle-wrapper {
+  margin-top: auto;
 }

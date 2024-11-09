@@ -1,43 +1,51 @@
 /* ../src/styles/index.css */
 
 .container {
-    display: flex;
-    height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
-
 .main-container {
-    flex: 2;
-    padding: 2.5rem;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
+  flex: 2;
+  padding: 2.5rem;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 /* Main container content styling */
 header {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    color: var(--heading-color);
+  font-size: 2.5rem;
+  color: var(--heading-color);
 }
 
-#last-workout {
-    background-color: var(--input-background);
-    padding: 2rem;
-    border-radius: 0.3125rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+#stats {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
-#last-workout h2 {
-    margin-bottom: 0.9375rem;
-    color: var(--subheading-color);
-    font-size: 1.75rem;
+#last-workout,
+#streak-stats,
+#general-stats {
+  background-color: var(--input-background);
+  padding: 2rem;
+  border-radius: 0.3125rem;
+  width: 100%;
+  /*
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  */
 }
 
-.workout-info p {
-    font-size: 1rem;
-    color: var(--text-color);
+#last-workout h2,
+#streak-stats h2,
+#general-stats h2 {
+  margin-bottom: 0.9375rem;
+  color: var(--subheading-color);
+  font-size: 1.75rem;
 }
