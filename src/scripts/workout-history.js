@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show the modal
     modalOverlay.style.display = "block";
-    document.body.classList.add("modal-open");
+    // document.body.classList.add("modal-open");
   }
 
   function renderViewModal(workout) {

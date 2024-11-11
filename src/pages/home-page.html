@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../styles/sidebar.css" />
     <link rel="stylesheet" href="../styles/buttons.css" />
     <link rel="stylesheet" href="../styles/modal.css" />
+    <link rel="stylesheet" href="../styles/workout-history.css" />
   </head>
 
   <body>
@@ -47,16 +48,11 @@
           <h1>Welcome to Your Workout Logger</h1>
         </header>
         <section id="last-workout">
-          <h2>Last Workout</h2>
           <!-- This section will display the last workout if user is logged in and has history -->
         </section>
         <section id="stats">
-          <div id="general-stats">
-            <h2>General Stats</h2>
-          </div>
-          <div id="streak-stats">
-            <h2>Streak</h2>
-          </div>
+          <div id="general-stats"></div>
+          <div id="streak-stats"></div>
           <!--
             We will get two types of stats.  
             Streak :  Max Streak ; Current Streak ; 
@@ -87,5 +83,6 @@
     <script src="../scripts/theme-toggle.js"></script>
     <script src="../scripts/logout.js"></script>
     <script src="../scripts/log-workout.js"></script>
+    <script src="../scripts/last-workout-view.js"></script>
   </body>
 </html>
