@@ -2,62 +2,75 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Workout Logger</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Workout Logger</title>
 
-  <link rel="stylesheet" href="../styles/colors.css">
-  <link rel="stylesheet" href="../styles/theme.css">
-  <link rel="stylesheet" href="../styles/auth.css">
-  <link rel="stylesheet" href="../styles/buttons.css">
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-  />
-</head>
+    <link rel="stylesheet" href="../styles/colors.css" />
+    <link rel="stylesheet" href="../styles/theme.css" />
+    <link rel="stylesheet" href="../styles/auth.css" />
+    <link rel="stylesheet" href="../styles/buttons.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
 
-<body>
-  <div class="container">
-    <!-- Header/Navbar -->
-    <header class="header">
-      <div class="logo">
-        <a href="../../">Workout Logger</a>
-      </div>
-    </header>
-        
-    <main class="main-container">
-      <div class="auth-container">
-        <h2>Login</h2>
+  <body>
+    <div class="container">
+      <!-- Header/Navbar -->
+      <header class="header">
+        <div class="logo">
+          <a href="../../">Workout Logger</a>
+        </div>
+      </header>
 
-        <form id="login-form">
-          <div class="form-group">
-            <label for="login-username">Username</label>
-            <input type="text" id="login-username" required>
-          </div>
+      <main class="main-container">
+        <div class="auth-container">
+          <h2>Login</h2>
 
-          <div class="form-group">
-            <label for="login-password">Password</label>
-            <div class="password-wrapper">
-              <input type="password" id="login-password" required>
-              <span class="material-symbols-outlined toggle-password" id="toggle-login-password">
-                visibility
-              </span>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-username">Username</label>
+              <input
+                type="text"
+                id="login-username"
+                autocomplete="off"
+                required
+              />
             </div>
-          </div>
-                    
-          <button type="submit" class="btn-primary">Login</button>
-          <p class="auth-switch">Don't have an account? <a href="register.html">Register here</a>.</p>
-        </form>
-      </div>
-    </main>
-  </div>
 
-  <!-- JavaScript -->    
-  <script src="../scripts/theme-toggle.js"></script>
-  <script src="../scripts/auth.js"></script>
-  <script src="../scripts/toggle-password.js"></script>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <div class="password-wrapper">
+                <input
+                  type="password"
+                  id="login-password"
+                  autocomplete="off"
+                  required
+                />
+                <span
+                  class="material-symbols-outlined toggle-password"
+                  id="toggle-login-password"
+                >
+                  visibility
+                </span>
+              </div>
+            </div>
 
-</body>
+            <button type="submit" class="btn-primary">Login</button>
+            <p class="auth-switch">
+              Don't have an account? <a href="register.html">Register here</a>.
+            </p>
+          </form>
+        </div>
+      </main>
+    </div>
 
+    <!-- JavaScript -->
+    <script src="../scripts/theme-toggle.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/toggle-password.js"></script>
+  </body>
 </html>

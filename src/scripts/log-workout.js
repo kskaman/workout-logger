@@ -81,14 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     addExerciseButton.textContent = "Add Exercise";
     addExerciseButton.classList.add("btn-secondary");
     addExerciseButton.addEventListener("click", () => {
-      addExerciseToForm(
-        null,
-        null,
-        exercisesContainer,
-        users,
-        currentUser,
-        "log"
-      );
+      addExerciseToForm(exercisesContainer, users, currentUser);
     });
 
     form.appendChild(exercisesContainer);
@@ -99,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveButton.type = "button";
     saveButton.textContent = "Save Workout";
     saveButton.classList.add("btn-primary");
-    saveButton.style.display = "none"; // Initially hidden
+    saveButton.style.display = "none";
     saveButton.id = "save-workout-button";
     saveButton.addEventListener("click", saveWorkout);
 
@@ -228,28 +221,27 @@ document.addEventListener("DOMContentLoaded", () => {
     // Insert the workout into the workouts array in sorted order
     insertWorkoutInOrder(workoutData, workouts);
 
-    // Update user's unique exercises
-    users[currentUser].exercises = users[currentUser].exercises || [];
-    exercises.forEach((exercise) => {
-      const existingExerciseIndex = users[currentUser].exercises.findIndex(
-        (ex) => ex.name.toLowerCase() === exercise.name.toLowerCase()
-      );
-      if (existingExerciseIndex !== -1) {
-        users[currentUser].exercises[existingExerciseIndex] = exercise;
-      } else {
-        users[currentUser].exercises.push(exercise);
-      }
-    });
-
+    // Update user's workouts
     users[currentUser].workouts = workouts;
+
+    // ** Update user's exercises list **
+    updateUserExercises(users[currentUser]);
+
+    // Update user stats
+    updateUserStats(users[currentUser]);
+
     localStorage.setItem("users", JSON.stringify(users));
 
     alert("Workout saved successfully!");
     closeModal();
-    // Optionally, re-render the workout history if necessary
-    if (typeof renderWorkoutHistory === "function") {
-      renderWorkoutHistory();
-    }
+
+    // Re-render the workout history if necessary
+    // The check typeof renderWorkoutHistory === "function"
+    // ensures that renderWorkoutHistory exists and is
+    // indeed a function before attempting to call it.
+    // This prevents potential runtime errors that could
+    // occur if renderWorkoutHistory is undefined or not a function.
+    renderWorkoutHistory();
   }
 
   function insertWorkoutInOrder(workoutData, workoutsArray) {
@@ -277,20 +269,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeModalButton.addEventListener("click", closeModal);
 
-  // Expose function for use in other scripts (if necessary)
-  window.checkSaveWorkoutButtonVisibility = checkSaveWorkoutButtonVisibility;
-
   // Add Exercise to Form
-  function addExerciseToForm(
-    exercise = null,
-    exerciseCountParam = null,
-    container,
-    users,
-    currentUser,
-    mode = "log"
-  ) {
+  function addExerciseToForm(container, users, currentUser) {
     let exerciseCount = container.dataset.exerciseCount || 0;
-    exerciseCount = exerciseCountParam || ++exerciseCount;
+    exerciseCount++;
     container.dataset.exerciseCount = exerciseCount;
 
     const exerciseDiv = document.createElement("div");
@@ -334,17 +316,15 @@ document.addEventListener("DOMContentLoaded", () => {
       `#exercise-name-${exerciseCount}`
     );
 
-    if (mode === "log") {
-      // Add event listener for exercise name input to show suggestions
-      exerciseNameInput.addEventListener("input", () => {
-        showExerciseSuggestions(
-          exerciseNameInput,
-          exerciseDiv,
-          users,
-          currentUser
-        );
-      });
-    }
+    // Add event listener for exercise name input to show suggestions
+    exerciseNameInput.addEventListener("input", () => {
+      showExerciseSuggestions(
+        exerciseNameInput,
+        exerciseDiv,
+        users,
+        currentUser
+      );
+    });
 
     exerciseTypeSelect.addEventListener("change", () => {
       changeExerciseType(exerciseDiv, exerciseTypeSelect);
@@ -356,17 +336,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     addSetButton.addEventListener("click", () => addSet(exerciseDiv));
-
-    // Populate existing exercise data if provided
-    if (exercise) {
-      exerciseNameInput.value = exercise.name;
-      exerciseTypeSelect.value = exercise.type;
-      changeExerciseType(exerciseDiv, exerciseTypeSelect);
-
-      exercise.sets.forEach((set) => {
-        addSet(exerciseDiv, set);
-      });
-    }
 
     checkSaveWorkoutButtonVisibility();
   }
@@ -398,7 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <input
                     type="number"
                     name="weight-${exerciseId}-${currentSetCount}"
-                    placeholder="Weight"
+                    placeholder="Weight (in lbs)"
                     required>
             `;
     }
@@ -481,7 +450,7 @@ document.addEventListener("DOMContentLoaded", () => {
           weightInput = document.createElement("input");
           weightInput.type = "number";
           weightInput.name = `weight-${exerciseId}-${setNumber}`;
-          weightInput.placeholder = "Weight";
+          weightInput.placeholder = "Weight (in lbs)";
           weightInput.required = true;
 
           const repsInput = setRow.querySelector(
@@ -512,7 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Filter exercises based on input
     const filteredExercises = userExercises.filter((exercise) =>
-      exercise.name.toLowerCase().includes(inputValue)
+      exercise.name.toLowerCase().includes(inputValue.toLowerCase())
     );
 
     // Remove existing suggestions
@@ -566,5 +535,129 @@ document.addEventListener("DOMContentLoaded", () => {
     exercise.sets.forEach((set) => {
       addSet(exerciseDiv, set);
     });
+  }
+
+  function updateUserStats(user) {
+    const workouts = user.workouts || [];
+
+    // Initialize variables for stats
+    let currentStreak = 0;
+    let maxStreak = 0;
+    let workoutsInLast30Days = 0;
+    let maxReps = 0;
+    let maxRepsExercise = "";
+    let heaviestWeight = 0;
+    let heaviestWeightExercises = [];
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let streakDate = new Date(today);
+    let tempStreak = 0;
+
+    const thirtyDaysAgo = new Date(today);
+    thirtyDaysAgo.setDate(today.getDate() - 29); // Include today
+
+    const workoutDates = workouts.map((workout) => {
+      const date = new Date(workout.date);
+      date.setHours(0, 0, 0, 0); // Normalize to midnight
+      return date;
+    });
+
+    // Sort workoutDates in ascending order
+    workoutDates.sort((a, b) => a - b);
+
+    // Calculate current streak and max streak
+    for (let i = workoutDates.length - 1; i >= 0; i--) {
+      const date = workoutDates[i];
+
+      if (date.getTime() === streakDate.getTime()) {
+        tempStreak++;
+        streakDate.setDate(streakDate.getDate() - 1);
+      } else if (
+        date.getTime() ===
+        streakDate.getTime() - 86400000 // 1 day difference
+      ) {
+        tempStreak++;
+        streakDate.setDate(streakDate.getDate() - 1);
+      } else {
+        if (tempStreak > maxStreak) {
+          maxStreak = tempStreak;
+        }
+        tempStreak = 0;
+        streakDate = new Date(date);
+        streakDate.setDate(streakDate.getDate() - 1);
+      }
+    }
+
+    // After loop, check if tempStreak is the max streak
+    if (tempStreak > maxStreak) {
+      maxStreak = tempStreak;
+    }
+
+    currentStreak = tempStreak;
+
+    // Calculate workouts in last 30 days
+    workoutsInLast30Days = workoutDates.filter(
+      (date) => date >= thirtyDaysAgo && date <= today
+    ).length;
+
+    // Calculate max reps and heaviest weight
+    workouts.forEach((workout) => {
+      workout.exercises.forEach((exercise) => {
+        exercise.sets.forEach((set) => {
+          const reps = parseInt(set.reps);
+          if (reps > maxReps) {
+            maxReps = reps;
+            maxRepsExercise = exercise.name;
+          }
+
+          if (
+            (exercise.type === "weighted" ||
+              exercise.type === "resistance-band") &&
+            set.weight
+          ) {
+            const weight = parseFloat(set.weight);
+            if (weight > heaviestWeight) {
+              heaviestWeight = weight;
+              heaviestWeightExercises = [exercise.name];
+            } else if (
+              weight === heaviestWeight &&
+              !heaviestWeightExercises.includes(exercise.name)
+            ) {
+              heaviestWeightExercises.push(exercise.name);
+            }
+          }
+        });
+      });
+    });
+
+    // Store stats in user profile
+    user.stats = {
+      currentStreak,
+      maxStreak,
+      workoutsInLast30Days,
+      maxReps,
+      maxRepsExercise,
+      heaviestWeight,
+      heaviestWeightExercises,
+    };
+  }
+
+  // Function to update user's exercises list
+  function updateUserExercises(user) {
+    const exercisesMap = {};
+    user.workouts.forEach((workout) => {
+      workout.exercises.forEach((exercise) => {
+        const exerciseKey = exercise.name.toLowerCase();
+        if (!exercisesMap[exerciseKey]) {
+          exercisesMap[exerciseKey] = {
+            name: exercise.name,
+            type: exercise.type,
+            sets: exercise.sets,
+          };
+        }
+      });
+    });
+    user.exercises = Object.values(exercisesMap);
   }
 });

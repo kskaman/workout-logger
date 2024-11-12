@@ -1,6 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const lastWorkoutContainer = document.getElementById("last-workout");
+// ../src/scripts/last-workout-view.js
 
+document.addEventListener("DOMContentLoaded", () => {
+  let showStats = true;
+  const lastWorkoutContainer = document.getElementById("last-workout");
   const currentUser = sessionStorage.getItem("currentUser");
 
   if (!currentUser) {
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lastWorkoutContainer.innerHTML = "";
 
     if (lastWorkout.length === 0) {
+      showStats = false;
       lastWorkoutContainer.textContent = "No past workouts found.";
       return;
     }
@@ -41,7 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const heading = document.createElement("h3");
     heading.textContent = "Last Workout";
     lastWorkoutContainer.appendChild(heading);
-    // Create last workout row
+
+    // Create last workout table
     const table = document.createElement("table");
     table.classList.add("workout-table");
 
@@ -79,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     viewButton.id = `view-button`;
     viewButton.addEventListener("click", (event) => {
       event.stopPropagation();
-      openEditModal(lastWorkout);
+      openViewModal(lastWorkout);
     });
 
     actionCell.appendChild(viewButton);
@@ -95,8 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
     lastWorkoutContainer.appendChild(table);
   }
 
-  function openEditModal(workout) {
+  function openViewModal(workout) {
     const modalContent = document.getElementById("modal-content");
+    modalContent.innerHTML = "";
+
     const modalHeader = document.createElement("div");
 
     const modalTitle = document.createElement("p");
@@ -189,20 +195,79 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderGeneralStats() {
-    const generalStatContainer = document.getElementById("general-stats");
-    generalStatContainer.innerHTML = "";
+    const generalStatsContainer = document.getElementById("general-stats");
+    generalStatsContainer.innerHTML = "";
     const generalHeading = document.createElement("h3");
     generalHeading.textContent = "General Stats";
 
-    generalStatContainer.appendChild(generalHeading);
+    generalStatsContainer.appendChild(generalHeading);
+
+    if (!showStats) {
+      const el = document.createElement("p");
+      el.textContent = "No stats to show";
+      generalStatsContainer.appendChild(el);
+      return;
+    }
+
+    const stats = users[currentUser].stats;
+
+    if (stats) {
+      // Workout in Last 30 days
+      const workouts30Days = document.createElement("p");
+      workouts30Days.textContent = `Workouts in Last 30 Days: ${stats.workoutsInLast30Days}`;
+      generalStatsContainer.appendChild(workouts30Days);
+
+      // Maximum Reps Done
+      const maxRepsElem = document.createElement("p");
+      maxRepsElem.textContent = `Maximum Reps : ${stats.maxReps} (Exercise: ${stats.maxRepsExercise})`;
+      generalStatsContainer.appendChild(maxRepsElem);
+
+      // Heaviest Weight Lifted
+
+      if (stats.heaviestWeightExercises.length !== 0) {
+        const maxWeightElem = document.createElement("p");
+        maxWeightElem.textContent = `Heaviest Weight Lifted: ${
+          stats.heaviestWeight
+        } lbs (Exercise: ${stats.heaviestWeightExercises.join(", ")})`;
+        generalStatsContainer.appendChild(maxWeightElem);
+      }
+    } else {
+      generalStatsContainer.appendChild(
+        document.createTextNode("No statistics available.")
+      );
+    }
   }
 
   function renderStreak() {
-    const generalStatContainer = document.getElementById("streak-stats");
-    generalStatContainer.innerHTML = "";
-    const generalHeading = document.createElement("h3");
-    generalHeading.textContent = "Streak";
+    const streakStatsContainer = document.getElementById("streak-stats");
+    streakStatsContainer.innerHTML = "";
+    const streakHeading = document.createElement("h3");
+    streakHeading.textContent = "Streak";
 
-    generalStatContainer.appendChild(generalHeading);
+    streakStatsContainer.appendChild(streakHeading);
+
+    if (!showStats) {
+      const el = document.createElement("p");
+      el.textContent = "No stats to show";
+      streakStatsContainer.appendChild(el);
+      return;
+    }
+    const stats = users[currentUser].stats;
+
+    if (stats) {
+      // Current Streak
+      const currentStreakElem = document.createElement("p");
+      currentStreakElem.textContent = `Current Streak: ${stats.currentStreak} days`;
+      streakStatsContainer.appendChild(currentStreakElem);
+
+      // Maximum Streak
+      const maxStreakElem = document.createElement("p");
+      maxStreakElem.textContent = `Maximum Streak: ${stats.maxStreak} days`;
+      streakStatsContainer.appendChild(maxStreakElem);
+    } else {
+      streakStatsContainer.appendChild(
+        document.createTextNode("No streak data available.")
+      );
+    }
   }
 });
