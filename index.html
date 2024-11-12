@@ -1,34 +1,51 @@
+<!-- ./index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Workout Logger</title>
-    <link rel="stylesheet" href="./src/styles/colors.css">
-    <link rel="stylesheet" href="./src/styles/theme.css">
-    <link rel="stylesheet" href="./src/styles/index.css">
-</head>
+    <link rel="stylesheet" href="./src/styles/colors.css" />
+    <link rel="stylesheet" href="./src/styles/theme.css" />
+    <link rel="stylesheet" href="./src/styles/index.css" />
+    <link rel="stylesheet" href="./src/styles/bg-image.css" />
+  </head>
 
-<body>
-    <!-- Header/Navbar -->
-    <header class="header">
+  <body>
+    <div class="bg-image">
+      <img src="./landing-page-bg.jpg" alt="person holding barbell" />
+    </div>
+
+    <div class="container">
+      <!-- Header/Navbar -->
+      <header class="header">
         <nav class="navbar">
-            <div class="logo">
-                <a href="/">Workout Logger</a>
-            </div>
-            <div class="navbar-right">
-                <span id="login-link">Log In</span>
-                <a href="./src/pages/register.html">Register</a>
-            </div>
+          <div class="logo">
+            <a href="/">Workout Logger</a>
+          </div>
+
+          <span id="login-link">Log In</span>
         </nav>
-    </header>
+      </header>
 
-    <!-- Main Content -->
-    <main>
+      <!-- Main Content -->
+      <main>
         <div class="landing-content">
-            <h1>Workout Logger</h1>
+          <h1>Workout Logger</h1>
+          <p class="tagline">
+            Track your workouts and achieve your fitness goals.
+          </p>
+          <a href="./src/pages/register.html" class="btn-primary"
+            >Get Started</a
+          >
         </div>
-    </main>
+      </main>
 
+      <!-- Footer -->
+      <footer class="footer">
+        <p>&copy; 2024 Workout Logger. All rights reserved.</p>
+      </footer>
+    </div>
     <script src="./src/scripts/index-login.js"></script>
-</body>
+  </body>
 </html>

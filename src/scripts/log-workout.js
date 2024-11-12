@@ -241,7 +241,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // indeed a function before attempting to call it.
     // This prevents potential runtime errors that could
     // occur if renderWorkoutHistory is undefined or not a function.
-    renderWorkoutHistory();
+    if (typeof window.renderWorkoutHistory === "function") {
+      window.renderWorkoutHistory();
+    }
   }
 
   function insertWorkoutInOrder(workoutData, workoutsArray) {

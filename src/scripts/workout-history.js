@@ -1039,7 +1039,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Make function available to global space
-  window.renderWorkoutHistory = renderWorkoutHistory();
+  window.renderWorkoutHistory = renderWorkoutHistory;
   // Initial render
   renderWorkoutHistory();
 });
