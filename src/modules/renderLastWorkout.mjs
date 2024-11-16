@@ -1,4 +1,6 @@
-import renderViewModal from "./viewModal.mjs";
+// ../src/modules/renderLastWorkout.mjs
+
+import { renderViewModal } from "./viewModal.mjs";
 import { formatDate } from "./utils.mjs";
 
 function renderLastWorkout(workout) {

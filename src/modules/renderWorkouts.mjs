@@ -1,10 +1,19 @@
-import { formatDate } from "./utils.mjs";
+// ../src/modules/renderWorkouts.mjs
 
-function renderWorkouts(workoutsToRender) {
+import { formatDate } from "./utils.mjs";
+import { renderViewModal } from "./viewModal.mjs";
+import { renderEditModal } from "./editModal.mjs";
+import { deleteWorkout } from "./deleteWorkout.mjs";
+
+export function renderWorkoutHistory({ currentUser }) {
+  const users = JSON.parse(localStorage.getItem("users")) || {};
+  const workouts = users[currentUser].workouts || [];
+
+  const historyContainer = document.getElementById("history-container");
   historyContainer.innerHTML = "";
 
-  if (workoutsToRender.length === 0) {
-    historyContainer.textContent = "No workouts found.";
+  if (workouts.length === 0) {
+    historyContainer.textContent = "No past workouts found.";
     return;
   }
 
@@ -29,13 +38,9 @@ function renderWorkouts(workoutsToRender) {
   // Create table body
   const tbody = document.createElement("tbody");
 
-  workoutsToRender.forEach((workout) => {
+  workouts.forEach((workout, index) => {
     const row = document.createElement("tr");
     row.classList.add("workout-item");
-
-    // Find the original index of the workout in the workouts array
-    const originalIndex = workout.index;
-    row.dataset.workoutIndex = originalIndex;
 
     const dateCell = document.createElement("td");
     dateCell.textContent = formatDate(workout.date);
@@ -50,17 +55,14 @@ function renderWorkouts(workoutsToRender) {
     const viewButton = document.createElement("button");
     viewButton.textContent = "View";
     viewButton.classList.add("btn-secondary");
-    viewButton.id = `view-button-${originalIndex}`;
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.classList.add("btn-secondary");
-    editButton.id = `edit-button-${originalIndex}`;
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("btn-secondary");
-    deleteButton.id = `delete-button-${originalIndex}`;
 
     // Append buttons to action cell
     actionCell.appendChild(viewButton);
@@ -73,39 +75,21 @@ function renderWorkouts(workoutsToRender) {
     row.appendChild(actionCell);
 
     tbody.appendChild(row);
+
+    // Event listeners for buttons
+    viewButton.addEventListener("click", () => {
+      renderViewModal(workout);
+    });
+
+    editButton.addEventListener("click", () => {
+      renderEditModal({ workout, index, users, currentUser, workouts });
+    });
+
+    deleteButton.addEventListener("click", () => {
+      deleteWorkout({ index, users, currentUser, workouts });
+    });
   });
 
   table.appendChild(tbody);
   historyContainer.appendChild(table);
-
-  addEventListenersToWorkoutActionButton(workouts);
 }
-
-function addEventListenersToWorkoutActionButton(workouts) {
-  workouts.forEach((workout) => {
-    const originalIndex = workouts.indexOf(workout);
-
-    const viewButton = document.getElementById(`view-button-${originalIndex}`);
-    const editButton = document.getElementById(`edit-button-${originalIndex}`);
-    const deleteButton = document.getElementById(
-      `delete-button-${originalIndex}`
-    );
-
-    viewButton.addEventListener("click", (event) => {
-      event.stopPropagation();
-      openViewModal(workout);
-    });
-
-    editButton.addEventListener("click", (event) => {
-      event.stopPropagation();
-      openModal("edit", originalIndex);
-    });
-
-    deleteButton.addEventListener("click", (event) => {
-      event.stopPropagation();
-      deleteWorkout(originalIndex);
-    });
-  });
-}
-
-export default renderWorkouts;

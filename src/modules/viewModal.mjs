@@ -1,6 +1,8 @@
+// ../src/modules/viewModal.mjs
+
 import { formatDate } from "./utils.mjs";
 
-function renderViewModal(workout) {
+export function renderViewModal(workout) {
   const modalContent = document.getElementById("modal-content");
   modalContent.innerHTML = "";
 
@@ -40,11 +42,13 @@ function renderViewModal(workout) {
   const modalOverlay = document.getElementById("modal-overlay");
   modalOverlay.style.display = "block";
 
-  const removeModalButton = document.getElementById("close-modal-button");
-  removeModalButton.addEventListener("click", () => {
+  const closeModalButton = document.getElementById("close-modal-button");
+  closeModalButton.addEventListener("click", closeModal);
+
+  function closeModal() {
     modalContent.innerHTML = "";
     modalOverlay.style.display = "none";
-  });
+  }
 }
 
 function createSetsTable(exercise) {
@@ -55,11 +59,8 @@ function createSetsTable(exercise) {
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
   const headers = ["Set", "Reps"];
-  if (exercise.type === "weighted") {
-    headers.push("Weight (in lbs)");
-  }
-  if (exercise.type === "resistance-band") {
-    headers.push("Resistance (in lbs)");
+  if (exercise.type === "weighted" || exercise.type === "resistance-band") {
+    headers.push("Weight");
   }
 
   headers.forEach((headerText) => {
@@ -86,7 +87,7 @@ function createSetsTable(exercise) {
     row.appendChild(setNumberCell);
     row.appendChild(repsCell);
 
-    if (exercise.type === "resistance-band" || exercise.type === "weighted") {
+    if (exercise.type === "weighted" || exercise.type === "resistance-band") {
       const weightCell = document.createElement("td");
       weightCell.textContent = set.weight;
       row.appendChild(weightCell);
@@ -98,5 +99,3 @@ function createSetsTable(exercise) {
   setsTable.appendChild(tbody);
   return setsTable;
 }
-
-export default renderViewModal;
