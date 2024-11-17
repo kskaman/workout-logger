@@ -2,42 +2,44 @@
 
 /* Light Theme Colors */
 :root {
-    --primary-color: #2C3E50;       /* Deep blue */
-    --secondary-color: #18BC9C;     /* Turquoise */
-    --accent-color: #E74C3C;        /* Red */
-    --background-color: #ECF0F1;    /* Light gray */
-    --text-color: #2C3E50;          /* Deep blue */
-    --heading-color: #34495E;       /* Dark blue */
-    --subheading-color: #7F8C8D;    /* Gray */
-    --border-color: #BDC3C7;        /* Silver */
-    --input-background: #FFFFFF;    /* White */
-    --input-text-color: #2C3E50;    /* Deep blue */
-    --button-background: #18BC9C;   /* Turquoise */
-    --button-text-color: #FFFFFF;   /* White */
-    --link-color: #2980B9;          /* Blue */
-    --sidebar-background: #FFFFFF;  /* White */
-    --sidebar-text-color: #2C3E50;  /* Deep blue */
-    --toggle-background: #BDC3C7;   /* Silver */
-    --toggle-button: #FFFFFF;       /* White */
+  --primary-color: #2c3e50; /* Deep blue */
+  --secondary-color: #18bc9c; /* Turquoise */
+  --accent-color: #e74c3c; /* Red */
+  --background-color: #ecf0f1; /* Light gray */
+  --text-color: #2c3e50; /* Deep blue */
+  --heading-color: #34495e; /* Dark blue */
+  --subheading-color: #7f8c8d; /* Gray */
+  --border-color: #bdc3c7; /* Silver */
+  --input-background: #ffffff; /* White */
+  --input-text-color: #2c3e50; /* Deep blue */
+  --button-background: #18bc9c; /* Turquoise */
+  --button-text-color: #ffffff; /* White */
+  --link-color: #2980b9; /* Blue */
+  --sidebar-background: #ffffff; /* White */
+  --sidebar-text-color: #2c3e50; /* Deep blue */
+  --toggle-background: #bdc3c7; /* Silver */
+  --toggle-button: #ffffff; /* White */
+  --logo-color: #2c3e50; /* Deep blue */
 }
 
 /* Dark Theme Colors */
 .dark-theme {
-    --primary-color: #ECF0F1;       /* Light gray */
-    --secondary-color: #1ABC9C;     /* Turquoise */
-    --accent-color: #E74C3C;        /* Red */
-    --background-color: #2C3E50;    /* Deep blue */
-    --text-color: #ECF0F1;          /* Light gray */
-    --heading-color: #ECF0F1;       /* Light gray */
-    --subheading-color: #95A5A6;    /* Gray */
-    --border-color: #7F8C8D;        /* Gray */
-    --input-background: #34495E;    /* Dark blue */
-    --input-text-color: #ECF0F1;    /* Light gray */
-    --button-background: #1ABC9C;   /* Turquoise */
-    --button-text-color: #ECF0F1;   /* Light gray */
-    --link-color: #3498DB;          /* Blue */
-    --sidebar-background: #34495E;  /* Dark blue */
-    --sidebar-text-color: #ECF0F1;  /* Light gray */
-    --toggle-background: #7F8C8D;   /* Gray */
-    --toggle-button: #ECF0F1;       /* Light gray */
+  --primary-color: #ecf0f1; /* Light gray */
+  --secondary-color: #1abc9c; /* Turquoise */
+  --accent-color: #e74c3c; /* Red */
+  --background-color: #2c3e50; /* Deep blue */
+  --text-color: #ecf0f1; /* Light gray */
+  --heading-color: #ecf0f1; /* Light gray */
+  --subheading-color: #95a5a6; /* Gray */
+  --border-color: #7f8c8d; /* Gray */
+  --input-background: #34495e; /* Dark blue */
+  --input-text-color: #ecf0f1; /* Light gray */
+  --button-background: #1abc9c; /* Turquoise */
+  --button-text-color: #ecf0f1; /* Light gray */
+  --link-color: #3498db; /* Blue */
+  --sidebar-background: #34495e; /* Dark blue */
+  --sidebar-text-color: #ecf0f1; /* Light gray */
+  --toggle-background: #7f8c8d; /* Gray */
+  --toggle-button: #ecf0f1; /* Light gray */
+  --logo-color: #ffffff; /* White */
 }

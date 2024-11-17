@@ -1,29 +1,41 @@
 /* ../src/styles/theme.css */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 body {
-    font-family: 'Sege UI', Verdana, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 1rem;
+  font-family: "Sege UI", Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1rem;
 }
 
 a {
-    color: var(--link-color);
-    text-decoration: none;
-    transition: color 0.3s;
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 a:hover {
-    color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* Style the Material Symbol in the logo */
+.logo {
+  box-sizing: content-box;
+  width: fit-content;
+  margin-bottom: 2rem;
+}
+
+.logo .material-symbols-outlined {
+  font-size: 2rem;
+  color: var(--logo-color);
 }

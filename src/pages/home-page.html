@@ -14,15 +14,20 @@
     <link rel="stylesheet" href="../styles/buttons.css" />
     <link rel="stylesheet" href="../styles/modal.css" />
     <link rel="stylesheet" href="../styles/workout-history.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
   </head>
 
   <body>
     <div class="container" id="container">
       <!-- Sidebar Navigation -->
       <nav class="sidebar">
-        <div class="logo">
-          <h2>Workout Logger</h2>
+        <div class="logo" aria-label="Workout Logger">
+          <span class="material-symbols-outlined">exercise</span>
         </div>
+
         <ul class="nav-links">
           <li><a href="./home-page.html" id="home-link">Home</a></li>
           <li>
@@ -53,13 +58,6 @@
         <section id="stats">
           <div id="general-stats"></div>
           <div id="streak-stats"></div>
-          <!--
-            We will get two types of stats.  
-            Streak :  Max Streak ; Current Streak ; 
-            General : Number of workouts in 30 days;
-              max reps for which exercise (with weight if applicable.);
-              max weight lifted for an exercise if user has done any weighted exercise
-          -->
         </section>
       </main>
     </div>
