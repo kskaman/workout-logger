@@ -53,11 +53,16 @@ export function renderWorkoutHistory(workouts = null) {
     actionCell.classList.add("workout-actions");
 
     const editButton = document.createElement("button");
-    editButton.textContent = "Edit";
+
+    editButton.innerHTML = `
+      <span class="material-symbols-outlined">edit_note</span>
+    `;
     editButton.classList.add("btn-secondary");
 
     const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
+    deleteButton.innerHTML = `
+      <span class="material-symbols-outlined">delete</span>
+    `;
     deleteButton.classList.add("btn-secondary");
 
     // Append buttons to action cell
@@ -72,11 +77,13 @@ export function renderWorkoutHistory(workouts = null) {
 
     tbody.appendChild(row);
 
-    editButton.addEventListener("click", () => {
+    editButton.addEventListener("click", (event) => {
+      event.stopPropagation();
       renderEditModal(workout, index);
     });
 
-    deleteButton.addEventListener("click", () => {
+    deleteButton.addEventListener("click", (event) => {
+      event.stopPropagation();
       deleteWorkout(index);
     });
   });
