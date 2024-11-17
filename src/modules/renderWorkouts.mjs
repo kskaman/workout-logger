@@ -3,17 +3,13 @@
 import { formatDate } from "./utils.mjs";
 import { renderViewModal } from "./viewModal.mjs";
 import { renderEditModal } from "./editModal.mjs";
-import { deleteWorkout } from "./deleteWorkout.mjs";
 
-export function renderWorkoutHistory({ currentUser }) {
-  const users = JSON.parse(localStorage.getItem("users")) || {};
-  const workouts = users[currentUser].workouts || [];
-
+export function renderWorkoutHistory(workouts) {
   const historyContainer = document.getElementById("history-container");
   historyContainer.innerHTML = "";
 
   if (workouts.length === 0) {
-    historyContainer.textContent = "No past workouts found.";
+    historyContainer.textContent = "No workouts found.";
     return;
   }
 
@@ -82,14 +78,32 @@ export function renderWorkoutHistory({ currentUser }) {
     });
 
     editButton.addEventListener("click", () => {
-      renderEditModal({ workout, index, users, currentUser, workouts });
+      renderEditModal(workout, index);
     });
 
     deleteButton.addEventListener("click", () => {
-      deleteWorkout({ index, users, currentUser, workouts });
+      deleteWorkout(index);
     });
   });
 
   table.appendChild(tbody);
   historyContainer.appendChild(table);
+
+  function deleteWorkout(index) {
+    if (confirm("Are you sure you want to delete this workout?")) {
+      workouts.splice(index, 1);
+      users[currentUser].workouts = workouts;
+
+      // Update user's exercises list
+      updateUserExercises(users[currentUser]);
+
+      // Update user stats
+      updateUserStats(users[currentUser]);
+
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("Workout deleted successfully.");
+      // Re-render the workout history
+      renderWorkoutHistory(workouts);
+    }
+  }
 }
