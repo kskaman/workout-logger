@@ -1,7 +1,6 @@
 // ../src/modules/saveButton.mjs
 
 import { updateUserExercises, updateUserStats } from "./stats.mjs";
-
 import { insertWorkoutInOrder } from "./utils.mjs";
 import { closeModal } from "./utils.mjs";
 
@@ -46,6 +45,9 @@ export function saveWorkout({ index = null }) {
     alert("Please enter workout name and date.");
     return;
   }
+
+  // Ensure workoutDate is in 'YYYY-MM-DD' format
+  const formattedDate = new Date(workoutDate).toISOString().split("T")[0];
 
   const exercises = [];
   const exerciseDivs = exercisesContainer.querySelectorAll(".exercise");
@@ -126,7 +128,7 @@ export function saveWorkout({ index = null }) {
 
   const workoutData = {
     name: workoutName,
-    date: workoutDate,
+    date: formattedDate,
     exercises: exercises,
   };
 
@@ -143,7 +145,6 @@ export function saveWorkout({ index = null }) {
   insertWorkoutInOrder(workoutData, workouts);
 
   // Update user's unique exercises
-
   users[currentUser].exercises = users[currentUser].exercises || [];
   exercises.forEach((exercise) => {
     const existingExerciseIndex = users[currentUser].exercises.findIndex(
@@ -170,6 +171,6 @@ export function saveWorkout({ index = null }) {
   alert("Workout saved successfully!");
   closeModal();
 
-  // reload the page
+  // Reload the page
   window.location.reload();
 }

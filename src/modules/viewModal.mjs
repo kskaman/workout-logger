@@ -60,9 +60,11 @@ function createSetsTable(exercise) {
   const headerRow = document.createElement("tr");
   const headers = ["Set", "Reps"];
   if (exercise.type === "weighted" || exercise.type === "resistance-band") {
-    headers.push("Weight");
+    headers.push("Weight (in lbs)");
   }
-
+  if (exercise.type === "resistance-band") {
+    headers.push("Resistance (in lbs)");
+  }
   headers.forEach((headerText) => {
     const th = document.createElement("th");
     th.textContent = headerText;

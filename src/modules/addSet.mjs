@@ -21,15 +21,21 @@ export function addSet({ exerciseDiv, setData = null }) {
   setRow.classList.add("set-row");
 
   let weightInputHTML = "";
-  if (
-    exerciseTypeSelect.value === "resistance-band" ||
-    exerciseTypeSelect.value === "weighted"
-  ) {
+  if (exerciseTypeSelect.value === "weighted") {
     weightInputHTML = `
       <input
         type="number"
         name="weight-${exerciseId}-${currentSetCount}"
-        placeholder="Weight"
+        placeholder="Weight (in lbs)"
+        required>
+    `;
+  }
+  if (exerciseTypeSelect.value === "resistance-band") {
+    weightInputHTML = `
+      <input
+        type="number"
+        name="weight-${exerciseId}-${currentSetCount}"
+        placeholder="Resistance (in lbs)"
         required>
     `;
   }
@@ -106,13 +112,27 @@ export function changeExerciseType({ exerciseDiv, exerciseTypeSelect }) {
       `input[name="weight-${exerciseId}-${setNumber}"]`
     );
 
-    if (exerciseType === "resistance-band" || exerciseType === "weighted") {
+    if (exerciseType === "weighted") {
       if (!weightInput) {
         // Add weight input
         weightInput = document.createElement("input");
         weightInput.type = "number";
         weightInput.name = `weight-${exerciseId}-${setNumber}`;
-        weightInput.placeholder = "Weight";
+        weightInput.placeholder = "Weight (in lbs)";
+        weightInput.required = true;
+
+        const repsInput = setRow.querySelector(
+          `input[name="reps-${exerciseId}-${setNumber}"]`
+        );
+        setRow.insertBefore(weightInput, repsInput.nextSibling);
+      }
+    } else if (exerciseType === "resistance-band") {
+      if (!weightInput) {
+        // Add weight input
+        weightInput = document.createElement("input");
+        weightInput.type = "number";
+        weightInput.name = `weight-${exerciseId}-${setNumber}`;
+        weightInput.placeholder = "Resistance (in lbs)";
         weightInput.required = true;
 
         const repsInput = setRow.querySelector(

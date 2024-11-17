@@ -1,9 +1,7 @@
 // ../src/modules/utils.mjs
 
 export function formatDate(dateString) {
-  const options = { day: "2-digit", month: "2-digit", year: "numeric" };
-  const date = new Date(dateString);
-  return date.toLocaleDateString(undefined, options);
+  return dateString.replaceAll("-", "/");
 }
 
 export function insertWorkoutInOrder(workoutData, workoutsArray) {
@@ -13,6 +11,7 @@ export function insertWorkoutInOrder(workoutData, workoutsArray) {
   for (let i = 0; i < workoutsArray.length; i++) {
     const existingWorkoutDate = new Date(workoutsArray[i].date);
     if (workoutDate >= existingWorkoutDate) {
+      // Insert at current position
       workoutsArray.splice(i, 0, workoutData);
       inserted = true;
       break;

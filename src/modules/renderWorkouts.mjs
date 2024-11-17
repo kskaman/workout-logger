@@ -3,8 +3,14 @@
 import { formatDate } from "./utils.mjs";
 import { renderViewModal } from "./viewModal.mjs";
 import { renderEditModal } from "./editModal.mjs";
+import { updateUserExercises, updateUserStats } from "./stats.mjs"; // Import missing functions
 
-export function renderWorkoutHistory(workouts) {
+export function renderWorkoutHistory(workouts = null) {
+  if (!workouts) {
+    const currentUser = sessionStorage.getItem("currentUser");
+    const users = JSON.parse(localStorage.getItem("users")) || {};
+    workouts = users[currentUser].workouts || [];
+  }
   const historyContainer = document.getElementById("history-container");
   historyContainer.innerHTML = "";
 
@@ -20,7 +26,7 @@ export function renderWorkoutHistory(workouts) {
   // Create table header
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
-  const headers = ["Date", "Workout Name", ""];
+  const headers = ["", "Date", "Workout Name"];
 
   headers.forEach((headerText) => {
     const th = document.createElement("th");
@@ -37,7 +43,6 @@ export function renderWorkoutHistory(workouts) {
   workouts.forEach((workout, index) => {
     const row = document.createElement("tr");
     row.classList.add("workout-item");
-
     const dateCell = document.createElement("td");
     dateCell.textContent = formatDate(workout.date);
 
@@ -46,11 +51,6 @@ export function renderWorkoutHistory(workouts) {
 
     const actionCell = document.createElement("td");
     actionCell.classList.add("workout-actions");
-
-    // Create action buttons
-    const viewButton = document.createElement("button");
-    viewButton.textContent = "View";
-    viewButton.classList.add("btn-secondary");
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
@@ -61,21 +61,16 @@ export function renderWorkoutHistory(workouts) {
     deleteButton.classList.add("btn-secondary");
 
     // Append buttons to action cell
-    actionCell.appendChild(viewButton);
     actionCell.appendChild(editButton);
     actionCell.appendChild(deleteButton);
-
     // Append cells to row
+    row.appendChild(actionCell);
     row.appendChild(dateCell);
     row.appendChild(nameCell);
-    row.appendChild(actionCell);
+
+    row.addEventListener("click", () => renderViewModal(workout));
 
     tbody.appendChild(row);
-
-    // Event listeners for buttons
-    viewButton.addEventListener("click", () => {
-      renderViewModal(workout);
-    });
 
     editButton.addEventListener("click", () => {
       renderEditModal(workout, index);
@@ -91,8 +86,13 @@ export function renderWorkoutHistory(workouts) {
 
   function deleteWorkout(index) {
     if (confirm("Are you sure you want to delete this workout?")) {
-      workouts.splice(index, 1);
-      users[currentUser].workouts = workouts;
+      const users = JSON.parse(localStorage.getItem("users")) || {};
+      const currentUser = sessionStorage.getItem("currentUser");
+      const userWorkouts = users[currentUser].workouts || [];
+
+      // Remove the workout
+      userWorkouts.splice(index, 1);
+      users[currentUser].workouts = userWorkouts;
 
       // Update user's exercises list
       updateUserExercises(users[currentUser]);
@@ -100,10 +100,13 @@ export function renderWorkoutHistory(workouts) {
       // Update user stats
       updateUserStats(users[currentUser]);
 
+      // Save changes to localStorage
       localStorage.setItem("users", JSON.stringify(users));
+
       alert("Workout deleted successfully.");
+
       // Re-render the workout history
-      renderWorkoutHistory(workouts);
+      renderWorkoutHistory(userWorkouts);
     }
   }
 }

@@ -30,6 +30,7 @@ export function renderEditModal(workout = null, index = null) {
   if (workout) {
     workoutNameInput.value = workout.name;
   }
+  workoutNameInput.autocomplete = "off";
 
   workoutNameGroup.appendChild(workoutNameLabel);
   workoutNameGroup.appendChild(workoutNameInput);

@@ -3,8 +3,7 @@
 export function updateUserStats(user) {
   const workouts = user.workouts || [];
 
-  // Sort workouts by date (earliest to latest)
-  workouts.sort((a, b) => new Date(a.date) - new Date(b.date));
+  // Workouts are already in descending order (latest to oldest)
 
   // Initialize variables for stats
   let currentStreak = 0;
@@ -17,55 +16,57 @@ export function updateUserStats(user) {
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  let streakDate = new Date(today);
+
+  let previousDate = null;
   let tempStreak = 0;
 
   const thirtyDaysAgo = new Date(today);
   thirtyDaysAgo.setDate(today.getDate() - 29); // Include today
 
-  const workoutDates = workouts.map((workout) => {
-    const date = new Date(workout.date);
-    date.setHours(0, 0, 0, 0);
-    return date;
-  });
+  workouts.forEach((workout, index) => {
+    const workoutDate = new Date(workout.date);
+    workoutDate.setHours(0, 0, 0, 0);
 
-  // Calculate current streak and max streak
-  for (let i = workoutDates.length - 1; i >= 0; i--) {
-    const date = workoutDates[i];
+    // Check if the workout is within the last 30 days
+    if (workoutDate >= thirtyDaysAgo && workoutDate <= today) {
+      workoutsInLast30Days++;
+    }
 
-    if (date.getTime() === streakDate.getTime()) {
-      tempStreak++;
-      if (tempStreak > maxStreak) {
-        maxStreak = tempStreak;
-      }
-      streakDate.setDate(streakDate.getDate() - 1);
-    } else if (
-      date.getTime() ===
-      streakDate.getTime() - 86400000 // 1 day difference
-    ) {
-      streakDate.setDate(streakDate.getDate() - 1);
-      tempStreak++;
-      if (tempStreak > maxStreak) {
-        maxStreak = tempStreak;
+    if (index === 0) {
+      // First workout
+      tempStreak = 1;
+      maxStreak = 1;
+      if (workoutDate.getTime() === today.getTime()) {
+        currentStreak = 1;
       }
     } else {
+      const diffInDays = Math.round(
+        (previousDate - workoutDate) / (1000 * 60 * 60 * 24)
+      );
+
+      if (diffInDays === 1) {
+        // Consecutive day
+        tempStreak++;
+      } else {
+        tempStreak = 1;
+      }
+
       if (tempStreak > maxStreak) {
         maxStreak = tempStreak;
       }
-      tempStreak = 0;
-      streakDate = new Date(date);
-      streakDate.setDate(streakDate.getDate() - 1);
+
+      if (currentStreak > 0 && diffInDays === 1) {
+        currentStreak = tempStreak;
+      } else if (workoutDate.getTime() === today.getTime()) {
+        currentStreak = 1;
+      } else {
+        currentStreak = 0;
+      }
     }
-  }
-  currentStreak = tempStreak;
 
-  // Calculate workouts in last 30 days
-  workoutsInLast30Days = workoutDates.filter(
-    (date) => date >= thirtyDaysAgo && date <= today
-  ).length;
+    previousDate = workoutDate;
 
-  // Calculate max reps and heaviest weight
-  workouts.forEach((workout) => {
+    // Calculate max reps and heaviest weight
     workout.exercises.forEach((exercise) => {
       exercise.sets.forEach((set) => {
         const reps = parseInt(set.reps);
