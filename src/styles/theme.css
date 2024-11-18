@@ -32,7 +32,6 @@ a:hover {
 .logo {
   box-sizing: content-box;
   width: fit-content;
-  margin-bottom: 2rem;
 }
 
 .logo .material-symbols-outlined {

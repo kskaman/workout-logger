@@ -1,31 +1,64 @@
-/* ../src/styles/sidebar.css */
-
+/* Sidebar Container */
 .sidebar {
-  flex: 1;
-  max-width: 20vw;
+  max-width: 30vh; /* Expanded width */
+  height: 100vh; /* Full viewport height */
   background-color: var(--sidebar-background);
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
-  transition: background-color 0.3s, color 0.3s;
+  padding: 1.5rem 1rem;
+  transition: width 0.3s, background-color 0.3s, color 0.3s;
+  overflow: hidden;
 }
 
-.nav-links {
-  list-style: none;
-  padding: 0;
+/* Collapsed Sidebar */
+.sidebar.collapsed {
+  width: 3.5rem; /* Collapsed width */
 }
 
-.nav-links li {
+/* Logo and Toggle Icon Container */
+.logo-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 1.5rem;
 }
 
+/* Adjust when collapsed */
+.sidebar.collapsed .logo-toggle {
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar.collapsed .toggle-icon {
+  margin-top: 1rem;
+}
+
+.material-symbols-outlined {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+/* Toggle Icon Styles */
+.toggle-icon {
+  cursor: pointer;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .nav-links a {
+  display: flex;
+  width: 100%;
+  align-items: center;
   color: var(--sidebar-text-color);
-  font-size: 1.1rem;
-  display: block;
+  text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s;
 }
 
 .nav-links a:hover {
@@ -33,11 +66,50 @@
   color: var(--button-text-color);
 }
 
-.nav-links a.active {
-  background-color: var(--secondary-color);
-  color: var(--button-text-color);
+/* Icons in Navigation Links */
+.nav-links .material-symbols-outlined {
+  font-size: 1.5rem;
+  margin-right: 1rem;
 }
 
+/* Text in Navigation Links */
+.link-text {
+  font-size: 1rem;
+}
+
+/* Adjust when collapsed */
+.sidebar.collapsed .nav-links {
+  justify-content: center;
+}
+
+.sidebar.collapsed .nav-links a {
+  justify-content: center;
+}
+
+.sidebar.collapsed .nav-links .material-symbols-outlined {
+  margin: 0;
+}
+
+.sidebar.collapsed .link-text {
+  display: none;
+}
+
+/* Theme Toggle Wrapper */
 .theme-toggle-wrapper {
-  margin-top: auto;
+  margin-top: auto; /* Push to bottom */
+}
+
+/* Hide theme toggle when collapsed */
+.sidebar.collapsed .theme-toggle-wrapper {
+  display: none;
+}
+
+/* Main Content */
+.container {
+  display: flex;
+}
+
+.main-container {
+  flex: 1;
+  margin: 0 auto;
 }
