@@ -1,8 +1,7 @@
-/* ../src/styles/buttons.css */
+/* buttons.css */
 
-/* Toggle Theme Button Styles */
+/* Theme Toggle Button Styles */
 .theme-toggle-wrapper {
-  /*margin: 1.25rem;*/
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -18,7 +17,7 @@
   position: relative;
   width: 3.75rem;
   height: 2rem;
-  background-color: var(--toggle-background);
+  background-color: var(--accent-color);
   border-radius: 2rem;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -30,13 +29,12 @@
   left: 0.25rem;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: var(--toggle-button);
+  background-color: var(--background-color);
   border-radius: 50%;
   transition: transform 0.3s;
   pointer-events: none;
 }
 
-/* Class added when dark mode is active */
 .toggle-slider.active {
   background-color: var(--accent-color);
 }
@@ -50,8 +48,8 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background-color: var(--accent-color);
-  color: #fff;
+  background-color: var(--button-background-color);
+  color: var(--important-text-color);
   border: none;
   border-radius: 2rem;
   padding: 0.75rem 1.5rem;
@@ -63,7 +61,8 @@
 }
 
 .log-workout-button:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--button-hover-background);
+  color: var(--important-text-color);
 }
 
 .plus-icon {
@@ -84,22 +83,31 @@
 }
 
 .btn-primary {
-  background-color: var(--button-background);
-  color: var(--button-text-color);
-  display: block;
-  width: 25%;
-  margin: 2rem auto;
+  background-color: var(--button-background-color);
+  color: var(--important-text-color);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-color);
+  background-color: var(--button-hover-background);
+  color: var(--important-text-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--button-active-background);
+  color: var(--important-text-color);
 }
 
 .btn-secondary {
-  background-color: var(--secondary-color);
-  color: var(--button-text-color);
+  background-color: var(--button-background-color);
+  color: var(--important-text-color);
 }
 
 .btn-secondary:hover {
-  background-color: var(--button-background);
+  background-color: var(--button-hover-background);
+  color: var(--important-text-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--button-active-background);
+  color: var(--important-text-color);
 }

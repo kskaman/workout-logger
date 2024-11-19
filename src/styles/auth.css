@@ -1,29 +1,28 @@
-/* ../src/styles/auth.css */
-
-.header {
-  padding: 1rem 2rem;
-}
-
-.logo a {
-  font-size: 1.5rem;
-  color: var(--input-background);
-  text-decoration: none;
-}
-
+/* auth.css */
 .container {
   display: flex;
   flex-direction: column;
 }
 
+/* Container and Header Styles */
+.header {
+  padding: 1rem 2rem;
+}
+
+.logo .material-symbols-outlined {
+  color: var(--important-text-color);
+}
+
+/* Main Content Styles */
 .main-container {
+  flex: 1;
   display: flex;
-  height: 80vh;
   justify-content: center;
   align-items: center;
 }
 
 .auth-container {
-  background-color: var(--input-background);
+  background-color: var(--background-color);
   padding: 2rem;
   border-radius: 0.5rem;
   width: 25rem;
@@ -33,7 +32,11 @@
 .auth-container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: var(--heading-color);
+  color: var(--text-color);
+}
+
+.auth-container .btn {
+  text-align: center;
 }
 
 .form-group {
@@ -43,31 +46,31 @@
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--subheading-color);
+  color: var(--text-color);
 }
 
 .form-group input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--input-border-color);
   border-radius: 0.25rem;
-  background-color: var(--input-background);
-  color: var(--input-text-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: var(--secondary-color);
+  border-color: var(--input-border-color);
 }
 
 .auth-switch {
   text-align: center;
   margin-top: 1rem;
-  color: var(--input-text-color);
+  color: var(--text-color);
 }
 
 .auth-switch a {
-  color: var(--link-color);
+  color: var(--button-active-color);
   text-decoration: none;
 }
 
@@ -75,7 +78,7 @@
   text-decoration: underline;
 }
 
-/* Positioning the password wrapper */
+/* Password Wrapper */
 .password-wrapper {
   position: relative;
 }
@@ -91,5 +94,5 @@
   right: 0.5rem;
   transform: translateY(-50%);
   cursor: pointer;
-  color: var(--subheading-color);
+  color: var(--text-color);
 }

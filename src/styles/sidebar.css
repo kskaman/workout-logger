@@ -2,7 +2,7 @@
 .sidebar {
   max-width: 30vh; /* Expanded width */
   height: 100vh; /* Full viewport height */
-  background-color: var(--sidebar-background);
+  background-color: var(--sidebar-background-color);
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
@@ -35,7 +35,7 @@
 
 .material-symbols-outlined {
   font-size: 2rem;
-  color: var(--primary-color);
+  color: var(--sidebar-text-color);
 }
 
 /* Toggle Icon Styles */
@@ -62,14 +62,15 @@
 }
 
 .nav-links a:hover {
-  background-color: var(--secondary-color);
-  color: var(--button-text-color);
+  background-color: var(--button-background-color);
+  color: var(--important-text-color);
 }
 
 /* Icons in Navigation Links */
-.nav-links .material-symbols-outlined {
+.nav-links a .material-symbols-outlined {
   font-size: 1.5rem;
   margin-right: 1rem;
+  color: inherit;
 }
 
 /* Text in Navigation Links */
@@ -102,14 +103,4 @@
 /* Hide theme toggle when collapsed */
 .sidebar.collapsed .theme-toggle-wrapper {
   display: none;
-}
-
-/* Main Content */
-.container {
-  display: flex;
-}
-
-.main-container {
-  flex: 1;
-  margin: 0 auto;
 }

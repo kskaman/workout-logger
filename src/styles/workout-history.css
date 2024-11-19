@@ -2,13 +2,13 @@
 
 .container {
   display: flex;
-  height: 100vh;
+  overflow-y: auto;
 }
 
 .main-container {
-  flex: 2;
+  flex: 1;
   padding: 2.5rem;
-  overflow: auto;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
@@ -25,12 +25,10 @@ header {
   gap: 10%;
 }
 
-/* ../src/styles/workout-history-container.css */
-
 #history-container {
   width: 100%;
-  margin: 2rem 2rem 0 0;
-  background-color: var(--input-background);
+  margin: 2rem auto;
+  background-color: var(--container-background-color);
   border-radius: 0.3125rem;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -47,7 +45,7 @@ header {
 .workout-table td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--input-border-color);
 }
 
 .workout-item {
@@ -67,11 +65,10 @@ header {
   gap: 0.5rem;
 }
 
-.workout-actions .btn-secondary {
+.workout-actions .action-btn {
   font-size: 0.9rem;
   padding: 0.3125rem;
-}
-
-.workout-actions .btn-secondary:hover {
-  background-color: var(--accent-color);
+  border: none;
+  cursor: pointer;
+  background-color: var(--background-color);
 }

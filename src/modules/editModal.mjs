@@ -81,6 +81,7 @@ export function renderEditModal(workout = null, index = null) {
   saveButton.type = "button";
   saveButton.textContent = "Save Workout";
   saveButton.classList.add("btn-primary");
+  saveButton.style.margin = "0 auto";
   saveButton.style.display = "none"; // Initially hidden
   saveButton.id = "save-workout-button";
   saveButton.addEventListener("click", () => {
@@ -111,5 +112,6 @@ export function renderEditModal(workout = null, index = null) {
 
   // Close the modal
   const closeModalButton = document.getElementById("close-modal-button");
+  closeModalButton.removeEventListener("click", closeModal);
   closeModalButton.addEventListener("click", closeModal);
 }

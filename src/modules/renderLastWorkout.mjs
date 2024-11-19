@@ -8,9 +8,8 @@ function renderLastWorkout(workout) {
 
   lastWorkoutContainer.innerHTML = "";
 
-  if (workout.length === 0) {
-    showStats = false;
-    lastWorkoutContainer.textContent = "No past workouts found.";
+  if (!workout) {
+    lastWorkoutContainer.textContent = "No past workout found.";
     return;
   }
 

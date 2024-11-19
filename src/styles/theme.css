@@ -18,14 +18,29 @@ body {
   font-size: 1rem;
 }
 
+/* Page Content Positioning */
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  color: var(--text-color);
+}
+
+/* Footer Styles */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  color: var(--important-text-color);
+}
+
 a {
-  color: var(--link-color);
+  color: var(--important-text-color);
   text-decoration: none;
   transition: color 0.3s;
 }
 
 a:hover {
-  color: var(--accent-color);
+  color: var(--button-hover-background);
 }
 
 /* Style the Material Symbol in the logo */
@@ -36,5 +51,5 @@ a:hover {
 
 .logo .material-symbols-outlined {
   font-size: 2rem;
-  color: var(--logo-color);
+  color: var(--text-color);
 }

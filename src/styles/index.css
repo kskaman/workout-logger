@@ -1,4 +1,11 @@
-/* ../src/styles/index.css */
+/* index.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--important-text-color);
+}
 
 /* Header/Navbar Styles */
 .header {
@@ -12,34 +19,38 @@
 }
 
 .logo .material-symbols-outlined {
-  color: white;
+  color: var(--important-text-color);
 }
 
-.navbar-right a,
+.logo a,
 #login-link {
-  margin-left: 1rem;
   font-size: 1rem;
-  /*color: var(--sidebar-text-color);*/
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s ease;
   border-radius: 0.5rem;
   padding: 10px;
 }
 
-.navbar-right a:hover,
+.logo a:hover,
 #login-link:hover {
-  /*color: var(--button-text-color);*/
-  background-color: var(--secondary-color);
   cursor: pointer;
+}
+
+#login-link:hover {
+  background-color: var(--button-hover-background);
+}
+
+#login-link:active {
+  background-color: var(--button-hover-color);
 }
 
 /* Main Content Styles */
 .landing-content {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 100px); /* Adjust height based on header size */
 }
 
 .landing-content h1 {
@@ -53,16 +64,20 @@
 
 /* Styled Get Started Button */
 .landing-content .btn-primary {
-  background-color: var(--button-background);
-  color: var(--input-background);
+  background-color: var(--button-background-color);
   padding: 1em 2em;
   font-size: 1.25rem;
   border-radius: 0.3125rem;
   text-decoration: none;
   margin-top: 1rem;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: transform 0.2s;
 }
 
 .landing-content .btn-primary:hover {
   transform: scale(1.2);
+  color: var(--button-hover-color);
+}
+
+.landing-content .btn-primary:active {
+  color: var(--button-active-background);
 }

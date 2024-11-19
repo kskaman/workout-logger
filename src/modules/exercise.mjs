@@ -48,6 +48,7 @@ export function addExerciseToForm({
   );
   removeExerciseButton.addEventListener("click", () => {
     container.removeChild(exerciseDiv);
+    updateExerciseIds(container);
     checkSaveWorkoutButtonVisibility();
   });
 
@@ -86,4 +87,45 @@ export function addExerciseToForm({
   }
 
   checkSaveWorkoutButtonVisibility();
+}
+
+function updateExerciseIds(container) {
+  const exerciseDivs = container.querySelectorAll(".exercise");
+  exerciseDivs.forEach((exerciseDiv, index) => {
+    const exerciseId = index + 1;
+    exerciseDiv.dataset.exerciseId = exerciseId;
+
+    const exerciseNameInput = exerciseDiv.querySelector(
+      `input[name^="exercise-name-"]`
+    );
+    const exerciseTypeSelect = exerciseDiv.querySelector(
+      `select[name^="exercise-type-"]`
+    );
+    const setsContainer = exerciseDiv.querySelector(".sets-container");
+
+    // Update names and IDs
+    exerciseNameInput.name = `exercise-name-${exerciseId}`;
+    exerciseNameInput.id = `exercise-name-${exerciseId}`;
+
+    exerciseTypeSelect.name = `exercise-type-${exerciseId}`;
+    exerciseTypeSelect.id = `exercise-type-${exerciseId}`;
+
+    setsContainer.dataset.exerciseId = exerciseId;
+
+    // Update sets
+    const setRows = setsContainer.querySelectorAll(".set-row");
+    setRows.forEach((setRow, setIndex) => {
+      const setNumber = setIndex + 1;
+      setRow.dataset.setNumber = setNumber;
+      setRow.querySelector(".set-number").textContent = setNumber;
+      const repsInput = setRow.querySelector(`input[name^="reps-"]`);
+      const weightInput = setRow.querySelector(`input[name^="weight-"]`);
+      repsInput.name = `reps-${exerciseId}-${setNumber}`;
+      if (weightInput) {
+        weightInput.name = `weight-${exerciseId}-${setNumber}`;
+      }
+    });
+  });
+  // Update container dataset exerciseCount
+  container.dataset.exerciseCount = exerciseDivs.length;
 }

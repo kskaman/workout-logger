@@ -1,45 +1,65 @@
-/* ../src/styles/colors.css */
+/* colors.css */
 
-/* Light Theme Colors */
+/* Light Theme */
 :root {
-  --primary-color: #2c3e50; /* Deep blue */
-  --secondary-color: #18bc9c; /* Turquoise */
-  --accent-color: #e74c3c; /* Red */
-  --background-color: #ecf0f1; /* Light gray */
-  --text-color: #2c3e50; /* Deep blue */
-  --heading-color: #34495e; /* Dark blue */
-  --subheading-color: #7f8c8d; /* Gray */
-  --border-color: #bdc3c7; /* Silver */
-  --input-background: #ffffff; /* White */
-  --input-text-color: #2c3e50; /* Deep blue */
-  --button-background: #18bc9c; /* Turquoise */
-  --button-text-color: #ffffff; /* White */
-  --link-color: #2980b9; /* Blue */
-  --sidebar-background: #ffffff; /* White */
-  --sidebar-text-color: #2c3e50; /* Deep blue */
-  --toggle-background: #bdc3c7; /* Silver */
-  --toggle-button: #ffffff; /* White */
-  --logo-color: #2c3e50; /* Deep blue */
+  /* Base Colors */
+  --background-color: #ffffff; /* Main background: White */
+  --text-color: #212529; /* Main text: Dark Gray */
+  --input-border-color: #212529;
+  --important-text-color: #ffffff;
+  /* Accent Color */
+  --accent-color: #18bc9c; /* Accent: Turquoise */
+
+  /* Sidebar */
+  --sidebar-background-color: #f8f9fa; /* Sidebar background: Light Gray */
+  --sidebar-text-color: var(--text-color); /* Sidebar text: Dark Gray */
+
+  /* Container */
+  --container-background-color: #f8f9fa; /* Container background: Light Gray */
+  --container-text-color: var(--text-color); /* Container text: Dark Gray */
+
+  /* Warning color */
+  --warning-color: #dc3545;
+  /* Buttons */
+  --button-border-color: var(--accent-color);
+  --button-background-color: var(
+    --accent-color
+  ); /* Button background: Accent Color */
+  --button-text-color: #ffffff; /* Button text: White */
+  /* Hover Effects */
+  --hover-background-color: #e2e6ea; /* Hover background: Very Light Gray */
+  --button-hover-background: #2abca0;
+  --button-active-background: #149b85;
 }
 
-/* Dark Theme Colors */
+/* Dark Theme */
 .dark-theme {
-  --primary-color: #ecf0f1; /* Light gray */
-  --secondary-color: #1abc9c; /* Turquoise */
-  --accent-color: #e74c3c; /* Red */
-  --background-color: #2c3e50; /* Deep blue */
-  --text-color: #ecf0f1; /* Light gray */
-  --heading-color: #ecf0f1; /* Light gray */
-  --subheading-color: #95a5a6; /* Gray */
-  --border-color: #7f8c8d; /* Gray */
-  --input-background: #34495e; /* Dark blue */
-  --input-text-color: #ecf0f1; /* Light gray */
-  --button-background: #1abc9c; /* Turquoise */
-  --button-text-color: #ecf0f1; /* Light gray */
-  --link-color: #3498db; /* Blue */
-  --sidebar-background: #34495e; /* Dark blue */
-  --sidebar-text-color: #ecf0f1; /* Light gray */
-  --toggle-background: #7f8c8d; /* Gray */
-  --toggle-button: #ecf0f1; /* Light gray */
-  --logo-color: #ffffff; /* White */
+  /* Base Colors */
+  --background-color: #1f1f1f; /* Main background: Dark Gray */
+  --text-color: #e0e0e0; /* Main text: Light Gray */
+  --input-border-color: #e0e0e0;
+  --important-text-color: #ffffff;
+  /* Accent Color */
+  --accent-color: #18bc9c; /* Accent: Turquoise */
+
+  /* Sidebar */
+  --sidebar-background-color: #121212; /* Sidebar background: Almost black */
+  --sidebar-text-color: var(--text-color); /* Sidebar text: Light Gray */
+
+  /* Container */
+  --container-background-color: #1a1a1a; /* Container background: Darker Gray */
+  --container-text-color: var(--text-color); /* Container text: Light Gray */
+  /* Warning color */
+  --warning-color: #dc3545;
+  /* Buttons */
+  --button-border-color: var(--accent-color);
+  --button-background-color: var(
+    --accent-color
+  ); /* Button background: Accent Color */
+  --button-text-color: #ffffff; /* Button text: White */
+
+  /* Hover Effects */
+  --hover-background-color: #333333; /* Hover background: Medium Gray */
+  --button-hover-background: #2abca0;
+  --button-active-background: #149b85;
 }
