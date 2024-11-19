@@ -70,11 +70,12 @@
 }
 
 .auth-switch a {
-  color: var(--button-active-color);
+  color: var(--button-background-color);
   text-decoration: none;
 }
 
 .auth-switch a:hover {
+  color: var(--accent-color);
   text-decoration: underline;
 }
 

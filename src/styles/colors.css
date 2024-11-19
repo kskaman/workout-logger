@@ -35,7 +35,7 @@
 /* Dark Theme */
 .dark-theme {
   /* Base Colors */
-  --background-color: #1f1f1f; /* Main background: Dark Gray */
+  --background-color: #121212; /* Main background: Dark Gray */
   --text-color: #e0e0e0; /* Main text: Light Gray */
   --input-border-color: #e0e0e0;
   --important-text-color: #ffffff;
@@ -43,11 +43,11 @@
   --accent-color: #18bc9c; /* Accent: Turquoise */
 
   /* Sidebar */
-  --sidebar-background-color: #121212; /* Sidebar background: Almost black */
+  --sidebar-background-color: #1f1f1f; /* Sidebar background: Almost black */
   --sidebar-text-color: var(--text-color); /* Sidebar text: Light Gray */
 
   /* Container */
-  --container-background-color: #1a1a1a; /* Container background: Darker Gray */
+  --container-background-color: #1f1f1f; /* Container background: Darker Gray */
   --container-text-color: var(--text-color); /* Container text: Light Gray */
   /* Warning color */
   --warning-color: #dc3545;
