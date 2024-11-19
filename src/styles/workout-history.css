@@ -30,8 +30,8 @@ header {
   margin: 2rem auto;
   background-color: var(--container-background-color);
   border-radius: 0.3125rem;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
 }
 
 /* Styling for workout info */

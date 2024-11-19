@@ -11,32 +11,41 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 1.5rem;
 }
 
 /* Main container content styling */
 header {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 header h1 {
-  font-size: 2.5rem;
   color: var(--text-color);
 }
 
 #stats {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 1.5rem;
 }
+
+@media (max-width: 1080px) {
+  #stats {
+    flex-direction: column;
+  }
+}
+
+
 
 #last-workout,
 #streak-stats,
 #general-stats {
   background-color: var(--container-background-color);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 0.3125rem;
   width: 100%;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
+  opacity: 1.0;
 }
 
 #last-workout h2,
@@ -45,4 +54,18 @@ header h1 {
   margin-bottom: 0.9375rem;
   color: var(--text-color);
   font-size: 1.75rem;
+  opacity: 1.0;
+}
+
+#last-workout h3,
+#streak-stats h3,
+#general-stats h3 {
+  margin-bottom: 0.9375rem;
+  color: var(--text-color);
+  font-size: 1.75rem;
+  opacity: 1.0;
+}
+
+h3 {
+  opacity: 1.0
 }

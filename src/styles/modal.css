@@ -18,13 +18,15 @@
   display: flex;
   flex-direction: column;
   margin: 2rem auto;
-  width: 80%;
+  padding: 2.5rem;
+  padding-top: 1rem;
+  width: 33%;
   max-width: 800px;
   max-height: 90vh;
   background-color: var(--background-color);
-  border: 1px solid var(--input-border-color);
   border-radius: 0.5rem;
   box-sizing: border-box;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
 }
 
 /* Close Button */
@@ -70,6 +72,7 @@
 .modal-content .exercise {
   border: 1px solid var(--input-border-color);
   padding: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   position: relative;
 }
@@ -126,7 +129,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
 }
 
 /* Suggestion Item as a Chip */
