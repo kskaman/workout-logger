@@ -10,12 +10,27 @@ export function renderViewModal(workout) {
   modalHeader.classList.add("modal-header");
 
   const modalTitle = document.createElement("p");
-  modalTitle.textContent = `Workout Name - ${workout.name}`;
+  const modalTitleHeading = document.createElement("span");
+  modalTitleHeading.textContent = "Workout Name";
+  const modalTitleValue = document.createElement("span");
+  modalTitleValue.innerHTML = `${workout.name}`;
+  modalTitle.appendChild(modalTitleHeading);
+  modalTitle.appendChild(modalTitleValue);
 
   const modalDate = document.createElement("p");
-  modalDate.textContent = `Date - ${formatDate(workout.date)}`;
+  const modalDateHeading = document.createElement("span");
+  modalDateHeading.textContent = "Date";
+  const modalDateValue = document.createElement("span");
+  modalDateValue.textContent = `${formatDate(workout.date)}`;
+
+  modalDate.appendChild(modalDateHeading);
+  modalDate.appendChild(modalDateValue);
+
+  const separationLine = document.createElement("div");
+  separationLine.id = "separation-line";
 
   modalHeader.appendChild(modalTitle);
+  modalHeader.appendChild(separationLine);
   modalHeader.appendChild(modalDate);
 
   const modalBody = document.createElement("div");

@@ -39,6 +39,22 @@
   z-index: 3;
 }
 
+/* Modal header */
+.modal-header p {
+  display: flex;
+  align-items: center;
+}
+
+.modal-header #separation-line {
+  border-bottom: 1px solid var(--input-border-color);
+  margin: 0.75rem auto;
+  width: 60%;
+}
+
+.modal-header p span {
+  flex: 1;
+}
+
 /* Modal Content */
 .modal-content {
   padding: 1rem;
