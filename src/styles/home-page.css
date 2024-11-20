@@ -1,42 +1,13 @@
 /* ../src/styles/index.css */
 
-.container {
-  display: flex;
-  overflow-y: auto;
-}
-
 .main-container {
-  flex: 2;
-  padding: 2.5rem;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
   gap: 5px;
-}
-
-/* Main container content styling */
-header {
-  margin-bottom: 2rem;
-}
-
-header h1 {
-  font-size: 2.5rem;
-  color: var(--text-color);
 }
 
 #stats {
   display: flex;
   flex-direction: row;
   gap: 5px;
-}
-
-#last-workout,
-#streak-stats,
-#general-stats {
-  background-color: var(--container-background-color);
-  padding: 2rem;
-  border-radius: 0.3125rem;
-  width: 100%;
 }
 
 #last-workout h2,

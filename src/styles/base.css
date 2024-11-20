@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  overflow-y: auto;
+}
+
+.main-container {
+  flex: 1;
+  padding: 2.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-container {
+  width: 100%;
+  margin: 2rem auto;
+  background-color: var(--container-background-color);
+  border-radius: 0.3125rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+}
