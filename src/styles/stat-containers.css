@@ -1,0 +1,30 @@
+/* Stats Container Styling */
+
+.stat-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 250px;
+  aspect-ratio: 1;
+  text-align: left;
+}
+
+.stat-container .material-symbols-outlined {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+.stat-container div {
+  width: 100%;
+}
+
+.stat-container .value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-color);
+}

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContainer.innerHTML = "";
     mainContainer.innerHTML = `
       <h1 style="margin: auto; max-width: 600px; text-align: center">
-        You don't have not logged any workout!
+        You haven't logged any workout!
       </h1>
     `;
   } else {
@@ -98,12 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Workout in Last 30 days
     renderStatsContainer(
+      "date_range",
       "Workouts in Last 30 Days",
       stats.workoutsInLast30Days
     );
 
     // Maximum Reps Done
     renderStatsContainer(
+      "repeat",
       `Maximum Reps - ${stats.maxRepsExercise}`,
       stats.maxReps
     );
@@ -111,28 +113,39 @@ document.addEventListener("DOMContentLoaded", () => {
     // Heaviest Weight Lifted
     if (stats.heaviestWeightExercise !== "") {
       renderStatsContainer(
+        "fitness_center",
         `Heaviest Weight Lifted(lbs) - ${stats.heaviestWeightExercise}`,
         stats.heaviestWeight
       );
     }
 
     // Current Streak
-    renderStatsContainer("Current Streak (days)", stats.currentStreak);
+    renderStatsContainer(
+      "whatshot",
+      "Current Streak (days)",
+      stats.currentStreak
+    );
 
     // Maximum Streak
-    renderStatsContainer("Max Streak (days)", stats.maxStreak);
+    renderStatsContainer("whatshot", "Max Streak (days)", stats.maxStreak);
 
-    function renderStatsContainer(tag, value) {
+    function renderStatsContainer(icon, tag, value) {
       const statContainer = document.createElement("div");
       statContainer.classList.add("sub-container");
       statContainer.classList.add("stat-container");
 
+      const iconContainer = document.createElement("div");
+      iconContainer.innerHTML = `<span class="material-symbols-outlined">
+      ${icon}
+      </span>`;
       const valueContainer = document.createElement("div");
+      valueContainer.classList.add("value");
       valueContainer.textContent = value;
 
       const tagContainer = document.createElement("div");
       tagContainer.textContent = tag;
 
+      statContainer.appendChild(iconContainer);
       statContainer.appendChild(valueContainer);
       statContainer.appendChild(tagContainer);
 

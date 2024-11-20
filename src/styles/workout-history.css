@@ -1,12 +1,5 @@
 /* ./src/styles/workout-history.css */
 
-.filter-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10%;
-}
-
 #history-container {
   width: 100%;
 }

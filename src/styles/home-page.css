@@ -1,19 +1,13 @@
 /* ../src/styles/index.css */
 
 .main-container {
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .stats-container {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
-}
-
-#stats {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
+  gap: 1rem;
 }
 
 #history-container h3 {
