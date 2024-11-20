@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       sessionStorage.removeItem("currentUser");
       sessionStorage.removeItem("theme");
+      sessionStorage.removeItem("sidebarCollapsed");
       window.location.href = "../../";
     });
   }
