@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContainer.innerHTML = "";
     mainContainer.innerHTML = `
       <h1 style="margin: auto; max-width: 600px; text-align: center">
-        Looks like you have not logged any workout yet!
+        You don't have not logged any workout!
       </h1>
     `;
   } else {
