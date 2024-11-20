@@ -6,7 +6,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  width: 250px;
+  flex-shrink: 0;
+  width: 200px;
   aspect-ratio: 1;
   text-align: left;
 }
@@ -19,12 +20,8 @@
   color: var(--text-color);
 }
 
-.stat-container div {
-  width: 100%;
-}
-
 .stat-container .value {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: bold;
   color: var(--text-color);
 }
