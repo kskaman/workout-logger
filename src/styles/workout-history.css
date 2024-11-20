@@ -1,15 +1,14 @@
 /* ./src/styles/workout-history.css */
 
-header {
-  display: flex;
-  justify-content: space-between;
-}
-
 .filter-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10%;
+}
+
+#history-container {
+  width: 100%;
 }
 
 /* Styling for workout info */

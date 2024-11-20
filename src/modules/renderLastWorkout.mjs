@@ -5,7 +5,7 @@ import { formatDate } from "./utils.mjs";
 
 function renderLastWorkout(workout) {
   const lastWorkoutContainer = document.getElementById("last-workout");
-
+  lastWorkoutContainer.id = "history-container";
   lastWorkoutContainer.innerHTML = "";
 
   if (!workout) {

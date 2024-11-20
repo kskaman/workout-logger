@@ -1,94 +1,144 @@
 // ../src/scripts/last-workout-view.js
 
-import renderLastWorkout from "../modules/renderLastWorkout.mjs";
+import { renderViewModal } from "../modules/viewModal.mjs";
+import { formatDate } from "../modules/utils.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
-  let showStats = true;
-
   const currentUser = sessionStorage.getItem("currentUser");
 
   const users = JSON.parse(localStorage.getItem("users")) || {};
 
   let lastWorkout = users[currentUser].workouts[0] || [];
 
-  renderLastWorkout(lastWorkout);
-  renderGeneralStats();
-  renderStreak();
+  const mainContainer = document.getElementById("main-container");
 
-  function renderGeneralStats() {
-    const generalStatsContainer = document.getElementById("general-stats");
-    generalStatsContainer.innerHTML = "";
-    const generalHeading = document.createElement("h3");
-    generalHeading.textContent = "General Stats";
+  if (lastWorkout.length === 0) {
+    mainContainer.innerHTML = "";
+    mainContainer.innerHTML = `
+      <h1 style="margin: auto; max-width: 600px; text-align: center">
+        Looks like you have not logged any workout yet!
+      </h1>
+    `;
+  } else {
+    mainContainer.innerHTML = "";
 
-    generalStatsContainer.appendChild(generalHeading);
+    mainContainer.innerHTML = `
+      <header>
+        <h1>Welcome</h1>
+      </header>
+    `;
 
-    if (!showStats) {
-      const el = document.createElement("p");
-      el.textContent = "No stats to show";
-      generalStatsContainer.appendChild(el);
-      return;
-    }
-
-    const stats = users[currentUser].stats;
-
-    if (stats) {
-      // Workout in Last 30 days
-      const workouts30Days = document.createElement("p");
-      workouts30Days.textContent = `Workouts in Last 30 Days: ${stats.workoutsInLast30Days}`;
-      generalStatsContainer.appendChild(workouts30Days);
-
-      // Maximum Reps Done
-      const maxRepsElem = document.createElement("p");
-      maxRepsElem.textContent = `Maximum Reps : ${stats.maxReps} (Exercise: ${stats.maxRepsExercise})`;
-      generalStatsContainer.appendChild(maxRepsElem);
-
-      // Heaviest Weight Lifted
-
-      if (stats.heaviestWeightExercises.length !== 0) {
-        const maxWeightElem = document.createElement("p");
-        maxWeightElem.textContent = `Heaviest Weight Lifted: ${
-          stats.heaviestWeight
-        } lbs (Exercise: ${stats.heaviestWeightExercises.join(", ")})`;
-        generalStatsContainer.appendChild(maxWeightElem);
-      }
-    } else {
-      generalStatsContainer.appendChild(
-        document.createTextNode("No statistics available.")
-      );
-    }
+    renderLastWorkout(lastWorkout);
+    renderStats();
   }
 
-  function renderStreak() {
-    const streakStatsContainer = document.getElementById("streak-stats");
-    streakStatsContainer.innerHTML = "";
-    const streakHeading = document.createElement("h3");
-    streakHeading.textContent = "Streak";
+  function renderLastWorkout(workout) {
+    const lastWorkoutContainer = document.createElement("section");
+    lastWorkoutContainer.id = "history-container";
+    lastWorkoutContainer.classList.add("sub-container");
 
-    streakStatsContainer.appendChild(streakHeading);
+    lastWorkoutContainer.innerHTML = "";
 
-    if (!showStats) {
-      const el = document.createElement("p");
-      el.textContent = "No stats to show";
-      streakStatsContainer.appendChild(el);
-      return;
-    }
+    // Create Heading
+    const heading = document.createElement("h3");
+    heading.textContent = "Last Workout";
+    lastWorkoutContainer.appendChild(heading);
+
+    // Create last workout table
+    const table = document.createElement("table");
+    table.classList.add("workout-table");
+
+    // Create table header
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    const headers = ["Date", "Workout Name"];
+
+    headers.forEach((headerText) => {
+      const th = document.createElement("th");
+      th.textContent = headerText;
+      headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // Create table body
+    const tbody = document.createElement("tbody");
+    const row = document.createElement("tr");
+    row.classList.add("workout-item");
+
+    const dataCell = document.createElement("td");
+    dataCell.textContent = formatDate(workout.date);
+
+    const nameCell = document.createElement("td");
+    nameCell.textContent = workout.name;
+
+    row.appendChild(dataCell);
+    row.appendChild(nameCell);
+
+    tbody.appendChild(row);
+
+    table.appendChild(tbody);
+
+    lastWorkoutContainer.appendChild(table);
+
+    // add view functionality ot row
+    row.addEventListener("click", () => {
+      renderViewModal(workout);
+    });
+
+    mainContainer.appendChild(lastWorkoutContainer);
+  }
+
+  function renderStats() {
+    const statsContainer = document.createElement("section");
+    statsContainer.classList.add("stats-container");
+
     const stats = users[currentUser].stats;
 
-    if (stats) {
-      // Current Streak
-      const currentStreakElem = document.createElement("p");
-      currentStreakElem.textContent = `Current Streak: ${stats.currentStreak} days`;
-      streakStatsContainer.appendChild(currentStreakElem);
+    // Workout in Last 30 days
+    renderStatsContainer(
+      "Workouts in Last 30 Days",
+      stats.workoutsInLast30Days
+    );
 
-      // Maximum Streak
-      const maxStreakElem = document.createElement("p");
-      maxStreakElem.textContent = `Maximum Streak: ${stats.maxStreak} days`;
-      streakStatsContainer.appendChild(maxStreakElem);
-    } else {
-      streakStatsContainer.appendChild(
-        document.createTextNode("No streak data available.")
+    // Maximum Reps Done
+    renderStatsContainer(
+      `Maximum Reps - ${stats.maxRepsExercise}`,
+      stats.maxReps
+    );
+
+    // Heaviest Weight Lifted
+    if (stats.heaviestWeightExercise !== "") {
+      renderStatsContainer(
+        `Heaviest Weight Lifted(lbs) - ${stats.heaviestWeightExercise}`,
+        stats.heaviestWeight
       );
     }
+
+    // Current Streak
+    renderStatsContainer("Current Streak (days)", stats.currentStreak);
+
+    // Maximum Streak
+    renderStatsContainer("Max Streak (days)", stats.maxStreak);
+
+    function renderStatsContainer(tag, value) {
+      const statContainer = document.createElement("div");
+      statContainer.classList.add("sub-container");
+      statContainer.classList.add("stat-container");
+
+      const valueContainer = document.createElement("div");
+      valueContainer.textContent = value;
+
+      const tagContainer = document.createElement("div");
+      tagContainer.textContent = tag;
+
+      statContainer.appendChild(valueContainer);
+      statContainer.appendChild(tagContainer);
+
+      statsContainer.appendChild(statContainer);
+    }
+
+    mainContainer.appendChild(statsContainer);
   }
 });

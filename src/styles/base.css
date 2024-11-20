@@ -12,8 +12,7 @@
 }
 
 .sub-container {
-  width: 100%;
-  margin: 2rem auto;
+  margin: 0 auto;
   background-color: var(--container-background-color);
   border-radius: 0.3125rem;
   padding: 1rem;
@@ -22,4 +21,10 @@
 
 header h1 {
   font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
 }
