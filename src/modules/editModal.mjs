@@ -32,8 +32,14 @@ export function renderEditModal(workout = null, index = null) {
   }
   workoutNameInput.autocomplete = "off";
 
+  // Error message for workout name
+  const workoutNameError = document.createElement("div");
+  workoutNameError.classList.add("error-message");
+  workoutNameError.id = "workout-name-error";
+
   workoutNameGroup.appendChild(workoutNameLabel);
   workoutNameGroup.appendChild(workoutNameInput);
+  workoutNameGroup.appendChild(workoutNameError);
 
   // Workout date input
   const workoutDateGroup = document.createElement("div");
@@ -51,8 +57,14 @@ export function renderEditModal(workout = null, index = null) {
     workoutDateInput.value = workout.date;
   }
 
+  // Error message for workout date
+  const workoutDateError = document.createElement("div");
+  workoutDateError.classList.add("error-message");
+  workoutDateError.id = "workout-date-error";
+
   workoutDateGroup.appendChild(workoutDateLabel);
   workoutDateGroup.appendChild(workoutDateInput);
+  workoutDateGroup.appendChild(workoutDateError);
 
   form.appendChild(workoutNameGroup);
   form.appendChild(workoutDateGroup);

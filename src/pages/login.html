@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles/auth.css" />
     <link rel="stylesheet" href="../styles/buttons.css" />
     <link rel="stylesheet" href="../styles/bg-image.css" />
+    <link rel="stylesheet" href="../styles/error.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
@@ -37,7 +38,7 @@
         <div class="auth-container">
           <h2>Login</h2>
 
-          <form id="login-form">
+          <form id="login-form" novalidate>
             <div class="form-group">
               <label for="login-username">Username</label>
               <input
@@ -46,6 +47,7 @@
                 autocomplete="off"
                 required
               />
+              <div class="error-message" id="login-username-error"></div>
             </div>
 
             <div class="form-group">
@@ -64,8 +66,9 @@
                   visibility
                 </span>
               </div>
+              <div class="error-message" id="login-password-error"></div>
             </div>
-
+            <div class="error-message" id="login-error"></div>
             <div class="btn">
               <button type="submit" class="btn-primary">Login</button>
             </div>
@@ -84,7 +87,7 @@
 
     <!-- JavaScript -->
     <script src="../scripts/theme-toggle.js"></script>
-    <script src="../scripts/auth.js"></script>
+    <script type="module" src="../scripts/auth.js"></script>
     <script src="../scripts/toggle-password.js"></script>
   </body>
 </html>

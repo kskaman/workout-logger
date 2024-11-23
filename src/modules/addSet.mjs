@@ -1,6 +1,7 @@
 // ../src/modules/addSet.mjs
 
 import { checkSaveWorkoutButtonVisibility } from "./saveButton.mjs";
+import { clearErrorMessage, displayErrorMessage } from "./utils.mjs";
 
 export function addSet({ exerciseDiv, setData = null }) {
   const exerciseId = exerciseDiv.dataset.exerciseId;
@@ -9,7 +10,10 @@ export function addSet({ exerciseDiv, setData = null }) {
   );
 
   if (exerciseTypeSelect.value === "") {
-    alert("Please select an exercise type.");
+    displayErrorMessage(
+      `exercise-${exerciseId}-type-error`,
+      "Please select an exercise type."
+    );
     return;
   }
 
@@ -50,7 +54,7 @@ export function addSet({ exerciseDiv, setData = null }) {
     >
     ${weightInputHTML}
     <span class="remove-set-button">&times;</span>
-  `;
+     `;
 
   setsContainer.appendChild(setRow);
 
@@ -86,6 +90,7 @@ export function removeSet({ exerciseDiv, setRow }) {
   const setRows = setsContainer.querySelectorAll(".set-row");
   setRows.forEach((row, index) => {
     const setNumber = index + 1;
+
     row.dataset.setNumber = setNumber;
     row.querySelector(".set-number").textContent = setNumber;
     const exerciseId = exerciseDiv.dataset.exerciseId;
@@ -101,12 +106,14 @@ export function removeSet({ exerciseDiv, setRow }) {
 }
 
 export function changeExerciseType({ exerciseDiv, exerciseTypeSelect }) {
+  const exerciseId = exerciseDiv.dataset.exerciseId;
+  clearErrorMessage(`exercise-${exerciseId}-type-error`);
+  clearErrorMessage(`set-error-${exerciseId}`);
   const exerciseType = exerciseTypeSelect.value;
   const setsContainer = exerciseDiv.querySelector(".sets-container");
   const setRows = setsContainer.querySelectorAll(".set-row");
 
   setRows.forEach((setRow) => {
-    const exerciseId = exerciseDiv.dataset.exerciseId;
     const setNumber = setRow.dataset.setNumber;
     let weightInput = setRow.querySelector(
       `input[name="weight-${exerciseId}-${setNumber}"]`

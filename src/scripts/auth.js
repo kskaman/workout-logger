@@ -1,5 +1,7 @@
 // ./src/scripts/auth.js
 
+import { clearErrorMessages, displayErrorMessage } from "../modules/utils.mjs";
+
 // Password validation regex
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
@@ -8,6 +10,7 @@ const registerForm = document.getElementById("register-form");
 if (registerForm) {
   sessionStorage.removeItem("currentUser");
   sessionStorage.removeItem("theme");
+
   registerForm.addEventListener("submit", (event) => {
     event.preventDefault();
     registerUser();
@@ -31,16 +34,26 @@ function registerUser() {
     .getElementById("register-confirm-password")
     .value.trim();
 
+  clearErrorMessages();
+
+  let hasError = false;
+
+  if (username === "") {
+    displayErrorMessage("register-username-error", "Username is required.");
+    hasError = true;
+  }
+
   if (!passwordRegex.test(password)) {
-    alert(
+    displayErrorMessage(
+      "register-password-error",
       "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character."
     );
-    return;
+    hasError = true;
   }
 
   if (password !== confirmPassword) {
-    alert("Passwords do not match.");
-    return;
+    displayErrorMessage("confirm-password-error", "Passwords do not match.");
+    hasError = true;
   }
 
   const hashedPassword = btoa(password);
@@ -48,7 +61,11 @@ function registerUser() {
   // Store user in localStorage
   const users = JSON.parse(localStorage.getItem("users")) || {};
   if (users[username]) {
-    alert("Username already exists.");
+    displayErrorMessage("register-username-error", "Username already exists.");
+    hasError = true;
+  }
+
+  if (hasError) {
     return;
   }
 
@@ -58,7 +75,6 @@ function registerUser() {
   };
 
   localStorage.setItem("users", JSON.stringify(users));
-  alert("Registration successful! You can now log in.");
   window.location.href = "./login.html";
 }
 
@@ -67,15 +83,32 @@ function loginUser() {
   const username = document.getElementById("login-username").value.trim();
   const password = document.getElementById("login-password").value;
 
+  clearErrorMessages();
+
+  let hasError = false;
+
+  if (username === "") {
+    displayErrorMessage("login-username-error", "Username is required");
+    hasError = true;
+  }
+
+  if (password === "") {
+    displayErrorMessage("login-password-error", "Password is required");
+    hasError = true;
+  }
+
+  if (hasError) {
+    return;
+  }
+
   const users = JSON.parse(localStorage.getItem("users")) || {};
 
   const hashedPassword = btoa(password);
 
   if (users[username] && users[username].passwordHash === hashedPassword) {
     sessionStorage.setItem("currentUser", username);
-    alert("Login successful!");
     window.location.href = "./home-page.html";
   } else {
-    alert("Invalid username or password");
+    displayErrorMessage("login-error", "Invalid username or password");
   }
 }

@@ -110,8 +110,6 @@ export function renderWorkoutHistory(workouts = null) {
       // Save changes to localStorage
       localStorage.setItem("users", JSON.stringify(users));
 
-      alert("Workout deleted successfully.");
-
       // Re-render the workout history
       renderWorkoutHistory(userWorkouts);
     }

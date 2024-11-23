@@ -30,3 +30,27 @@ export function closeModal() {
   modalContent.innerHTML = "";
   modalOverlay.style.display = "none";
 }
+
+export function displayErrorMessage(elementId, message) {
+  const errorElement = document.getElementById(elementId);
+  if (errorElement) {
+    errorElement.textContent = message;
+    errorElement.style.display = "block";
+  }
+}
+
+export function clearErrorMessages() {
+  const errorMessages = document.querySelectorAll(".error-message");
+  errorMessages.forEach((element) => {
+    element.textContent = "";
+    element.style.display = "none";
+  });
+}
+
+export function clearErrorMessage(elementId) {
+  const errorElement = document.getElementById(elementId);
+  if (errorElement) {
+    errorElement.textContent = "";
+    errorElement.style.display = "none";
+  }
+}

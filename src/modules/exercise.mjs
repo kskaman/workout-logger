@@ -22,6 +22,7 @@ export function addExerciseToForm({
     <div class="form-group">
         <label for="exercise-name-${exerciseCount}">Exercise Name</label>
         <input type="text" id="exercise-name-${exerciseCount}" name="exercise-name-${exerciseCount}" autocomplete="off" required>
+        <div class="error-message" id="exercise-${exerciseCount}-name-error"></div>
     </div>
     <div class="form-group">
         <label for="exercise-type-${exerciseCount}">Exercise Type</label>
@@ -31,10 +32,12 @@ export function addExerciseToForm({
             <option value="resistance-band">Resistance Band</option>
             <option value="weighted">Weighted</option>
         </select>
+        <div class="error-message" id="exercise-${exerciseCount}-type-error"></div>
     </div>
     <div class="sets-container" data-exercise-id="${exerciseCount}">
         <!-- Sets will be added here dynamically -->
     </div>
+    <div class="error-message" id="set-error-${exerciseCount}"></div>
     <div class="exercise-buttons">
         <button type="button" class="add-set-button btn-secondary">Add Set</button>
     </div>
@@ -93,6 +96,7 @@ function updateExerciseIds(container) {
   const exerciseDivs = container.querySelectorAll(".exercise");
   exerciseDivs.forEach((exerciseDiv, index) => {
     const exerciseId = index + 1;
+    const previousId = exerciseDiv.dataset.exerciseId;
     exerciseDiv.dataset.exerciseId = exerciseId;
 
     const exerciseNameInput = exerciseDiv.querySelector(
@@ -100,6 +104,15 @@ function updateExerciseIds(container) {
     );
     const exerciseTypeSelect = exerciseDiv.querySelector(
       `select[name^="exercise-type-"]`
+    );
+    const exerciseNameErrorDiv = exerciseDiv.querySelector(
+      `#exercise-${previousId}-name-error`
+    );
+    const exerciseTypeErrorDiv = exerciseDiv.querySelector(
+      `#exercise-${previousId}-type-error`
+    );
+    const exerciseSetErrorDiv = exerciseDiv.querySelector(
+      `#setError-${previousId}`
     );
     const setsContainer = exerciseDiv.querySelector(".sets-container");
 
@@ -110,6 +123,9 @@ function updateExerciseIds(container) {
     exerciseTypeSelect.name = `exercise-type-${exerciseId}`;
     exerciseTypeSelect.id = `exercise-type-${exerciseId}`;
 
+    exerciseNameErrorDiv.id = `exercise-${exerciseId}-name-error`;
+    exerciseTypeErrorDiv.id = `exercise-${exerciseId}-type-error`;
+    exerciseSetErrorDiv.id = `set-error-${exerciseId}`;
     setsContainer.dataset.exerciseId = exerciseId;
 
     // Update sets

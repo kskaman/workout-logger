@@ -1,7 +1,11 @@
 // ../src/modules/saveButton.mjs
 
 import { updateUserExercises, updateUserStats } from "./stats.mjs";
-import { insertWorkoutInOrder } from "./utils.mjs";
+import {
+  clearErrorMessages,
+  displayErrorMessage,
+  insertWorkoutInOrder,
+} from "./utils.mjs";
 import { closeModal } from "./utils.mjs";
 
 export function checkSaveWorkoutButtonVisibility() {
@@ -34,6 +38,8 @@ export function checkSaveWorkoutButtonVisibility() {
 
 export function saveWorkout({ index = null }) {
   // Fetch data from the form
+  clearErrorMessages();
+
   const workoutNameInput = document.getElementById("workout-name");
   const workoutDateInput = document.getElementById("workout-date");
   const exercisesContainer = document.getElementById("exercise-container");
@@ -41,23 +47,24 @@ export function saveWorkout({ index = null }) {
   const workoutName = workoutNameInput.value.trim();
   const workoutDate = workoutDateInput.value.trim();
 
-  if (workoutName === "" || workoutDate === "") {
-    alert("Please enter workout name and date.");
-    return;
-  }
+  let hasError = false;
 
-  // Ensure workoutDate is in 'YYYY-MM-DD' format
-  const formattedDate = new Date(workoutDate).toISOString().split("T")[0];
+  if (workoutName === "") {
+    displayErrorMessage("workout-name-error", "Please enter workout name.");
+    hasError = true;
+  }
+  if (workoutDate === "") {
+    displayErrorMessage("workout-date-error", "Please enter workout date.");
+    hasError = true;
+  }
 
   const exercises = [];
   const exerciseDivs = exercisesContainer.querySelectorAll(".exercise");
 
   if (exerciseDivs.length === 0) {
-    alert("Please add at least one exercise.");
-    return;
+    displayErrorMessage("workout-error", "Please add at least one exercise.");
+    hasError = true;
   }
-
-  let allExercisesValid = true;
 
   exerciseDivs.forEach((exerciseDiv) => {
     const exerciseId = exerciseDiv.dataset.exerciseId;
@@ -72,33 +79,72 @@ export function saveWorkout({ index = null }) {
     const exerciseName = exerciseNameInput.value.trim();
     const exerciseType = exerciseTypeSelect.value;
 
-    if (exerciseName === "" || exerciseType === "") {
-      alert("Enter name and type for each exercise.");
-      allExercisesValid = false;
-      return;
+    let exerciseHasError = false; // Tracks errors within this exercise
+
+    if (exerciseName === "") {
+      displayErrorMessage(
+        `exercise-${exerciseId}-name-error`,
+        "Please enter exercise name."
+      );
+      hasError = true;
+      exerciseHasError = true;
+    }
+
+    if (exerciseType === "") {
+      displayErrorMessage(
+        `exercise-${exerciseId}-type-error`,
+        "Please select exercise type."
+      );
+      hasError = true;
+      exerciseHasError = true;
     }
 
     const setRows = setsContainer.querySelectorAll(".set-row");
 
     if (setRows.length === 0) {
-      alert("Each exercise must have at least one set.");
-      allExercisesValid = false;
-      return;
+      displayErrorMessage(
+        `exercise-${exerciseId}-type-error`,
+        "Please add at least one set."
+      );
+      hasError = true;
+      exerciseHasError = true;
     }
 
     const sets = [];
-    let allSetsValid = true;
 
     setRows.forEach((setRow) => {
+      const setNumber = setRow.dataset.setNumber;
       const repsInput = setRow.querySelector(`input[name^="reps-"]`);
       const weightInput = setRow.querySelector(`input[name^="weight-"]`);
+      const setErrorId = `setError-${exerciseId}-${setNumber}`;
+
+      let setHasError = false;
+
+      if (!repsInput.value) {
+        displayErrorMessage(
+          `set-error-${exerciseId}`,
+          "Please enter complete data for all sets."
+        );
+        hasError = true;
+        setHasError = true;
+        exerciseHasError = true;
+      }
+
       if (
-        !repsInput.value ||
-        (weightInput && weightInput.required && !weightInput.value)
+        (exerciseType === "weighted" || exerciseType === "resistance-band") &&
+        weightInput &&
+        !weightInput.value
       ) {
-        allSetsValid = false;
-        return;
-      } else {
+        displayErrorMessage(
+          `set-error-${exerciseId}`,
+          "Please enter complete data for all sets."
+        );
+        hasError = true;
+        setHasError = true;
+        exerciseHasError = true;
+      }
+
+      if (!setHasError) {
         const setData = {
           reps: repsInput.value,
         };
@@ -109,22 +155,21 @@ export function saveWorkout({ index = null }) {
       }
     });
 
-    if (!allSetsValid) {
-      alert("Each set of every exercise should have valid entries.");
-      allExercisesValid = false;
-      return;
+    if (!exerciseHasError) {
+      exercises.push({
+        name: exerciseName,
+        type: exerciseType,
+        sets: sets,
+      });
     }
-
-    exercises.push({
-      name: exerciseName,
-      type: exerciseType,
-      sets: sets,
-    });
   });
 
-  if (!allExercisesValid) {
-    return;
+  if (hasError) {
+    return; // Do not proceed with saving if there are errors
   }
+
+  // Ensure workoutDate is in 'YYYY-MM-DD' format
+  const formattedDate = new Date(workoutDate).toISOString().split("T")[0];
 
   const workoutData = {
     name: workoutName,
@@ -160,15 +205,12 @@ export function saveWorkout({ index = null }) {
   // Save to localStorage
   users[currentUser].workouts = workouts;
 
-  // Update user's exercises list
+  // Update user's exercises list and stats
   updateUserExercises(users[currentUser]);
-
-  // Update user stats
   updateUserStats(users[currentUser]);
 
   localStorage.setItem("users", JSON.stringify(users));
 
-  alert("Workout saved successfully!");
   closeModal();
 
   // Reload the page
