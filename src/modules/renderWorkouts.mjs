@@ -4,6 +4,7 @@ import { formatDate } from "./utils.mjs";
 import { renderViewModal } from "./viewModal.mjs";
 import { renderEditModal } from "./editModal.mjs";
 import { updateUserExercises, updateUserStats } from "./stats.mjs"; // Import missing functions
+import { showDeleteModal } from "./deleteModal.mjs";
 
 export function renderWorkoutHistory(workouts = null) {
   if (!workouts) {
@@ -92,7 +93,7 @@ export function renderWorkoutHistory(workouts = null) {
   historyContainer.appendChild(table);
 
   function deleteWorkout(index) {
-    if (confirm("Are you sure you want to delete this workout?")) {
+    showDeleteModal(() => {
       const users = JSON.parse(localStorage.getItem("users")) || {};
       const currentUser = sessionStorage.getItem("currentUser");
       const userWorkouts = users[currentUser].workouts || [];
@@ -112,6 +113,6 @@ export function renderWorkoutHistory(workouts = null) {
 
       // Re-render the workout history
       renderWorkoutHistory(userWorkouts);
-    }
+    });
   }
 }

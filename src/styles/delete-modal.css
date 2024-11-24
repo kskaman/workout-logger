@@ -1,0 +1,70 @@
+/* ../src/styles/delete-modal.css */
+
+/* Modal Overlay */
+#delete-modal.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/* Modal Container */
+#delete-modal .modal-container {
+  position: relative;
+  margin: 5% auto;
+  max-width: 500px;
+  background-color: var(--background-color);
+  border: 1px solid var(--input-border-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Close Button */
+#delete-modal .close-modal-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Modal Content */
+#delete-modal .modal-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Modal Message */
+#delete-modal .modal-message {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+/* Modal Buttons */
+#delete-modal .modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* #delete-modal .modal-buttons .btn-primary,
+#delete-modal .modal-buttons .btn-secondary {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+} */
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  #delete-modal .modal-container {
+    margin: 10% auto;
+    width: 90%;
+  }
+}
