@@ -1,29 +1,65 @@
 // ../src/scripts/sidebar-toggle.js
 
-const sidebarCollapsed = sessionStorage.getItem("sidebarCollapsed");
+let desktopToggleIcon = document.getElementById("desktop-toggle-icon");
+let mobileToggleIcon = document.getElementById("mobile-toggle-icon");
+const desktopSidebar = document.getElementById("desktop-navbar");
+const mobileSidebar = document.getElementById("mobile-navbar");
+const modalOverlayHide = document.getElementById("modal-overlay-hide");
 
-const toggleIcon = document.querySelector(".toggle-icon");
-const sidebar = document.querySelector(".sidebar");
+// Toggle for desktop sidebar
+function toggleSidebarDesktop() {
+  if (window.innerWidth > 768) {
+    desktopSidebar.classList.toggle("collapsed");
 
-toggleIcon.addEventListener("click", () => {
-  // Add/remove the 'collapsed' class depending
-  // whether its already present
-  sidebar.classList.toggle("collapsed");
-
-  // store a boolean value about whether sidebar
-  // has a 'collapsed' class in sidebarCollapsed
-  // session variable
-  const collapsed = sidebar.classList.contains("collapsed");
-  sessionStorage.setItem("sidebarCollapsed", collapsed);
-});
-
-// The reason we need the additional logic with session storage
-// is that JavaScript operates on the DOM of the current page
-// only.When you navigate to a different page, the browser
-// reloads the DOM and JavaScript reinitializes, losing all
-// previously applied states(like whether the sidebar was
-// collapsed).
-const collapsed = sessionStorage.getItem("sidebarCollapsed") === "true";
-if (collapsed === true) {
-  sidebar.classList.add("collapsed");
+    // Store collapsed state
+    const collapsed = desktopSidebar.classList.contains("collapsed");
+    sessionStorage.setItem("sidebarCollapsed", collapsed);
+  } else {
+    desktopSidebar.classList.toggle("active");
+    modalOverlayHide.classList.remove("active");
+  }
 }
+
+// Toggle for mobile sidebar
+function toggleSidebarMobile() {
+  desktopSidebar.classList.toggle("active");
+  modalOverlayHide.classList.add("active");
+}
+
+function adjustSidebarOnResize() {
+  if (window.innerWidth > 768) {
+    desktopSidebar.classList.remove("active");
+    modalOverlayHide.classList.remove("active");
+
+    // Restore 'collapsed' state
+    const collapsed = sessionStorage.getItem("sidebarCollapsed") === "true";
+    if (collapsed) {
+      desktopSidebar.classList.add("collapsed");
+    } else {
+      desktopSidebar.classList.remove("collapsed");
+    }
+
+    desktopSidebar.classList.remove("resizing");
+  } else {
+    desktopSidebar.classList.add("resizing");
+
+    desktopSidebar.classList.remove("collapsed");
+
+    setTimeout(() => {
+      desktopSidebar.classList.remove("resizing");
+    }, 100);
+  }
+}
+
+// Event listeners
+if (desktopToggleIcon) {
+  desktopToggleIcon.addEventListener("click", toggleSidebarDesktop);
+}
+
+if (mobileToggleIcon) {
+  mobileToggleIcon.addEventListener("click", toggleSidebarMobile);
+}
+
+// Adjust sidebar on page load and window resize
+adjustSidebarOnResize();
+window.addEventListener("resize", adjustSidebarOnResize);
