@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   gap: 10%;
+  height: 2.5em;
 }
 #filter-container .material-symbols-outlined {
   color: var(--important-text-color);
@@ -12,8 +13,8 @@
 
 /* Filter Options Container */
 .filter-options-container {
-  margin: 1rem 0;
-  padding: 1rem;
+  margin: 1em 0;
+  padding: 1em;
   border: 1px solid var(--input-border-color);
   background-color: var(--container-background-color);
   border-radius: 0.5rem;
@@ -32,9 +33,9 @@
 }
 
 .filter-group input {
-  padding: 0.5rem;
+  padding: 0.5em;
   border: 1px solid var(--input-border-color);
-  border-radius: 0.25rem;
+  border-radius: 0.25em;
   background-color: var(--background-color);
   color: var(--text-color);
   max-width: 30%;
@@ -47,11 +48,11 @@
 
 .filter-group input[type="date"] {
   width: auto;
-  margin-right: 1rem;
+  margin-right: 1em;
 }
 
 /* Apply Filters Button */
 #filter-form .btn-primary {
-  margin-top: 1rem;
+  margin-top: 1em;
   min-width: fit-content;
 }

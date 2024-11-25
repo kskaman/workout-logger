@@ -9,7 +9,7 @@
 
 /* Header/Navbar Styles */
 .header {
-  padding: 1rem 2rem;
+  padding: 1em 2em;
 }
 
 .navbar {
@@ -27,8 +27,8 @@
   font-size: 1rem;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s ease;
-  border-radius: 0.5rem;
-  padding: 10px;
+  border-radius: 0.5em;
+  padding: 0.625em;
 }
 
 .logo a:hover,
@@ -59,7 +59,7 @@
 
 .tagline {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 /* Styled Get Started Button */
@@ -67,7 +67,7 @@
   background-color: var(--button-background-color);
   padding: 1em 2em;
   font-size: 1.25rem;
-  border-radius: 0.3125rem;
+  border-radius: 0.3125em;
   text-decoration: none;
   margin-top: 1rem;
   transition: transform 0.2s;

@@ -7,15 +7,17 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-shrink: 0;
-  width: 200px;
+  width: 12.5em;
   aspect-ratio: 1;
   text-align: left;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .stat-container .material-symbols-outlined {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.5em;
+  right: 0.5em;
   font-size: 2rem;
   color: var(--text-color);
 }

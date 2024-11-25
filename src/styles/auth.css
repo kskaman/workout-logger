@@ -25,7 +25,8 @@
   background-color: var(--background-color);
   padding: 2rem;
   border-radius: 0.5rem;
-  width: 25rem;
+  width: 90%;
+  max-width: 400px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

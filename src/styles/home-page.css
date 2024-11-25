@@ -1,14 +1,16 @@
 /* ../src/styles/index.css */
 
 .main-container {
-  gap: 1rem;
+  gap: 1em;
 }
 
 .stats-container {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1em;
 }
 
 #history-container h3 {

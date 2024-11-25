@@ -7,13 +7,13 @@
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
 }
 
 #mobile-navbar .logo-toggle {
   margin-bottom: 0;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 1em;
 }
 
 #modal-overlay-hide {
@@ -35,7 +35,7 @@
   background-color: var(--sidebar-background-color);
   display: flex;
   flex-direction: column;
-  padding: 0.5rem 1rem 1.5rem;
+  padding: 0.5em 1em 1.5em;
   transition: transform 0.3s ease;
   overflow: hidden;
   flex-shrink: 0;
@@ -51,7 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5em;
 }
 
 /* Adjust when collapsed */
@@ -61,7 +61,7 @@
 }
 
 .sidebar.collapsed .toggle-icon {
-  margin-top: 1rem;
+  margin-top: 1em;
 }
 
 .material-symbols-outlined {
@@ -78,7 +78,7 @@
 .nav-links {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .nav-links a {
@@ -87,8 +87,8 @@
   align-items: center;
   color: var(--sidebar-text-color);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
   transition: background-color 0.3s;
 }
 
@@ -100,7 +100,7 @@
 /* Icons in Navigation Links */
 .nav-links a .material-symbols-outlined {
   font-size: 1.5rem;
-  margin-right: 1rem;
+  margin-right: 1em;
   color: inherit;
 }
 
