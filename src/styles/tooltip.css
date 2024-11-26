@@ -7,11 +7,13 @@
   display: none;
   position: absolute;
   top: 100%;
-  left: 75%;
+  left: 100%;
   background-color: var(--text-color);
   color: var(--background-color);
+  padding: 0.5em;
+  border-radius: 0.5em;
 }
 
-.tooltip .tooltip-text:hover {
+.tooltip:hover .tooltip-text {
   display: block;
 }
