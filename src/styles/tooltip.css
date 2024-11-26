@@ -12,12 +12,15 @@
   color: var(--background-color);
   padding: 0.5em;
   border-radius: 0.5em;
+  border: none;
 }
 
-.tooltip:hover .tooltip-text {
+.tooltip:hover .tooltip-text,
+#desktop-navbar.collapsed .nav-links.tooltip:hover .tooltip-text {
   display: block;
 }
 
-.tooltip:active .tooltip-text {
+.tooltip:active .tooltip-text,
+#desktop-navbar.collapsed .nav-links.tooltip:hover .tooltip-text {
   display: none;
 }
