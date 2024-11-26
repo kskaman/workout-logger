@@ -1,0 +1,17 @@
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 75%;
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.tooltip .tooltip-text:hover {
+  display: block;
+}
