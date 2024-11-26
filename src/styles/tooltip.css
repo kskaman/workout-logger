@@ -15,12 +15,18 @@
   border: none;
 }
 
-.tooltip:hover .tooltip-text,
-#desktop-navbar.collapsed .nav-links.tooltip:hover .tooltip-text {
+.logo-toggle .tooltip:hover .tooltip-text,
+.collapsed .nav-links.tooltip:hover .tooltip-text {
   display: block;
 }
 
-.tooltip:active .tooltip-text,
-#desktop-navbar.collapsed .nav-links.tooltip:hover .tooltip-text {
+.logo-toggle .tooltip:active .tooltip-text,
+.collapsed .nav-links.tooltip:active .tooltip-text {
   display: none;
+}
+
+@media (hover: none) {
+  .tooltip .tooltip-text {
+    display: none !important;
+  }
 }
