@@ -1,6 +1,10 @@
-﻿# Workout Logger
+# Workout Logger
 
 A web application to log and track your workouts. The Workout Logger allows users to register, log in, and record their exercises, sets, and reps. It supports different types of exercises such as bodyweight, resistance band, and weighted exercises.
+
+`**Mentorship Acknowledgment**
+This project was developed under the mentorship of **[Evan Watton](https://github.com/evnwttn)** as part of the **[GetBuilding](https://github.com/getcoding-ca)** Mentorship Program. Their guidance was instrumental in shaping the project's features and design.`
+
 
 ## Features
 
@@ -44,8 +48,7 @@ To run the project locally, you can use the development server:
 
 This will start a local development server. Open your browser and navigate the port specified in your npm run dev script to view the application.
 
-**Mentorship Acknowledgment**
-This project was developed under the mentorship of **[Evan Watton](https://github.com/evnwttn)** as part of the **[GetBuilding](https://github.com/getcoding-ca)** Mentorship Program. Their guidance was instrumental in shaping the project's features and design.
+
 
 **Contact**
 For any questions or suggestions, please open an issue or contact the project maintainer.
