@@ -4,17 +4,34 @@
   gap: 1em;
 }
 
+/* add space for log workout */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1.5em;
+    margin-bottom: 6rem;
+  }
+}
+
 .stats-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 1em;
+  width: 100%;
+  /* need a bit of air */
+  gap: 2em;
 }
 
 #history-container h3 {
   margin-bottom: 0.9375rem;
   color: var(--text-color);
   font-size: 1.75rem;
+}
+
+/* reduced container padding on mobile */
+@media (max-width: 768px) {
+  #history-container h3 {
+    font-size: 1.25rem;
+  }
 }

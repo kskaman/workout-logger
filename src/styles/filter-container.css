@@ -14,8 +14,9 @@
 /* Filter Options Container */
 .filter-options-container {
   margin: 1em 0;
-  padding: 1em;
-  border: 1px solid var(--input-border-color);
+  padding: 2em;
+  /* universal borders // all outlined or all shaded */
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.16);
   background-color: var(--container-background-color);
   border-radius: 0.5rem;
 }

@@ -17,12 +17,14 @@
 .modal-container {
   display: flex;
   flex-direction: column;
-  margin: 2rem auto;
+  /* modal should be central */
+  margin: 10rem auto;
   width: 90%;
   max-width: 600px;
   max-height: 90vh;
   background-color: var(--background-color);
-  border: 1px solid var(--input-border-color);
+  /* universal borders // all outlined or all shaded */
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.16);
   border-radius: 0.5rem;
   box-sizing: border-box;
 }
@@ -57,7 +59,8 @@
 
 /* Modal Content */
 .modal-content {
-  padding: 1rem 3rem;
+  /* even padding around modal */
+  padding: 0 3rem 3rem;
   max-height: 95%;
   overflow: auto;
 }
@@ -142,7 +145,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 /* Suggestion Item as a Chip */
