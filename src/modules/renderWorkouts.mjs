@@ -15,11 +15,6 @@ export function renderWorkoutHistory(workouts = null) {
   const historyContainer = document.getElementById("history-container");
   historyContainer.innerHTML = "";
 
-  if (workouts.length === 0) {
-    historyContainer.textContent = "No workouts found.";
-    return;
-  }
-
   // Create table
   const table = document.createElement("table");
   table.classList.add("workout-table");
@@ -112,7 +107,7 @@ export function renderWorkoutHistory(workouts = null) {
       localStorage.setItem("users", JSON.stringify(users));
 
       // Re-render the workout history
-      renderWorkoutHistory(userWorkouts);
+      window.location.reload();
     });
   }
 }

@@ -93,7 +93,7 @@ export function renderEditModal(workout = null, index = null) {
   saveButton.type = "button";
   saveButton.textContent = "Save Workout";
   saveButton.classList.add("btn-primary");
-  saveButton.style.margin = "0 auto";
+  saveButton.style.margin = "1em auto 0";
   saveButton.style.display = "none"; // Initially hidden
   saveButton.id = "save-workout-button";
   saveButton.addEventListener("click", () => {

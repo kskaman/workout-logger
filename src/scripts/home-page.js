@@ -2,6 +2,7 @@
 
 import { renderViewModal } from "../modules/viewModal.mjs";
 import { formatDate } from "../modules/utils.mjs";
+import { renderEditModal } from "../modules/editModal.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentUser = sessionStorage.getItem("currentUser");
@@ -11,14 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastWorkout = users[currentUser].workouts[0] || [];
 
   const mainContainer = document.getElementById("main-container");
+  const logWorkoutButton = document.createElement("button");
+  logWorkoutButton.id = "log-workout-button";
+  logWorkoutButton.classList.add("log-workout-button");
+  logWorkoutButton.innerHTML = `<span class="plus-icon">+</span>Log Workout`;
 
   if (lastWorkout.length === 0) {
     mainContainer.innerHTML = "";
     mainContainer.innerHTML = `
-      <h1 style="margin: auto; max-width: 600px; text-align: center">
-        You haven't logged any workout!
+      <div style="margin: auto">
+      <h1 style="max-width: 600px; height: auto; text-align: center">
+        Your fitness journey starts with one workout—log it now!
       </h1>
+      </div>
     `;
+
+    const h1Element = mainContainer.querySelector("h1");
+    h1Element.insertAdjacentElement("afterend", logWorkoutButton);
+
+    logWorkoutButton.classList.add("center");
   } else {
     mainContainer.innerHTML = "";
 
@@ -30,7 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderLastWorkout(lastWorkout);
     renderStats();
+    mainContainer.appendChild(logWorkoutButton);
   }
+
+  logWorkoutButton.addEventListener("click", () => {
+    renderEditModal();
+  });
 
   function renderLastWorkout(workout) {
     const lastWorkoutContainer = document.createElement("section");

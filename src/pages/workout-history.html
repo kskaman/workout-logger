@@ -92,24 +92,7 @@
         </div>
       </nav>
 
-      <main class="main-container">
-        <header>
-          <h1>Workout History</h1>
-          <div class="filter-container btn-secondary" id="filter-container">
-            <span class="material-symbols-outlined"> tune </span>
-            Filter
-          </div>
-        </header>
-
-        <div id="history-container" class="sub-container">
-          <!-- Previous workouts will be added here dynamically -->
-        </div>
-      </main>
-
-      <!-- Log Workout button -->
-      <button id="log-workout-button" class="log-workout-button">
-        <span class="plus-icon">+</span>Log Workout
-      </button>
+      <main class="main-container" id="main-container"></main>
 
       <!-- Modal Overlay -->
       <div id="modal-overlay" class="modal-overlay">
@@ -150,6 +133,5 @@
     <script src="../scripts/sidebar-toggle.js"></script>
     <script src="../scripts/theme-toggle.js"></script>
     <script type="module" src="../scripts/workout-history.js"></script>
-    <script type="module" src="../scripts/log-workout.js"></script>
   </body>
 </html>
