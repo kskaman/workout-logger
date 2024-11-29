@@ -10,12 +10,12 @@ export function updateUserStats(user) {
   let heaviestWeight = 0;
   let heaviestWeightExercise = "";
 
-  // Get today's date in UTC (midnight)
+  // Get today's date in local time (midnight)
   const today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
 
   const thirtyDaysAgo = new Date(today);
-  thirtyDaysAgo.setUTCDate(today.getUTCDate() - 29); // Include today
+  thirtyDaysAgo.setDate(today.getDate() - 29); // Include today
 
   if (workouts.length === 0) {
     user.stats = {
@@ -32,13 +32,13 @@ export function updateUserStats(user) {
 
   let tempStreak = 1;
   const mostRecentDate = new Date(workouts[0].date);
-  mostRecentDate.setUTCHours(0, 0, 0, 0);
+  mostRecentDate.setHours(0, 0, 0, 0); // Local midnight
 
   const hasWorkoutToday = mostRecentDate.getTime() === today.getTime();
 
   workouts.forEach((workout, i) => {
     const workoutDate = new Date(workout.date);
-    workoutDate.setUTCHours(0, 0, 0, 0);
+    workoutDate.setHours(0, 0, 0, 0); // Normalize to local midnight
 
     // Check for workouts in the last 30 days
     if (workoutDate >= thirtyDaysAgo && workoutDate <= today) {
@@ -48,7 +48,7 @@ export function updateUserStats(user) {
     // Calculate streaks
     if (i > 0) {
       const previousDate = new Date(workouts[i - 1].date);
-      previousDate.setUTCHours(0, 0, 0, 0);
+      previousDate.setHours(0, 0, 0, 0);
 
       const diffInDays = Math.round(
         (previousDate - workoutDate) / (1000 * 60 * 60 * 24)
@@ -89,7 +89,17 @@ export function updateUserStats(user) {
   maxStreak = Math.max(maxStreak, tempStreak);
 
   // Set current streak
-  currentStreak = hasWorkoutToday ? tempStreak : 0;
+  const daysSinceMostRecentWorkout = Math.round(
+    (today - mostRecentDate) / (1000 * 60 * 60 * 24)
+  );
+
+  if (daysSinceMostRecentWorkout === 0) {
+    currentStreak = tempStreak; // Workout today, continue streak
+  } else if (daysSinceMostRecentWorkout === 1) {
+    currentStreak = tempStreak; // Workout yesterday, streak is valid
+  } else {
+    currentStreak = 0; // Streak is broken
+  }
 
   user.stats = {
     currentStreak,
