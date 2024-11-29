@@ -15,9 +15,6 @@
 .filter-options-container {
   margin: 1em 0;
   padding: 1em;
-  border: 1px solid var(--input-border-color);
-  background-color: var(--container-background-color);
-  border-radius: 0.5rem;
 }
 
 /* Filter Group */
@@ -53,6 +50,7 @@
 
 /* Apply Filters Button */
 #filter-form .btn-primary {
-  margin-top: 1em;
-  min-width: fit-content;
+  display: block;
+  margin: 1em auto 0;
+  width: fit-content;
 }

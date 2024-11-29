@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Create filterOptionContainer
         filterOptionContainer = document.createElement("div");
         filterOptionContainer.classList.add("filter-options-container");
-
+        filterOptionContainer.classList.add("sub-container");
         // Create filter form
         const filterForm = document.createElement("form");
         filterForm.id = "filter-form";

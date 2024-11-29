@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  overflow-y: auto;
 }
 
 .main-container {
@@ -9,6 +8,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .sub-container {
