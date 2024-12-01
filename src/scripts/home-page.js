@@ -160,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
       valueContainer.textContent = value;
 
       const tagContainer = document.createElement("div");
+      tagContainer.classList.add("tag");
       tagContainer.textContent = tag;
 
       statContainer.appendChild(iconContainer);

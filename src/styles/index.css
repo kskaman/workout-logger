@@ -22,7 +22,6 @@
   color: var(--important-text-color);
 }
 
-.logo a,
 #login-link {
   font-size: 1rem;
   text-decoration: none;
@@ -80,4 +79,18 @@
 
 .landing-content .btn-primary:active {
   color: var(--button-active-background);
+}
+
+@media (max-width: 768px) {
+  .landing-content h1 {
+    font-size: 1.75rem;
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+
+  .tagline {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 }

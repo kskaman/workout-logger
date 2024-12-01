@@ -55,7 +55,6 @@
   gap: 1em;
 }
 
-/* Responsive Design */
 @media (max-width: 600px) {
   #delete-modal .modal-container {
     margin: 10% auto;

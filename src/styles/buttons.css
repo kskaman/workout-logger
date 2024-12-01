@@ -46,13 +46,15 @@
 /* Log Workout Floating Button Styles */
 .log-workout-button {
   display: block;
+  position: sticky;
+  bottom: 0;
   background-color: var(--button-background-color);
   color: var(--important-text-color);
   border: none;
   border-radius: 2em;
   padding: 0.75em 1.5em;
   cursor: pointer;
-  box-shadow: 0 0.25em 0.375em rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.25em 0.375em rgba(0, 0, 0, 0.16);
   transition: background-color 0.3s;
   font-size: 1rem;
   margin-left: auto;
@@ -61,7 +63,7 @@
 
 /* Its important that this comes after the .log-workout-button-styles */
 .log-workout-button.center {
-  margin: 2em auto;
+  margin: 2em auto !important;
 }
 
 .log-workout-button:hover {

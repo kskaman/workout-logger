@@ -22,7 +22,7 @@ export function renderWorkoutHistory(workouts = null) {
   // Create table header
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
-  const headers = ["Date", "Workout Name", ""];
+  const headers = ["Date", "Workout Name"];
 
   headers.forEach((headerText) => {
     const th = document.createElement("th");
@@ -44,8 +44,9 @@ export function renderWorkoutHistory(workouts = null) {
 
     const nameCell = document.createElement("td");
     nameCell.textContent = workout.name;
+    nameCell.classList.add("name-actions");
 
-    const actionCell = document.createElement("td");
+    const actionCell = document.createElement("div");
     actionCell.classList.add("workout-actions");
 
     const editButton = document.createElement("button");
@@ -64,10 +65,12 @@ export function renderWorkoutHistory(workouts = null) {
     // Append buttons to action cell
     actionCell.appendChild(editButton);
     actionCell.appendChild(deleteButton);
+
+    nameCell.appendChild(actionCell);
+
     // Append cells to row
     row.appendChild(dateCell);
     row.appendChild(nameCell);
-    row.appendChild(actionCell);
 
     row.addEventListener("click", () => renderViewModal(workout));
 

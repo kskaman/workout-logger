@@ -7,3 +7,9 @@
   text-align: center;
   display: none;
 }
+
+@media (max-width: 768px) {
+  .error-message {
+    font-size: 1rem;
+  }
+}

@@ -1,5 +1,11 @@
 /* ./src/styles/workout-history.css */
 
+header {
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+}
+
 #history-container {
   width: 100%;
 }
@@ -26,15 +32,37 @@
   cursor: pointer;
 }
 
+.workout-item .name-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .workout-actions {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5em;
+  margin: 0;
+  padding: 0;
 }
 
 .workout-actions .action-btn {
   border: none;
   cursor: pointer;
   background-color: var(--background-color);
+}
+
+@media (max-width: 768px) {
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+  .workout-item .name-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+  }
 }

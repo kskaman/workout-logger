@@ -22,8 +22,9 @@ body {
 .container {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  height: 100vh;
   color: var(--text-color);
+  overflow: hidden;
 }
 
 /* Footer Styles */
@@ -51,5 +52,10 @@ a:hover {
 
 .logo .material-symbols-outlined {
   font-size: 2rem;
-  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    font-size: 1rem;
+  }
 }

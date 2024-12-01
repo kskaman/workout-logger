@@ -6,7 +6,9 @@
   justify-content: center;
   gap: 10%;
   height: 2.5em;
+  width: fit-content;
 }
+
 #filter-container .material-symbols-outlined {
   color: var(--important-text-color);
 }
@@ -53,4 +55,10 @@
   display: block;
   margin: 1em auto 0;
   width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    margin: 0 0 2em auto;
+  }
 }

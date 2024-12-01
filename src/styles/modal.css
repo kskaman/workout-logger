@@ -182,3 +182,9 @@
   text-align: left;
   border-bottom: 1px solid var(--text-color);
 }
+
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 1rem;
+  }
+}
