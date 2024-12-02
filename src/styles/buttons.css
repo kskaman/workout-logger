@@ -117,3 +117,10 @@
   background-color: var(--button-active-background);
   color: var(--important-text-color);
 }
+
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary {
+    font-size: 1.1rem;
+  }
+}

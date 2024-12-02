@@ -49,6 +49,9 @@
 .fieldset-label {
   font-size: 1.25rem;
   text-align: left;
+  position: relative;
+  left: 0.2em;
+  background: var(--background-color);
 }
 
 .fieldset-value {
@@ -98,7 +101,7 @@
   right: 0.5em;
   cursor: pointer;
   font-size: 1.5rem;
-  color: var(--text-color);
+  color: var(--accent-color);
 }
 
 .modal-content .sets-container {
@@ -123,7 +126,7 @@
 
 .modal-content .remove-set-button {
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: var(--accent-color);
 }
 
@@ -144,7 +147,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 /* Suggestion Item as a Chip */
@@ -154,7 +156,7 @@
   color: var(--important-text-color);
   border-radius: 1em;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .suggestion-item:hover {

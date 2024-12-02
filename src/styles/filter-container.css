@@ -27,17 +27,18 @@
 }
 
 .filter-group label {
-  margin-right: 0.5rem;
+  margin-right: 0.5em;
   color: var(--text-color);
 }
 
 .filter-group input {
-  padding: 0.5em;
   border: 1px solid var(--input-border-color);
   border-radius: 0.25em;
   background-color: var(--background-color);
   color: var(--text-color);
   max-width: 30%;
+  padding: 0.3em;
+  font-size: 1em;
 }
 
 /* Adjust input widths as needed */
