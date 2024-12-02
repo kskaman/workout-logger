@@ -93,4 +93,8 @@
     text-align: center;
     margin-bottom: 2rem;
   }
+
+  #login-link {
+    background-color: var(--button-background-color);
+  }
 }
