@@ -52,8 +52,8 @@
 
 .form-group input {
   width: 100%;
-  padding: 0.3em;
-  font-size: 1.2em;
+  padding: 0.25em;
+  font-size: 1em;
   border: 1px solid var(--input-border-color);
   border-radius: 0.25em;
   background-color: var(--background-color);
@@ -98,11 +98,4 @@
   transform: translateY(-50%);
   cursor: pointer;
   color: var(--text-color);
-}
-
-@media (max-width: 768px) {
-  .form-group input {
-    padding: 0.3em;
-    font-size: 1.2em;
-  }
 }

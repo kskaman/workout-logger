@@ -40,19 +40,19 @@
 }
 
 /* Modal header */
-.modal-header p {
-  display: flex;
-  align-items: center;
+.modal-header fieldset {
+  border-radius: 0.5em;
+  border: 1px solid var(--input-border-color);
+  text-align: center;
 }
 
-.modal-header #separation-line {
-  border-bottom: 1px solid var(--input-border-color);
-  margin: 0.75em auto;
-  width: 60%;
+.fieldset-label {
+  font-size: 1.25rem;
+  text-align: left;
 }
 
-.modal-header p span {
-  flex: 1;
+.fieldset-value {
+  font-size: 1.25rem;
 }
 
 /* Modal Content */
@@ -79,13 +79,14 @@
   padding: 0.3em;
   font-size: 1rem;
   border: 1px solid var(--input-border-color);
-  border-radius: 0.25em;
+  border-radius: 0.5em;
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
 .modal-content .exercise {
   border: 1px solid var(--input-border-color);
+  border-radius: 0.5em;
   padding: 1em;
   margin-bottom: 1em;
   position: relative;
