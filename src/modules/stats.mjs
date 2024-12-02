@@ -34,8 +34,6 @@ export function updateUserStats(user) {
   const mostRecentDate = new Date(workouts[0].date);
   mostRecentDate.setHours(0, 0, 0, 0); // Local midnight
 
-  const hasWorkoutToday = mostRecentDate.getTime() === today.getTime();
-
   workouts.forEach((workout, i) => {
     const workoutDate = new Date(workout.date);
     workoutDate.setHours(0, 0, 0, 0); // Normalize to local midnight

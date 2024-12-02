@@ -53,6 +53,15 @@ export function renderEditModal(workout = null, index = null) {
   workoutDateInput.type = "date";
   workoutDateInput.required = true;
   workoutDateInput.id = "workout-date";
+
+  // Get local Date in YYYY-MM-DD format
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+  const day = String(today.getDate()).padStart(2, "0"); // Get the day of the month
+  const localDate = `${year}-${month}-${day}`;
+
+  workoutDateInput.max = localDate;
   if (workout) {
     workoutDateInput.value = workout.date;
   }

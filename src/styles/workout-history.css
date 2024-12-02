@@ -20,11 +20,11 @@ header {
 .workout-table td {
   padding: 0.75em;
   text-align: left;
-  border-bottom: 1px solid var(--input-border-color);
 }
 
 .workout-item {
   transition: background-color 0.3s;
+  border-bottom: 1px solid var(--input-border-color);
 }
 
 .workout-item:hover {

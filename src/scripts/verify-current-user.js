@@ -1,4 +1,4 @@
-addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const currentUser = sessionStorage.getItem("currentUser");
 
   if (!currentUser) {
