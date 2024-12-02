@@ -62,4 +62,8 @@
   .filter-container {
     margin: 0 0 2em auto;
   }
+
+  .filter-group input[type="text"] {
+    min-width: 50%;
+  }
 }
