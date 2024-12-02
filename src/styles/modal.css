@@ -17,14 +17,27 @@
 .modal-container {
   display: flex;
   flex-direction: column;
-  margin: 2rem auto;
   width: 90%;
   max-width: 600px;
   max-height: 90vh;
   background-color: var(--background-color);
-  border: 1px solid var(--input-border-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   box-sizing: border-box;
+  padding: 0rem 1rem 2rem;
+  /* a modal is an example where you'd want to use a fixed position 
+  as it should always be at the center of the screen */
+  position: fixed;
+  /* the next two sections (top left // transform work together) */
+  /* positions the top left corner of the modal at center of viewport
+  before applying width, etc.
+  */
+  top: 50%;
+  left: 50%;
+  /* adjusts the modal position by shifting it left and up by 50%
+  of its own width and height ensuring it is always centered
+  */
+  transform: translate(-50%, -50%);
 }
 
 /* Close Button */
@@ -85,8 +98,9 @@
 
 .modal-content .exercise {
   border: 1px solid var(--input-border-color);
-  padding: 1rem;
-  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  margin: 2rem 0 1rem;
   position: relative;
 }
 
