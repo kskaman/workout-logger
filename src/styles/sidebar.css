@@ -37,8 +37,6 @@
   flex-direction: column;
   padding: 0.5em 1em 1.5em;
   transition: transform 0.3s ease, pointer-events none;
-  overflow-x: visible;
-  overflow-y: hidden;
   flex-shrink: 0;
 }
 
