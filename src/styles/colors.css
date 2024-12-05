@@ -3,7 +3,7 @@
 /* Light Theme */
 :root {
   /* Base Colors */
-  --background-color: #ffffff; /* Main background: White */
+  --background-color: #f8f9fa; /* Main background: Light Gray */
   --text-color: #212529; /* Main text: Dark Gray */
   --input-border-color: #212529;
   --important-text-color: #ffffff;
@@ -11,11 +11,11 @@
   --accent-color: #18bc9c; /* Accent: Turquoise */
 
   /* Sidebar */
-  --sidebar-background-color: #f8f9fa; /* Sidebar background: Light Gray */
+  --sidebar-background-color: #ffffff; /* Sidebar background: White */
   --sidebar-text-color: var(--text-color); /* Sidebar text: Dark Gray */
 
   /* Container */
-  --container-background-color: #f8f9fa; /* Container background: Light Gray */
+  --container-background-color: #ffffff; /* Container background: White */
   --container-text-color: var(--text-color); /* Container text: Dark Gray */
 
   /* Warning color */

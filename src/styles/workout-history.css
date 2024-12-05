@@ -22,9 +22,12 @@ header {
   text-align: left;
 }
 
+.workout-table tr {
+  border-bottom: 1px solid var(--input-border-color);
+}
+
 .workout-item {
   transition: background-color 0.3s;
-  border-bottom: 1px solid var(--input-border-color);
 }
 
 .workout-item:hover {
@@ -51,7 +54,7 @@ header {
 .workout-actions .action-btn {
   border: none;
   cursor: pointer;
-  background-color: var(--background-color);
+  background-color: var(--container-background-color);
 }
 
 @media (max-width: 768px) {
