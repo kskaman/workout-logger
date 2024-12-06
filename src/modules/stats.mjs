@@ -26,6 +26,7 @@ export function updateUserStats(user) {
       maxRepsExercise: "",
       heaviestWeight: 0,
       heaviestWeightExercise: "",
+      workoutsByMonth: {},
     };
     return;
   }
@@ -99,6 +100,25 @@ export function updateUserStats(user) {
     currentStreak = 0; // Streak is broken
   }
 
+  const workoutsByMonth = {};
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(today);
+    d.setMonth(d.getMonth() - i);
+    const year = d.getFullYear();
+    const monthName = d.toLocaleString("default", { month: "long" });
+    workoutsByMonth[`${monthName} ${year}`] = 0;
+  }
+
+  workouts.forEach((w) => {
+    const wDate = new Date(w.date);
+    const wMonthName = wDate.toLocaleString("default", { month: "long" });
+    const wYear = wDate.getFullYear();
+    const key = `${wMonthName} ${wYear}`;
+    if (key in workoutsByMonth) {
+      workoutsByMonth[key]++;
+    }
+  });
+
   user.stats = {
     currentStreak,
     maxStreak,
@@ -107,6 +127,7 @@ export function updateUserStats(user) {
     maxRepsExercise,
     heaviestWeight,
     heaviestWeightExercise,
+    workoutsByMonth,
   };
 }
 

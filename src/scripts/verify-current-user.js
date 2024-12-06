@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!users[currentUser]) {
     alert("User not found.");
+    sessionStorage.removeItem("currentUser");
+    sessionStorage.removeItem("sidebarCollapsed");
     window.location.href = "./login.html";
     return;
   }

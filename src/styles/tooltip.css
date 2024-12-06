@@ -13,6 +13,7 @@
   padding: 0.5em;
   border-radius: 0.5em;
   border: none;
+  z-index: 2;
 }
 
 .logo-toggle .tooltip:hover .tooltip-text,
