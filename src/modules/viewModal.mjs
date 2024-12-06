@@ -9,30 +9,6 @@ export function renderViewModal(workout) {
   const modalHeader = document.createElement("div");
   modalHeader.classList.add("modal-header");
 
-  // const modalTitle = document.createElement("p");
-  // const modalTitleHeading = document.createElement("span");
-  // modalTitleHeading.textContent = "Workout Name";
-  // const modalTitleValue = document.createElement("span");
-  // modalTitleValue.innerHTML = `${workout.name}`;
-  // modalTitle.appendChild(modalTitleHeading);
-  // modalTitle.appendChild(modalTitleValue);
-
-  // const modalDate = document.createElement("p");
-  // const modalDateHeading = document.createElement("span");
-  // modalDateHeading.textContent = "Date";
-  // const modalDateValue = document.createElement("span");
-  // modalDateValue.textContent = `${formatDate(workout.date)}`;
-
-  // modalDate.appendChild(modalDateHeading);
-  // modalDate.appendChild(modalDateValue);
-
-  // const separationLine = document.createElement("div");
-  // separationLine.id = "separation-line";
-
-  // modalHeader.appendChild(modalTitle);
-  // modalHeader.appendChild(separationLine);
-  // modalHeader.appendChild(modalDate);
-
   // Create a fieldset for workout name
   const workoutNameFieldset = document.createElement("fieldset");
   const workoutNameLegend = document.createElement("legend");
@@ -103,7 +79,7 @@ function createSetsTable(exercise) {
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
   const headers = ["Set", "Reps"];
-  if (exercise.type === "weighted" || exercise.type === "resistance-band") {
+  if (exercise.type === "weighted") {
     headers.push("Weight (in lbs)");
   }
   if (exercise.type === "resistance-band") {
