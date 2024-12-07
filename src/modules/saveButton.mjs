@@ -1,6 +1,6 @@
 // ../src/modules/saveButton.mjs
 
-import { updateUserExercises, updateUserStats } from "./stats.mjs";
+import { updateUserExercises, updateUserStats } from "./calculateStats.mjs";
 import {
   clearErrorMessages,
   displayErrorMessage,
