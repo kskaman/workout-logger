@@ -2,18 +2,22 @@
 
 import { renderLastWorkout } from "../modules/renderLastWorkout.mjs";
 import { renderEditModal } from "../modules/editModal.mjs";
+import { renderWeightContainer } from "../modules/renderWeight.mjs";
 import {
   renderStatsContainer,
   renderStatsCanvasContainer,
 } from "../modules/renderStats.mjs";
-import { renderWorkoutCountGraph } from "../modules/renderGraphs.mjs";
+import {
+  renderWeightChart,
+  renderWorkoutCountGraph,
+} from "../modules/renderGraphs.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentUser = sessionStorage.getItem("currentUser");
 
   const users = JSON.parse(localStorage.getItem("users")) || {};
-
-  let lastWorkout = users[currentUser].workouts[0] || [];
+  const user = users[currentUser];
+  let lastWorkout = user.workouts[0] || [];
 
   const mainContainer = document.getElementById("main-container");
   const logWorkoutButton = document.createElement("button");
@@ -45,8 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
       </header>
     `;
 
+    renderWeightContainer(mainContainer);
+    renderWeightChart(user.weightHistory, mainContainer);
     renderLastWorkout(lastWorkout);
     renderStats();
+    renderWorkoutCountGraph(user.stats.workoutsByMonth, mainContainer);
     mainContainer.appendChild(logWorkoutButton);
   }
 
@@ -58,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const statsContainer = document.createElement("div");
     statsContainer.classList.add("stats-container");
 
-    const stats = users[currentUser].stats;
+    const stats = user.stats;
 
     // Workout in Last 30 days
     renderStatsCanvasContainer(
@@ -73,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderStatsContainer(
       "repeat",
       `Maximum Reps - ${stats.maxRepsExercise}`,
-      stats.maxReps.statsContainer,
+      stats.maxReps,
       statsContainer
     );
 
@@ -81,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (stats.heaviestWeightExercise !== "") {
       renderStatsContainer(
         "fitness_center",
-        `Heaviest Weight Lifted(lbs) - ${stats.heaviestWeightExercise}`,
+        `Heaviest Weight Lifted (lbs) - ${stats.heaviestWeightExercise}`,
         stats.heaviestWeight,
         statsContainer
       );
@@ -106,7 +113,5 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     mainContainer.appendChild(statsContainer);
-
-    renderWorkoutCountGraph(stats.workoutsByMonth, mainContainer);
   }
 });

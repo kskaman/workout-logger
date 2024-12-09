@@ -1,5 +1,3 @@
-import Chart from "chart.js/auto";
-
 export function renderStatsContainer(icon, tag, value, parent) {
   const statContainer = document.createElement("div");
   statContainer.classList.add("sub-container");
