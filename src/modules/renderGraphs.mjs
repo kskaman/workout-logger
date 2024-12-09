@@ -65,8 +65,6 @@ export function renderWeightChart(weightHistory, mainContainer) {
     xMax = new Date(singleDate);
     xMax.setDate(xMax.getDate() + bufferDays);
   } else {
-    // For multiple points, keep minimal margins:
-    // Add a small margin around minDate and maxDate
     const dateBufferDays = 3;
     xMin = new Date(minDate);
     xMin.setDate(xMin.getDate() - dateBufferDays);
@@ -75,14 +73,12 @@ export function renderWeightChart(weightHistory, mainContainer) {
     xMax.setDate(xMax.getDate() + dateBufferDays);
   }
 
-  // Create a canvas for the chart if it doesn't exist
   const chartContainer = document.createElement("div");
   chartContainer;
   chartContainer.innerHTML =
     '<canvas id="weightChart" style="max-width:600px;height:400px;"></canvas>';
   mainContainer.appendChild(chartContainer);
 
-  // Initialize Chart.js
   const ctx = document.getElementById("weightChart").getContext("2d");
 
   new Chart(ctx, {

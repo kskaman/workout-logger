@@ -1,7 +1,7 @@
 import { formatDate } from "./utils.mjs";
 import { renderViewModal } from "./viewModal.mjs";
 
-export function renderLastWorkout(workout) {
+export function renderLastWorkout(workout, parent) {
   const lastWorkoutContainer = document.createElement("section");
   lastWorkoutContainer.id = "history-container";
   lastWorkoutContainer.classList.add("sub-container");
@@ -56,6 +56,5 @@ export function renderLastWorkout(workout) {
     renderViewModal(workout);
   });
 
-  const mainContainer = document.getElementById("main-container");
-  mainContainer.appendChild(lastWorkoutContainer);
+  parent.appendChild(lastWorkoutContainer);
 }

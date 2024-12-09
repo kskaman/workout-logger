@@ -6,7 +6,9 @@ export function renderWeightContainer(mainContainer) {
 
   // Create the Current Weight container
   const weightContainer = document.createElement("div");
+  weightContainer.style.width = "100%";
   weightContainer.classList.add("sub-container");
+  weightContainer.id = "weight-container";
 
   const currentWeightTag = document.createElement("span");
   currentWeightTag.textContent = "Current Weight : ";

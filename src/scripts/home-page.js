@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastWorkout = user.workouts[0] || [];
 
   const mainContainer = document.getElementById("main-container");
+
   const logWorkoutButton = document.createElement("button");
   logWorkoutButton.id = "log-workout-button";
   logWorkoutButton.classList.add("log-workout-button");
@@ -49,39 +50,36 @@ document.addEventListener("DOMContentLoaded", () => {
       </header>
     `;
 
-    renderWeightContainer(mainContainer);
-    renderWeightChart(user.weightHistory, mainContainer);
-    renderLastWorkout(lastWorkout);
-    renderStats();
-    renderWorkoutCountGraph(user.stats.workoutsByMonth, mainContainer);
-    mainContainer.appendChild(logWorkoutButton);
-  }
+    const mainContent = document.createElement("main-content");
+    mainContainer.appendChild(mainContent);
 
-  logWorkoutButton.addEventListener("click", () => {
-    renderEditModal();
-  });
+    const leftColumn = document.createElement("div");
+    leftColumn.id = "left-column";
+    const rightColumn = document.createElement("div");
+    rightColumn.id = "right-column";
 
-  function renderStats() {
-    const statsContainer = document.createElement("div");
-    statsContainer.classList.add("stats-container");
+    mainContent.appendChild(leftColumn);
+    mainContent.appendChild(rightColumn);
+
+    renderWeightContainer(leftColumn);
+    if (user.weightHistory) {
+      renderWeightChart(user.weightHistory, rightColumn);
+    }
+
+    renderLastWorkout(lastWorkout, leftColumn);
 
     const stats = user.stats;
 
-    // Workout in Last 30 days
-    renderStatsCanvasContainer(
-      "date_range",
-      "Workouts in Last 30 Days",
-      stats.workoutsInLast30Days,
-      30,
-      statsContainer
-    );
+    const numStats = document.createElement("div");
+    numStats.id = "num-stats";
+    leftColumn.appendChild(numStats);
 
     // Maximum Reps Done
     renderStatsContainer(
       "repeat",
       `Maximum Reps - ${stats.maxRepsExercise}`,
       stats.maxReps,
-      statsContainer
+      numStats
     );
 
     // Heaviest Weight Lifted
@@ -90,17 +88,29 @@ document.addEventListener("DOMContentLoaded", () => {
         "fitness_center",
         `Heaviest Weight Lifted (lbs) - ${stats.heaviestWeightExercise}`,
         stats.heaviestWeight,
-        statsContainer
+        numStats
       );
     }
+    // Workout in Last 30 days
+    renderStatsCanvasContainer(
+      "date_range",
+      "Workouts in Last 30 Days",
+      stats.workoutsInLast30Days,
+      30,
+      numStats
+    );
 
+    const streakStats = document.createElement("div");
+    streakStats.id = "streak-stats";
+
+    rightColumn.appendChild(streakStats);
     // Current Streak
     renderStatsCanvasContainer(
       "whatshot",
       "Current Streak",
       stats.currentStreak,
       365,
-      statsContainer
+      streakStats
     );
 
     // Maximum Streak
@@ -109,9 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
       "Max Streak",
       stats.maxStreak,
       365,
-      statsContainer
+      streakStats
     );
 
-    mainContainer.appendChild(statsContainer);
+    renderWorkoutCountGraph(user.stats.workoutsByMonth, rightColumn);
+    mainContainer.appendChild(logWorkoutButton);
   }
+
+  logWorkoutButton.addEventListener("click", () => {
+    renderEditModal();
+  });
 });

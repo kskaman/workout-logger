@@ -3,7 +3,7 @@
 import { formatDate } from "./utils.mjs";
 import { renderViewModal } from "./viewModal.mjs";
 import { renderEditModal } from "./editModal.mjs";
-import { updateUserExercises, updateUserStats } from "./stats.mjs"; // Import missing functions
+import { updateUserExercises, updateUserStats } from "./calculateStats.mjs";
 import { showDeleteModal } from "./deleteModal.mjs";
 
 export function renderWorkoutHistory(workouts = null) {
@@ -96,17 +96,13 @@ export function renderWorkoutHistory(workouts = null) {
       const currentUser = sessionStorage.getItem("currentUser");
       const userWorkouts = users[currentUser].workouts || [];
 
-      // Remove the workout
       userWorkouts.splice(index, 1);
       users[currentUser].workouts = userWorkouts;
 
-      // Update user's exercises list
       updateUserExercises(users[currentUser]);
 
-      // Update user stats
       updateUserStats(users[currentUser]);
 
-      // Save changes to localStorage
       localStorage.setItem("users", JSON.stringify(users));
 
       // Re-render the workout history

@@ -4,8 +4,26 @@
   gap: 1em;
 }
 
-#history-container h3 {
-  margin-bottom: 0.9375rem;
-  color: var(--text-color);
-  font-size: 1.75rem;
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content #left-column,
+.main-content #right-column {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+#streak-stats,
+#num-stats {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  #main-container {
+    grid-template-columns: 1fr;
+  }
 }
