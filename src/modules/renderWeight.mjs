@@ -39,8 +39,7 @@ export function renderWeightContainer(mainContainer) {
 
   editButton.addEventListener("click", () => {
     if (
-      editButton.innerHTML.includes(`
-    <span class="material-symbols-outlined">
+      editButton.innerHTML.includes(`<span class="material-symbols-outlined">
       edit
     </span>`)
     ) {

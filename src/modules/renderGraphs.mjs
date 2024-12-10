@@ -1,8 +1,6 @@
 import Chart from "chart.js/auto";
 import "chartjs-adapter-date-fns";
 
-import { renderWeightContainer } from "./renderWeight.mjs";
-
 export function renderWorkoutCountGraph(workoutsByMonth, parent) {
   const workoutGraphContainer = document.createElement("div");
   workoutGraphContainer.classList.add("sub-container");
@@ -86,7 +84,6 @@ export function renderWeightChart(weightHistory, mainContainer) {
   const chartContainer = document.createElement("div");
   chartContainer.classList.add("sub-container");
   chartContainer.innerHTML = '<canvas id="weightChart"></canvas>';
-  renderWeightChart(chartContainer);
   mainContainer.appendChild(chartContainer);
 
   const ctx = document.getElementById("weightChart").getContext("2d");
