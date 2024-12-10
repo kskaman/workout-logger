@@ -71,16 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const stats = user.stats;
 
-    const numStats = document.createElement("div");
-    numStats.id = "num-stats";
-    leftColumn.appendChild(numStats);
+    const statsContainer = document.createElement("div");
+    statsContainer.id = "stats-container";
+    leftColumn.appendChild(statsContainer);
 
     // Maximum Reps Done
     renderStatsContainer(
       "repeat",
       `Maximum Reps - ${stats.maxRepsExercise}`,
       stats.maxReps,
-      numStats
+      statsContainer
     );
 
     // Heaviest Weight Lifted
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "fitness_center",
         `Heaviest Weight Lifted (lbs) - ${stats.heaviestWeightExercise}`,
         stats.heaviestWeight,
-        numStats
+        statsContainer
       );
     }
     // Workout in Last 30 days
@@ -98,20 +98,16 @@ document.addEventListener("DOMContentLoaded", () => {
       "Workouts in Last 30 Days",
       stats.workoutsInLast30Days,
       30,
-      numStats
+      statsContainer
     );
 
-    const streakStats = document.createElement("div");
-    streakStats.id = "streak-stats";
-
-    leftColumn.appendChild(streakStats);
     // Current Streak
     renderStatsCanvasContainer(
       "whatshot",
       "Current Streak",
       stats.currentStreak,
       stats.maxStreak,
-      streakStats
+      statsContainer
     );
 
     // Maximum Streak
@@ -119,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "whatshot",
       "Max Streak",
       stats.maxStreak,
-      streakStats
+      statsContainer
     );
 
     renderWorkoutCountGraph(user.stats.workoutsByMonth, rightColumn);

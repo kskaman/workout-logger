@@ -5,28 +5,22 @@
 }
 
 #main-content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1em;
 }
 
 #main-content #left-column,
 #main-content #right-column {
   display: flex;
-  flex: 1;
   flex-direction: column;
   gap: 1em;
-  box-sizing: border-box;
 }
 
-#main-content #streak-stats,
-#main-content #num-stats {
+#main-content #left-column #stats-container {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  width: 185px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1em;
 }
 
@@ -61,8 +55,14 @@
   color: var(--text-color);
 }
 
-@media (max-width: 768px) {
+canvas {
+  width: 100% !important; /* Override default inline width */
+  height: auto !important; /* Maintain aspect ratio */
+  display: block; /* Avoid inline layout issues */
+}
+
+@media (max-width: 1024px) {
   #main-content {
-    flex-direction: row;
+    grid-template-columns: 1fr;
   }
 }

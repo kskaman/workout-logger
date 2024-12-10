@@ -1,39 +1,40 @@
 .stat-container {
   position: relative;
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   text-align: center;
-  width: 100%;
-  aspect-ratio: 1;
   padding: 1em;
   background-color: var(--container-background-color);
   border-radius: 0.3125em;
   box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  margin: 0;
 }
 
 .stat-container .material-symbols-outlined {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
-  font-size: 2rem;
-  color: var(--text-color, #333);
+  font-size: 155%;
+  color: var(--text-color);
 }
 
 .stat-container .value {
-  font-size: 2rem;
+  font-size: 200%;
   font-weight: bold;
-  color: var(--text-color, #333);
+  color: var(--text-color);
   margin: 0 auto;
 }
 
 .stat-container .tag {
-  font-size: 1em;
+  font-size: 90%;
+  font-weight: bold;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .stat-container .value {
     font-size: 1.5rem;
   }
@@ -41,4 +42,4 @@
   .stat-container .material-symbols-outlined {
     font-size: 1.5rem;
   }
-}
+} */

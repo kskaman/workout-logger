@@ -38,7 +38,11 @@ export function renderWeightContainer(mainContainer) {
   weightContainer.appendChild(editButton);
 
   editButton.addEventListener("click", () => {
-    if (editButton.innerHTML.includes("Edit")) {
+    if (
+      editButton.innerHTML.includes(`<span class="material-symbols-outlined">
+      edit
+    </span>`)
+    ) {
       const input = document.createElement("input");
       input.type = "number";
       input.min = "0";

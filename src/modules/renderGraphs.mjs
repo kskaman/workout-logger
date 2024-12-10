@@ -18,7 +18,7 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
       labels,
       datasets: [
         {
-          label: "Workouts in the Last 6 Months",
+          label: "Number of Workouts",
           data,
           backgroundColor: "rgba(75, 192, 192, 0.2)",
           borderColor: "rgba(75, 192, 192, 1)",
@@ -29,11 +29,19 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
     options: {
       responsive: true,
       scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+        },
         y: {
           beginAtZero: true,
           max: 31,
           ticks: {
-            stepSize: 1,
+            stepSize: 5,
+          },
+          grid: {
+            display: false,
           },
         },
       },
@@ -42,8 +50,6 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
       },
     },
   });
-
-  workoutsByMonthChart.canvas.parentNode.style.width = "100px";
 }
 
 export function renderWeightChart(weightHistory, mainContainer) {
