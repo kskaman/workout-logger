@@ -50,7 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
       </header>
     `;
 
-    const mainContent = document.createElement("main-content");
+    renderLastWorkout(lastWorkout, mainContainer);
+
+    const mainContent = document.createElement("div");
+    mainContent.id = "main-content";
     mainContainer.appendChild(mainContent);
 
     const leftColumn = document.createElement("div");
@@ -61,12 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContent.appendChild(leftColumn);
     mainContent.appendChild(rightColumn);
 
-    renderWeightContainer(leftColumn);
+    renderWeightContainer(rightColumn);
     if (user.weightHistory) {
       renderWeightChart(user.weightHistory, rightColumn);
     }
-
-    renderLastWorkout(lastWorkout, leftColumn);
 
     const stats = user.stats;
 
@@ -103,22 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const streakStats = document.createElement("div");
     streakStats.id = "streak-stats";
 
-    rightColumn.appendChild(streakStats);
+    leftColumn.appendChild(streakStats);
     // Current Streak
     renderStatsCanvasContainer(
       "whatshot",
       "Current Streak",
       stats.currentStreak,
-      365,
+      stats.maxStreak,
       streakStats
     );
 
     // Maximum Streak
-    renderStatsCanvasContainer(
+    renderStatsContainer(
       "whatshot",
       "Max Streak",
       stats.maxStreak,
-      365,
       streakStats
     );
 

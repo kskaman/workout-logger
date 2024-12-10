@@ -12,6 +12,7 @@ export function renderWeightContainer(mainContainer) {
 
   const currentWeightTag = document.createElement("span");
   currentWeightTag.textContent = "Current Weight : ";
+
   weightContainer.appendChild(currentWeightTag);
 
   let currentWeight = "-";
@@ -23,6 +24,7 @@ export function renderWeightContainer(mainContainer) {
 
   const weightValue = document.createElement("span");
   weightValue.id = "current-weight-value";
+  weightValue.style.margin = "0 1.5em";
   weightValue.textContent = currentWeight;
   weightContainer.appendChild(weightValue);
 
@@ -31,8 +33,8 @@ export function renderWeightContainer(mainContainer) {
   editButton.innerHTML = `
     <span class="material-symbols-outlined">
       edit
-    </span> Edit`;
-  editButton.style.marginLeft = "0.5em";
+    </span>`;
+  editButton.style.marginLeft = "auto";
   weightContainer.appendChild(editButton);
 
   editButton.addEventListener("click", () => {
@@ -46,7 +48,7 @@ export function renderWeightContainer(mainContainer) {
       editButton.innerHTML = `
         <span class="material-symbols-outlined">
           save
-        </span> Save`;
+        </span>`;
     } else {
       const input = weightContainer.querySelector("input");
       const newWeight = input.value.trim();
@@ -55,7 +57,7 @@ export function renderWeightContainer(mainContainer) {
         weightContainer.replaceChild(weightValue, input);
         editButton.innerHTML = `<span class="material-symbols-outlined">
           edit
-          </span> Edit`;
+          </span>`;
         return;
       }
       const date = new Date().toISOString().split("T")[0];
@@ -89,7 +91,7 @@ export function renderWeightContainer(mainContainer) {
       weightContainer.replaceChild(weightValue, input);
       editButton.innerHTML = `<span class="material-symbols-outlined">
         edit
-        </span> Edit`;
+        </span>`;
 
       // Update the chart after saving new weight
       //updateWeightChart();

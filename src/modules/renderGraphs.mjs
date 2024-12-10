@@ -6,7 +6,7 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
   workoutGraphContainer.classList.add("sub-container");
 
   workoutGraphContainer.innerHTML =
-    '<canvas id="workoutsByMonthChart" style="max-width: 600px; height: 400px;"></canvas>';
+    '<canvas id="workoutsByMonthChart"></canvas>';
   parent.appendChild(workoutGraphContainer);
 
   const labels = Object.keys(workoutsByMonth);
@@ -42,6 +42,8 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
       },
     },
   });
+
+  workoutsByMonthChart.canvas.parentNode.style.width = "100px";
 }
 
 export function renderWeightChart(weightHistory, mainContainer) {
@@ -74,9 +76,8 @@ export function renderWeightChart(weightHistory, mainContainer) {
   }
 
   const chartContainer = document.createElement("div");
-  chartContainer;
-  chartContainer.innerHTML =
-    '<canvas id="weightChart" style="max-width:600px;height:400px;"></canvas>';
+  chartContainer.classList.add("sub-container");
+  chartContainer.innerHTML = '<canvas id="weightChart"></canvas>';
   mainContainer.appendChild(chartContainer);
 
   const ctx = document.getElementById("weightChart").getContext("2d");

@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  text-align: left;
+  text-align: center;
   width: 100%;
   aspect-ratio: 1;
   padding: 1em;
@@ -26,6 +26,7 @@
   font-size: 2rem;
   font-weight: bold;
   color: var(--text-color, #333);
+  margin: 0 auto;
 }
 
 .stat-container .tag {
