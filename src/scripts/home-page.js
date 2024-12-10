@@ -102,6 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     // Current Streak
+    // first update current streak
+    updateCurrentStreak();
     renderStatsCanvasContainer(
       "whatshot",
       "Current Streak",
@@ -125,4 +127,20 @@ document.addEventListener("DOMContentLoaded", () => {
   logWorkoutButton.addEventListener("click", () => {
     renderEditModal();
   });
+
+  function updateCurrentStreak() {
+    const previousDate = new Date(lastWorkout.date);
+    previousDate.setHours(0, 0, 0, 0);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const diffInDays = Math.round(
+      ((today - previousDate) / 1000) * 60 * 60 * 24
+    );
+
+    if (diffInDays > 1) {
+      user.stats.currentStreak = 0;
+    }
+  }
 });
