@@ -1,4 +1,4 @@
-export function renderWeightContainer(mainContainer) {
+export function renderWeightContainer(parent) {
   const users = JSON.parse(localStorage.getItem("users")) || {};
   const user = users[sessionStorage.getItem("currentUser")];
 
@@ -102,5 +102,5 @@ export function renderWeightContainer(mainContainer) {
     }
   });
 
-  mainContainer.appendChild(weightContainer);
+  parent.appendChild(weightContainer);
 }
