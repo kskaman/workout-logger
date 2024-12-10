@@ -153,11 +153,13 @@
     top: 0;
     left: 0;
     transform: translateX(-100%);
+    box-shadow: none;
     z-index: 5;
   }
 
   .sidebar.active {
     transform: translateX(0);
+    box-shadow: 0.25em 0 0.5em rgba(255, 255, 255, 0.1);
   }
 
   #modal-overlay-hide.active {
