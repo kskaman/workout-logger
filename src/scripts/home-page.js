@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     today.setHours(0, 0, 0, 0);
 
     const diffInDays = Math.round(
-      ((today - previousDate) / 1000) * 60 * 60 * 24
+      (today - previousDate) / (1000 * 60 * 60 * 24)
     );
 
     if (diffInDays > 1) {
