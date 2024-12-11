@@ -1,3 +1,4 @@
+import { addDeleteButton } from "./deleteWeightHistory";
 import { renderWeightChart } from "./renderGraphs.mjs";
 
 export function renderWeightContainer(parent) {
@@ -39,6 +40,7 @@ export function renderWeightContainer(parent) {
   editButton.style.marginLeft = "auto";
   weightContainer.appendChild(editButton);
 
+  addDeleteButton(weightContainer);
   editButton.addEventListener("click", () => {
     if (
       editButton.innerHTML.includes(`<span class="material-symbols-outlined">
