@@ -64,10 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContent.appendChild(leftColumn);
     mainContent.appendChild(rightColumn);
 
-    renderWeightContainer(rightColumn);
+    const weightStatsContainer = document.createElement("div");
+    weightStatsContainer.classList.add("sub-container");
+    rightColumn.appendChild(weightStatsContainer);
+
     if (user.weightHistory) {
-      renderWeightChart(user.weightHistory, rightColumn);
+      const chartContainer = document.createElement("div");
+      chartContainer.id = "weightChartContainer";
+      weightStatsContainer.appendChild(chartContainer);
+
+      renderWeightChart(user.weightHistory, chartContainer);
     }
+    renderWeightContainer(weightStatsContainer);
 
     const stats = user.stats;
 

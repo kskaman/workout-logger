@@ -1,3 +1,5 @@
+import { renderWeightChart } from "./renderGraphs.mjs";
+
 export function renderWeightContainer(parent) {
   const users = JSON.parse(localStorage.getItem("users")) || {};
   const user = users[sessionStorage.getItem("currentUser")];
@@ -7,9 +9,9 @@ export function renderWeightContainer(parent) {
   // Create the Current Weight container
   const weightContainer = document.createElement("div");
   weightContainer.style.width = "100%";
-  weightContainer.classList.add("sub-container");
-  weightContainer.id = "weight-container";
 
+  weightContainer.id = "weight-container";
+  weightContainer.style.marginTop = "1em";
   const currentWeightTag = document.createElement("span");
   currentWeightTag.textContent = "Current Weight : ";
 
@@ -98,7 +100,9 @@ export function renderWeightContainer(parent) {
         </span>`;
 
       // Update the chart after saving new weight
-      //updateWeightChart();
+      const chartContainer = document.getElementById("weightChartContainer");
+      chartContainer.innerHTML = "";
+      renderWeightChart(user.weightHistory, chartContainer);
     }
   });
 

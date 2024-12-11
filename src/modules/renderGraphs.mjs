@@ -52,7 +52,7 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
   });
 }
 
-export function renderWeightChart(weightHistory, mainContainer) {
+export function renderWeightChart(weightHistory, chartContainer) {
   // Extract labels and data
   const labels = weightHistory.map((entry) => entry.date);
   const dataPoints = weightHistory.map((entry) => entry.weight);
@@ -81,10 +81,7 @@ export function renderWeightChart(weightHistory, mainContainer) {
     xMax.setDate(xMax.getDate() + dateBufferDays);
   }
 
-  const chartContainer = document.createElement("div");
-  chartContainer.classList.add("sub-container");
   chartContainer.innerHTML = '<canvas id="weightChart"></canvas>';
-  mainContainer.appendChild(chartContainer);
 
   const ctx = document.getElementById("weightChart").getContext("2d");
 
