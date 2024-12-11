@@ -1,5 +1,3 @@
-/* ./src/styles/workout-history.css */
-
 header {
   display: flex;
   justify-content: space-between;
@@ -24,10 +22,6 @@ header {
 
 .workout-table tr {
   border-bottom: 1px solid var(--input-border-color);
-}
-
-.workout-item {
-  transition: background-color 0.3s;
 }
 
 .workout-item:hover {
@@ -57,7 +51,7 @@ header {
   background-color: var(--container-background-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   header {
     display: flex;
     flex-direction: column;
