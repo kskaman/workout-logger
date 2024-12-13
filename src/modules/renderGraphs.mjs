@@ -82,7 +82,7 @@ export function renderWeightChart(weightHistory, chartContainer) {
   }
 
   chartContainer.innerHTML = '<canvas id="weightChart"></canvas>';
-
+  chartContainer.marginBottom = "1em";
   const ctx = document.getElementById("weightChart").getContext("2d");
 
   new Chart(ctx, {

@@ -12,11 +12,16 @@ export function renderWeightContainer(parent) {
   weightContainer.style.width = "100%";
 
   weightContainer.id = "weight-container";
-  weightContainer.style.marginTop = "1em";
+
   const currentWeightTag = document.createElement("span");
-  currentWeightTag.textContent = "Current Weight : ";
+  currentWeightTag.textContent = "Current Weight";
 
   weightContainer.appendChild(currentWeightTag);
+
+  const currentWeightColon = document.createElement("span");
+  currentWeightColon.textContent = ":";
+  currentWeightColon.style.marginLeft = "0.25em";
+  weightContainer.appendChild(currentWeightColon);
 
   let currentWeight = "-";
   if (user.weightHistory.length > 0) {
@@ -33,6 +38,7 @@ export function renderWeightContainer(parent) {
 
   const editButton = document.createElement("button");
   editButton.id = "edit-weight-button";
+  editButton.classList.add("edit");
   editButton.innerHTML = `
     <span class="material-symbols-outlined">
       edit
@@ -40,13 +46,13 @@ export function renderWeightContainer(parent) {
   editButton.style.marginLeft = "auto";
   weightContainer.appendChild(editButton);
 
-  addDeleteButton(weightContainer);
+  if (user.weightHistory && user.weightHistory.length > 0) {
+    addDeleteButton(weightContainer);
+  }
+
   editButton.addEventListener("click", () => {
-    if (
-      editButton.innerHTML.includes(`<span class="material-symbols-outlined">
-      edit
-    </span>`)
-    ) {
+    if (editButton.classList.contains("edit")) {
+      editButton.classList.remove("edit");
       const input = document.createElement("input");
       input.type = "number";
       input.min = "0";
@@ -58,9 +64,10 @@ export function renderWeightContainer(parent) {
           save
         </span>`;
     } else {
+      editButton.classList.add("edit");
       const input = weightContainer.querySelector("input");
       const newWeight = input.value.trim();
-      if (newWeight === "" || isNaN(newWeight)) {
+      if (newWeight === "" || isNaN(newWeight) || newWeight === "0") {
         // Invalid input, revert
         weightContainer.replaceChild(weightValue, input);
         editButton.innerHTML = `<span class="material-symbols-outlined">
@@ -68,6 +75,7 @@ export function renderWeightContainer(parent) {
           </span>`;
         return;
       }
+
       const date = new Date().toISOString().split("T")[0];
 
       const newEntry = { date, weight: parseFloat(newWeight) };
@@ -101,10 +109,25 @@ export function renderWeightContainer(parent) {
         edit
         </span>`;
 
-      // Update the chart after saving new weight
-      const chartContainer = document.getElementById("weightChartContainer");
-      chartContainer.innerHTML = "";
-      renderWeightChart(user.weightHistory, chartContainer);
+      let chartContainer = document.getElementById("weightChartContainer");
+      if (!chartContainer) {
+        chartContainer = document.createElement("div");
+        chartContainer.id = "weightChartContainer";
+        chartContainer.style.marginBottom = "1em";
+        parent.insertBefore(chartContainer, parent.firstChild);
+      }
+
+      if (user.weightHistory.length > 0) {
+        chartContainer.innerHTML = "";
+        renderWeightChart(user.weightHistory, chartContainer);
+      }
+
+      const deleteButton = weightContainer.querySelector(
+        "#delete-weight-button"
+      );
+      if (!deleteButton) {
+        addDeleteButton(weightContainer);
+      }
     }
   });
 

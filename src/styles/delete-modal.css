@@ -13,7 +13,7 @@
 }
 
 /* Modal Container */
-#delete-modal .modal-container {
+#delete-modal .delete-modal-container {
   position: relative;
   margin: 5% auto;
   max-width: 500px;
@@ -56,7 +56,7 @@
 }
 
 @media (max-width: 600px) {
-  #delete-modal .modal-container {
+  #delete-modal .delete-modal-container {
     margin: 10% auto;
     width: 90%;
   }

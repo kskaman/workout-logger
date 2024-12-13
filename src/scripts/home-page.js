@@ -66,11 +66,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const weightStatsContainer = document.createElement("div");
     weightStatsContainer.classList.add("sub-container");
+    weightStatsContainer.style.width = "100%";
     rightColumn.appendChild(weightStatsContainer);
 
-    if (user.weightHistory) {
+    if (user.weightHistory && user.weightHistory.length > 0) {
       const chartContainer = document.createElement("div");
       chartContainer.id = "weightChartContainer";
+      chartContainer.style.marginBottom = "1em";
       weightStatsContainer.appendChild(chartContainer);
 
       renderWeightChart(user.weightHistory, chartContainer);
