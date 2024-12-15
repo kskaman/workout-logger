@@ -28,12 +28,6 @@
   --hover-background-color: #e2e6ea; /* Hover background: Very Light Gray */
   --button-hover-background: #2abca0;
   --button-active-background: #149b85;
-
-  /* Chart Colors for Light Mode */
-  --chart-line-color: rgba(75, 192, 192, 1);
-  --chart-background-color: rgba(75, 192, 192, 0.2);
-  --chart-axis-color: rgba(0, 0, 0, 0.8);
-  --chart-grid-color: rgba(200, 200, 200, 0.2);
 }
 
 /* Dark Theme */
@@ -66,10 +60,4 @@
   --hover-background-color: #333333; /* Hover background: Medium Gray */
   --button-hover-background: #2abca0;
   --button-active-background: #149b85;
-
-  /* Chart Colors for Dark Mode */
-  --chart-line-color: rgba(75, 192, 192, 1);
-  --chart-background-color: rgba(255, 255, 255, 0.5);
-  --chart-axis-color: rgba(255, 255, 255, 0.8);
-  --chart-grid-color: rgba(255, 255, 255, 1);
 }

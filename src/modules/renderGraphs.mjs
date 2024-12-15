@@ -5,16 +5,30 @@ let weightChartInstance;
 let workoutChartInstance;
 
 function getChartColors() {
-  const styles = getComputedStyle(document.documentElement);
+  const theme = sessionStorage.getItem("theme");
+
+  let lineColor = "rgba(75, 192, 192, 1)";
+  let backgroundColor = "rgba(75, 192, 192, 0.2)";
+  let axisColor = "rgba(0, 0, 0, 0.8)";
+  let gridColor = "rgba(200, 200, 200, 0.2)";
+
+  if (theme === "Dark Mode") {
+    backgroundColor = "rgba(255, 255, 255, 0.5)";
+    axisColor = "rgba(255, 255, 255, 0.8)";
+    gridColor = "rgba(255, 255, 255, 0.2)";
+  }
+
   return {
-    lineColor: styles.getPropertyValue("--chart-line-color").trim(),
-    backgroundColor: styles.getPropertyValue("--chart-background-color").trim(),
-    axisColor: styles.getPropertyValue("--chart-axis-color").trim(),
-    gridColor: styles.getPropertyValue("--chart-grid-color").trim(),
+    lineColor,
+    backgroundColor,
+    axisColor,
+    gridColor,
   };
 }
 
 export function renderWorkoutCountGraph(workoutsByMonth, parent) {
+  const { lineColor, backgroundColor, axisColor, gridColor } = getChartColors();
+
   const workoutGraphContainer = document.createElement("div");
   workoutGraphContainer.classList.add("sub-container");
 
@@ -35,9 +49,12 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
           {
             label: "Number of Workouts",
             data,
-            backgroundColor: "rgba(75, 192, 192, 0.2)",
-            borderColor: "rgba(75, 192, 192, 1)",
+            backgroundColor: backgroundColor,
+            borderColor: lineColor,
             borderWidth: 1,
+            grid: {
+              color: "red",
+            },
           },
         ],
       },
@@ -47,6 +64,10 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
           x: {
             grid: {
               display: false,
+              color: gridColor,
+            },
+            ticks: {
+              color: axisColor,
             },
           },
           y: {
@@ -54,14 +75,19 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
             max: 31,
             ticks: {
               stepSize: 5,
+              color: axisColor,
             },
             grid: {
               display: false,
+              borderColor: axisColor,
             },
           },
         },
         plugins: {
-          legend: { display: true },
+          legend: {
+            display: true,
+            color: gridColor,
+          },
         },
       },
     }
@@ -99,7 +125,7 @@ export function renderWeightChart(weightHistory, chartContainer) {
   }
 
   chartContainer.innerHTML = '<canvas id="weightChart"></canvas>';
-  chartContainer.marginBottom = "1em";
+  chartContainer.style.marginBottom = "1em";
   const ctx = document.getElementById("weightChart").getContext("2d");
 
   weightChartInstance = new Chart(ctx, {
@@ -134,6 +160,7 @@ export function renderWeightChart(weightHistory, chartContainer) {
           },
           grid: {
             color: gridColor,
+            borderColor: axisColor,
           },
         },
         y: {
@@ -144,6 +171,7 @@ export function renderWeightChart(weightHistory, chartContainer) {
           },
           grid: {
             color: gridColor,
+            borderColor: axisColor,
           },
         },
       },

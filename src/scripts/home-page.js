@@ -3,7 +3,8 @@ import { renderEditModal } from "../modules/editModal.mjs";
 import { renderWeightContainer } from "../modules/renderWeight.mjs";
 import {
   renderStatsContainer,
-  renderStatsCanvasContainer,
+  renderLast30Workouts,
+  renderCurrentStreak,
 } from "../modules/renderStats.mjs";
 import {
   renderWeightChart,
@@ -101,24 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
     // Workout in Last 30 days
-    renderStatsCanvasContainer(
-      "date_range",
-      "Workouts in Last 30 Days",
-      stats.workoutsInLast30Days,
-      30,
-      statsContainer
-    );
+    renderLast30Workouts(stats.workoutsInLast30Days, statsContainer);
 
     // Current Streak
     // first update current streak
     updateCurrentStreak();
-    renderStatsCanvasContainer(
-      "whatshot",
-      "Current Streak",
-      stats.currentStreak,
-      stats.maxStreak,
-      statsContainer
-    );
+    renderCurrentStreak(stats.currentStreak, stats.maxStreak, statsContainer);
 
     // Maximum Streak
     renderStatsContainer(
