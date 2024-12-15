@@ -1,7 +1,3 @@
-// ../src/modules/viewModal.mjs
-
-import { formatDate } from "./utils.mjs";
-
 export function renderViewModal(workout) {
   const modalContent = document.getElementById("modal-content");
   modalContent.innerHTML = "";

@@ -1,5 +1,3 @@
-// deleteModal.mjs
-
 export function showDeleteModal(onConfirm) {
   const deleteModal = document.getElementById("delete-modal");
   const closeDeleteModalButton = document.getElementById("close-delete-modal");

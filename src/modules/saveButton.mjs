@@ -1,5 +1,3 @@
-// ../src/modules/saveButton.mjs
-
 import { updateUserExercises, updateUserStats } from "./calculateStats.mjs";
 import {
   clearErrorMessages,

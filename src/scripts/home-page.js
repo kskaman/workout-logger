@@ -1,5 +1,3 @@
-// ../src/scripts/last-workout-view.js
-
 import { renderLastWorkout } from "../modules/renderLastWorkout.mjs";
 import { renderEditModal } from "../modules/editModal.mjs";
 import { renderWeightContainer } from "../modules/renderWeight.mjs";

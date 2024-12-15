@@ -1,5 +1,3 @@
-// ../src/scripts/sidebar-toggle.js
-
 let desktopToggleIcon = document.getElementById("desktop-toggle-icon");
 let mobileToggleIcon = document.getElementById("mobile-toggle-icon");
 const desktopSidebar = document.getElementById("desktop-navbar");

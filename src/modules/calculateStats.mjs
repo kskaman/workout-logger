@@ -1,5 +1,3 @@
-// ../src/modules/stats.mjs
-
 export function updateUserStats(user) {
   const workouts = user.workouts || [];
   let currentStreak = 0;

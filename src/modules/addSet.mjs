@@ -1,5 +1,3 @@
-// ../src/modules/addSet.mjs
-
 import { checkSaveWorkoutButtonVisibility } from "./saveButton.mjs";
 import { clearErrorMessage, displayErrorMessage } from "./utils.mjs";
 

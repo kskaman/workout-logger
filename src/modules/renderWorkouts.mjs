@@ -1,5 +1,3 @@
-// ../src/modules/renderWorkouts.mjs
-
 import { formatDate } from "./utils.mjs";
 import { renderViewModal } from "./viewModal.mjs";
 import { renderEditModal } from "./editModal.mjs";

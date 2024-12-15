@@ -1,5 +1,3 @@
-// ../src/modules/exercise.mjs
-
 import { addSet, changeExerciseType } from "./addSet.mjs";
 import { showExerciseSuggestions } from "./exerciseSuggestions.mjs";
 import { checkSaveWorkoutButtonVisibility } from "./saveButton.mjs";

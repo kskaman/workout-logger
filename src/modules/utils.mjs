@@ -1,5 +1,3 @@
-// ../src/modules/utils.mjs
-
 export function formatDate(dateString) {
   return dateString.replaceAll("-", "/");
 }

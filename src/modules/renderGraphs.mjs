@@ -1,6 +1,19 @@
 import Chart from "chart.js/auto";
 import "chartjs-adapter-date-fns";
 
+let weightChartInstance;
+let workoutChartInstance;
+
+function getChartColors() {
+  const styles = getComputedStyle(document.documentElement);
+  return {
+    lineColor: styles.getPropertyValue("--chart-line-color").trim(),
+    backgroundColor: styles.getPropertyValue("--chart-background-color").trim(),
+    axisColor: styles.getPropertyValue("--chart-axis-color").trim(),
+    gridColor: styles.getPropertyValue("--chart-grid-color").trim(),
+  };
+}
+
 export function renderWorkoutCountGraph(workoutsByMonth, parent) {
   const workoutGraphContainer = document.createElement("div");
   workoutGraphContainer.classList.add("sub-container");
@@ -12,48 +25,52 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
   const labels = Object.keys(workoutsByMonth);
   const data = Object.values(workoutsByMonth);
 
-  new Chart(document.getElementById("workoutsByMonthChart").getContext("2d"), {
-    type: "bar",
-    data: {
-      labels,
-      datasets: [
-        {
-          label: "Number of Workouts",
-          data,
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          grid: {
-            display: false,
+  workoutChartInstance = new Chart(
+    document.getElementById("workoutsByMonthChart").getContext("2d"),
+    {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Number of Workouts",
+            data,
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            beginAtZero: true,
+            max: 31,
+            ticks: {
+              stepSize: 5,
+            },
+            grid: {
+              display: false,
+            },
           },
         },
-        y: {
-          beginAtZero: true,
-          max: 31,
-          ticks: {
-            stepSize: 5,
-          },
-          grid: {
-            display: false,
-          },
+        plugins: {
+          legend: { display: true },
         },
       },
-      plugins: {
-        legend: { display: true },
-      },
-    },
-  });
+    }
+  );
 }
 
 export function renderWeightChart(weightHistory, chartContainer) {
-  // Extract labels and data
+  const { lineColor, backgroundColor, axisColor, gridColor } = getChartColors();
+
   const labels = weightHistory.map((entry) => entry.date);
   const dataPoints = weightHistory.map((entry) => entry.weight);
   const dateObjects = weightHistory.map((e) => new Date(e.date));
@@ -85,7 +102,7 @@ export function renderWeightChart(weightHistory, chartContainer) {
   chartContainer.marginBottom = "1em";
   const ctx = document.getElementById("weightChart").getContext("2d");
 
-  new Chart(ctx, {
+  weightChartInstance = new Chart(ctx, {
     type: "line",
     data: {
       labels: labels,
@@ -93,7 +110,8 @@ export function renderWeightChart(weightHistory, chartContainer) {
         {
           label: "Weight",
           data: dataPoints,
-          borderColor: "rgba(75,192,192,1)",
+          borderColor: lineColor,
+          backgroundColor: backgroundColor,
           borderWidth: 2,
           tension: 0.1,
           fill: false,
@@ -114,14 +132,36 @@ export function renderWeightChart(weightHistory, chartContainer) {
           ticks: {
             display: false,
           },
+          grid: {
+            color: gridColor,
+          },
         },
         y: {
           beginAtZero: false,
           ticks: {
             stepSize: 1,
+            color: axisColor,
+          },
+          grid: {
+            color: gridColor,
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: axisColor,
           },
         },
       },
     },
   });
+}
+
+export function getWeightChartInstance() {
+  return weightChartInstance;
+}
+
+export function getWorkoutChartInstance() {
+  return workoutChartInstance;
 }

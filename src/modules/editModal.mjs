@@ -1,5 +1,3 @@
-// ../src/modules/editModal.mjs
-
 import { addExerciseToForm } from "./exercise.mjs";
 import {
   saveWorkout,

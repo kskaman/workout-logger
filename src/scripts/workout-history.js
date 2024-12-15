@@ -1,5 +1,3 @@
-// ./src/scripts/workout-history.js
-
 import { renderWorkoutHistory } from "../modules/renderWorkouts.mjs";
 import { renderEditModal } from "../modules/editModal.mjs";
 

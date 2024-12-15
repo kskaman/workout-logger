@@ -1,5 +1,3 @@
-// ../src/modules/exerciseSuggestions.mjs
-
 import { addSet } from "./addSet.mjs";
 
 export function showExerciseSuggestions({ inputElement, exerciseDiv }) {

@@ -1,5 +1,3 @@
-/* ./src/scripts/logout.js */
-
 document.addEventListener("DOMContentLoaded", () => {
   const logoutButton = document.getElementById("logout-link");
 

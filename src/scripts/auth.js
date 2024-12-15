@@ -1,5 +1,3 @@
-// ./src/scripts/auth.js
-
 import { clearErrorMessages, displayErrorMessage } from "../modules/utils.mjs";
 
 // Password validation regex
