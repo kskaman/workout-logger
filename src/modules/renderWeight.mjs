@@ -6,7 +6,7 @@ export function renderWeightContainer(parent) {
   const user = users[sessionStorage.getItem("currentUser")];
 
   user.weightHistory = user.weightHistory || [];
-
+  console.log(user.weightHistory);
   // Create the Current Weight container
   const weightContainer = document.createElement("div");
   weightContainer.style.width = "100%";
@@ -90,6 +90,7 @@ export function renderWeightContainer(parent) {
       } else {
         user.weightHistory.push(newEntry);
       }
+      console.log(user.weightHistory);
 
       // After adding the new weight entry
       const sixMonthsAgo = new Date();
@@ -100,6 +101,7 @@ export function renderWeightContainer(parent) {
         return new Date(entry.date) >= sixMonthsAgo;
       });
 
+      console.log(user.weightHistory);
       localStorage.setItem("users", JSON.stringify(users));
 
       currentWeight = `${newWeight} lb`;
