@@ -12,10 +12,15 @@ function getChartColors() {
   let axisColor = "rgba(0, 0, 0, 0.8)";
   let gridColor = "rgba(200, 200, 200, 0.2)";
 
+  let tooltipBackground = "#212529";
+  let tooltipColor = "#f8f9fa";
+
   if (theme === "Dark Mode") {
     backgroundColor = "rgba(255, 255, 255, 0.5)";
     axisColor = "rgba(255, 255, 255, 0.8)";
     gridColor = "rgba(255, 255, 255, 0.2)";
+    tooltipBackground = "#e0e0e0";
+    tooltipColor = "#121212";
   }
 
   return {
@@ -23,11 +28,20 @@ function getChartColors() {
     backgroundColor,
     axisColor,
     gridColor,
+    tooltipBackground,
+    tooltipColor,
   };
 }
 
 export function renderWorkoutCountGraph(workoutsByMonth, parent) {
-  const { lineColor, backgroundColor, axisColor, gridColor } = getChartColors();
+  const {
+    lineColor,
+    backgroundColor,
+    axisColor,
+    gridColor,
+    tooltipBackground,
+    tooltipColor,
+  } = getChartColors();
 
   const workoutGraphContainer = document.createElement("div");
   workoutGraphContainer.classList.add("sub-container");
@@ -69,6 +83,9 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
             ticks: {
               color: axisColor,
             },
+            border: {
+              color: axisColor,
+            },
           },
           y: {
             beginAtZero: true,
@@ -81,12 +98,21 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
               display: false,
               borderColor: axisColor,
             },
+            border: {
+              color: axisColor,
+            },
           },
         },
         plugins: {
           legend: {
             display: true,
             color: gridColor,
+          },
+
+          tooltip: {
+            backgroundColor: tooltipBackground,
+            titleColor: tooltipColor,
+            bodyColor: tooltipColor,
           },
         },
       },
@@ -95,7 +121,14 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
 }
 
 export function renderWeightChart(weightHistory, chartContainer) {
-  const { lineColor, backgroundColor, axisColor, gridColor } = getChartColors();
+  const {
+    lineColor,
+    backgroundColor,
+    axisColor,
+    gridColor,
+    tooltipBackground,
+    tooltipColor,
+  } = getChartColors();
 
   const labels = weightHistory.map((entry) => entry.date);
   const dataPoints = weightHistory.map((entry) => entry.weight);
@@ -162,6 +195,9 @@ export function renderWeightChart(weightHistory, chartContainer) {
             color: gridColor,
             borderColor: axisColor,
           },
+          border: {
+            color: axisColor,
+          },
         },
         y: {
           beginAtZero: false,
@@ -173,6 +209,9 @@ export function renderWeightChart(weightHistory, chartContainer) {
             color: gridColor,
             borderColor: axisColor,
           },
+          border: {
+            color: axisColor,
+          },
         },
       },
       plugins: {
@@ -180,6 +219,11 @@ export function renderWeightChart(weightHistory, chartContainer) {
           labels: {
             color: axisColor,
           },
+        },
+        tooltip: {
+          backgroundColor: tooltipBackground,
+          titleColor: tooltipColor,
+          bodyColor: tooltipColor,
         },
       },
     },

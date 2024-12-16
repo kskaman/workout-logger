@@ -40,15 +40,20 @@ function updateChartsTheme(theme) {
 
   let rColor = "#e0e0e0";
 
+  let tooltipBackground = "#212529";
+  let tooltipColor = "#f8f9fa";
+
   if (theme === "Dark Mode") {
     backgroundColor = "rgba(255, 255, 255, 0.5)";
     axisColor = "rgba(255, 255, 255, 0.8)";
     gridColor = "rgba(255, 255, 255, 0.2)";
     rColor = "rgba(255, 255, 255, 0.2)";
+    tooltipBackground = "#e0e0e0";
+    tooltipColor = "#121212";
   }
 
   const workoutChart = getWorkoutChartInstance();
-  console.log(workoutChart.options.scales.x);
+
   if (workoutChart) {
     const dataset = workoutChart.data.datasets[0];
     dataset.backgroundColor = backgroundColor;
@@ -58,7 +63,11 @@ function updateChartsTheme(theme) {
     workoutChart.options.scales.x.grid.color = gridColor;
     workoutChart.options.scales.y.grid.color = gridColor;
     workoutChart.options.plugins.legend.labels.color = axisColor;
-
+    workoutChart.options.plugins.tooltip.backgroundColor = tooltipBackground;
+    workoutChart.options.plugins.tooltip.titleColor = tooltipColor;
+    workoutChart.options.plugins.tooltip.bodyColor = tooltipColor;
+    workoutChart.options.scales.x.border.color = axisColor;
+    workoutChart.options.scales.y.border.color = axisColor;
     workoutChart.update();
   }
 
@@ -73,6 +82,11 @@ function updateChartsTheme(theme) {
     weightChart.options.scales.x.grid.color = gridColor;
     weightChart.options.scales.y.grid.color = gridColor;
     weightChart.options.plugins.legend.labels.color = axisColor;
+    weightChart.options.plugins.tooltip.backgroundColor = tooltipBackground;
+    weightChart.options.plugins.tooltip.titleColor = tooltipColor;
+    weightChart.options.plugins.tooltip.bodyColor = tooltipColor;
+    weightChart.options.scales.x.border.color = axisColor;
+    weightChart.options.scales.y.border.color = axisColor;
     weightChart.update();
   }
 
