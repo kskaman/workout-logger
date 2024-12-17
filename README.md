@@ -44,7 +44,7 @@ npm run dev
 ```
 
 5. **View the Application**
-   Open your browser and navigate to view and interact with the Workout Logger.
+   Open your browser and navigate to the URL provided by your local server and interact with the Workout Logger.
 
 # Project Previews
 
