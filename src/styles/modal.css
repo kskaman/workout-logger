@@ -64,7 +64,7 @@
 
 /* Modal Content */
 .modal-content {
-  padding: 1em 3em;
+  padding: 1em 3em 3em;
   max-height: 95%;
   overflow: auto;
 }
@@ -193,6 +193,6 @@
 
 @media (max-width: 768px) {
   .modal-content {
-    padding: 1em;
+    padding: 1em 1em 2em;
   }
 }

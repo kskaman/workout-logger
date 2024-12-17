@@ -117,7 +117,15 @@ document.addEventListener("DOMContentLoaded", () => {
       statsContainer
     );
 
-    renderWorkoutCountGraph(user.stats.workoutsByMonth, rightColumn);
+    const workoutsByMonthStatsContainer = document.createElement("div");
+    workoutsByMonthStatsContainer.classList.add("sub-container");
+    workoutsByMonthStatsContainer.style.width = "100%";
+    rightColumn.appendChild(workoutsByMonthStatsContainer);
+    renderWorkoutCountGraph(
+      user.stats.workoutsByMonth,
+      workoutsByMonthStatsContainer
+    );
+
     mainContainer.appendChild(logWorkoutButton);
   }
 

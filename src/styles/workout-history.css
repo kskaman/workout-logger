@@ -6,6 +6,11 @@ header {
 
 #history-container {
   width: 100%;
+  padding: 2em;
+}
+
+#history-container h3 {
+  padding-bottom: 1em;
 }
 
 /* Styling for workout info */
@@ -56,10 +61,15 @@ header {
     display: flex;
     flex-direction: column;
   }
+
   .workout-item .name-actions {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 1em;
+  }
+
+  #history-container {
+    padding: 1em;
   }
 }

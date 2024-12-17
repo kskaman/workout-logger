@@ -22,10 +22,6 @@
   gap: 1em;
 }
 
-#weightChartContainer {
-  width: 100%;
-}
-
 #weight-container {
   display: flex;
   align-items: center;
@@ -58,9 +54,9 @@
 }
 
 canvas {
-  width: 100% !important; /* Override default inline width */
-  height: auto !important; /* Maintain aspect ratio */
-  display: block; /* Avoid inline layout issues */
+  width: 100% !important;
+  height: auto !important;
+  display: block;
 }
 
 @media (max-width: 1024px) {

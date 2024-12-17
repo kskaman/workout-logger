@@ -43,12 +43,7 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
     tooltipColor,
   } = getChartColors();
 
-  const workoutGraphContainer = document.createElement("div");
-  workoutGraphContainer.classList.add("sub-container");
-
-  workoutGraphContainer.innerHTML =
-    '<canvas id="workoutsByMonthChart"></canvas>';
-  parent.appendChild(workoutGraphContainer);
+  parent.innerHTML = '<canvas id="workoutsByMonthChart"></canvas>';
 
   const labels = Object.keys(workoutsByMonth);
   const data = Object.values(workoutsByMonth);
