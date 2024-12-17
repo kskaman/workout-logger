@@ -58,9 +58,6 @@ canvas {
   height: auto !important;
 }
 
-#workoutsByMonthChart {
-}
-
 @media (max-width: 1024px) {
   #main-content {
     grid-template-columns: 1fr;
