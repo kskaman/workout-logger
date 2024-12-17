@@ -29,20 +29,44 @@ export function updateUserStats(user) {
     return;
   }
 
-  let tempStreak = 1;
-  const mostRecentDate = new Date(workouts[0].date);
-  mostRecentDate.setHours(0, 0, 0, 0); // Local midnight
+  // Calculate current streak
+  let tempCurrentStreak = 1;
+  let lastWorkoutDate = new Date(workouts[0].date);
+  lastWorkoutDate.setHours(0, 0, 0, 0);
 
+  for (let i = 1; i < workouts.length; i++) {
+    const workoutDate = new Date(workouts[i].date);
+    workoutDate.setHours(0, 0, 0, 0);
+
+    const diffInDays = Math.round(
+      (lastWorkoutDate - workoutDate) / (1000 * 60 * 60 * 24)
+    );
+
+    if (diffInDays === 1) {
+      tempCurrentStreak++;
+      lastWorkoutDate = workoutDate;
+    } else {
+      break; // Streak broken
+    }
+  }
+
+  // Finalize current streak: check today's workout status
+  const daysSinceLastWorkout = Math.round(
+    (today - lastWorkoutDate) / (1000 * 60 * 60 * 24)
+  );
+
+  if (daysSinceLastWorkout > 1) {
+    currentStreak = 0; // Streak broken
+  } else {
+    currentStreak = tempCurrentStreak;
+  }
+
+  // Calculate max streak
+  let tempStreak = 1;
   workouts.forEach((workout, i) => {
     const workoutDate = new Date(workout.date);
-    workoutDate.setHours(0, 0, 0, 0); // Normalize to local midnight
+    workoutDate.setHours(0, 0, 0, 0);
 
-    // Check for workouts in the last 30 days
-    if (workoutDate >= thirtyDaysAgo && workoutDate <= today) {
-      workoutsInLast30Days++;
-    }
-
-    // Calculate streaks
     if (i > 0) {
       const previousDate = new Date(workouts[i - 1].date);
       previousDate.setHours(0, 0, 0, 0);
@@ -57,6 +81,11 @@ export function updateUserStats(user) {
         maxStreak = Math.max(maxStreak, tempStreak);
         tempStreak = 1;
       }
+    }
+
+    // Count workouts in last 30 days
+    if (workoutDate >= thirtyDaysAgo && workoutDate <= today) {
+      workoutsInLast30Days++;
     }
 
     // Process exercises for max reps and heaviest weight
@@ -82,22 +111,10 @@ export function updateUserStats(user) {
     });
   });
 
-  // Final update for max streak
+  // Finalize max streak
   maxStreak = Math.max(maxStreak, tempStreak);
 
-  // Set current streak
-  const daysSinceMostRecentWorkout = Math.round(
-    (today - mostRecentDate) / (1000 * 60 * 60 * 24)
-  );
-
-  if (daysSinceMostRecentWorkout === 0) {
-    currentStreak = tempStreak; // Workout today, continue streak
-  } else if (daysSinceMostRecentWorkout === 1) {
-    currentStreak = tempStreak; // Workout yesterday, streak is valid
-  } else {
-    currentStreak = 0; // Streak is broken
-  }
-
+  // Aggregate workouts by month
   const workoutsByMonth = {};
   for (let i = 5; i >= 0; i--) {
     const d = new Date(today);
