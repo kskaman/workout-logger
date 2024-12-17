@@ -17,7 +17,7 @@ This project was developed under the mentorship of **[Evan Watton](https://githu
 
 # Running the Project Locally
 
-If you’d like to run the Workout Logger on your local machine, follow the steps below:
+If you’d like to run the Workout Logger on your local machine, follow the steps below on terminal:
 
 1. **Clone the Repository**
 
