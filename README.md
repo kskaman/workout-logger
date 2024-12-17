@@ -50,7 +50,16 @@ npm run dev
 
 Below are a few screenshots showcasing the interface and features of the Workout Logger:
 
-**Home Screen** -
+**Landing Page** -
+![](./images/landing-page.png)
+
+**Login Page** -
+![](./images/login-page.png)
+
+**Register Page** -
+![](./images/register-page.png)
+
+**Dashboard** -
 ![](./images/empty-home-screen.png)
 ![](./images/light-home-page.png)
 ![](./images/light-home-page-2.png)
