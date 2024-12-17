@@ -56,7 +56,9 @@
 canvas {
   width: 100% !important;
   height: auto !important;
-  display: block;
+}
+
+#workoutsByMonthChart {
 }
 
 @media (max-width: 1024px) {

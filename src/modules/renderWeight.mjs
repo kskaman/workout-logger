@@ -133,5 +133,12 @@ export function renderWeightContainer(parent) {
     }
   });
 
+  const note = document.createElement("p");
+  note.textContent =
+    "Note: Only your most recent weight entry for each day will be saved. Any previously entered weight for that day will be overwritten.";
+  note.style.fontStyle = "italic";
+  note.style.marginTop = "1.5em";
+
   parent.appendChild(weightContainer);
+  parent.appendChild(note);
 }

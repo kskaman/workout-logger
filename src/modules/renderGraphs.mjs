@@ -47,7 +47,7 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
 
   const labels = Object.keys(workoutsByMonth);
   const data = Object.values(workoutsByMonth);
-
+  const maxValue = Math.max(...data) + 1;
   workoutChartInstance = new Chart(
     document.getElementById("workoutsByMonthChart").getContext("2d"),
     {
@@ -84,9 +84,9 @@ export function renderWorkoutCountGraph(workoutsByMonth, parent) {
           },
           y: {
             beginAtZero: true,
-            max: 31,
+            max: maxValue,
             ticks: {
-              stepSize: 5,
+              stepSize: 1,
               color: axisColor,
             },
             grid: {

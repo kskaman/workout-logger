@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const workoutsByMonthStatsContainer = document.createElement("div");
     workoutsByMonthStatsContainer.classList.add("sub-container");
     workoutsByMonthStatsContainer.style.width = "100%";
+
     rightColumn.appendChild(workoutsByMonthStatsContainer);
     renderWorkoutCountGraph(
       user.stats.workoutsByMonth,
