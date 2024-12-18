@@ -211,6 +211,6 @@ export function saveWorkout({ index = null }) {
 
   closeModal();
 
-  // Reload the page
+  // Reload the page to avoid data discrepancy
   window.location.reload();
 }
