@@ -1,5 +1,5 @@
 // import Chart from "chart.js/auto";
-// import "chartjs-adapter-date-fns";
+import "chartjs-adapter-date-fns";
 
 let weightChartInstance;
 let workoutChartInstance;
