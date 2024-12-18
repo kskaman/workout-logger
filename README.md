@@ -1,6 +1,6 @@
 # Workout Logger
 
-A web application to log and track your workouts. The Workout Logger allows users to register, log in, and record their exercises, sets, and reps. It supports different types of exercises such as bodyweight, resistance band, and weighted exercises.
+Workout Logger is a web application to log and track your workouts. The Workout Logger allows users to register, log in, and record their exercises, sets, and reps. It supports different types of exercises such as bodyweight, resistance band, and weighted exercises. It is a frontend-only web application built with HTML, CSS, and JavaScript. The app features secure form authentication, dynamic workout forms, and local storage for saving user data and progress directly on the browser.
 
 # Mentorship Acknowledgment
 
@@ -9,11 +9,14 @@ This project was developed under the mentorship of **[Evan Watton](https://githu
 ## Features
 
 - **User Authentication**: Secure registration and login functionality.
+- **Form Authentication**: Ensures secure and validated user inputs.
+- **User Data Storage**: All workout data is saved in the browser's local storage, allowing users to revisit and access their data anytime.
 - **Workout Logging**: Add workouts with multiple exercises and sets.
 - **Exercise Types**: Support for bodyweight, resistance band, and weighted exercises.
 - **Dynamic Forms**: Add or remove exercises and sets dynamically.
 - **Responsive Design**: Mobile-friendly layout with a sidebar navigation.
 - **Theme Toggle**: Switch between light and dark modes.
+- **ChartJS Integration**: Visualize workout stats through interactive charts.
 
 # Running the Project Locally
 
@@ -69,8 +72,6 @@ Below are a few screenshots showcasing the interface and features of the Workout
 
 **Workout History** =
 ![](./images/workout-history.png)
-
-(Ensure that you have placed the corresponding images in an images directory within the repository. Adjust the image paths in the markdown as needed.)
 
 ## Live Demo
 
