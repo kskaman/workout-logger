@@ -127,9 +127,9 @@ export function renderWeightChart(weightHistory, chartContainer) {
 
   const labels = weightHistory.map((entry) => entry.date);
   const dataPoints = weightHistory.map((entry) => entry.weight);
-  const dateObjects = weightHistory.map((e) => new Date(e.date));
-  const minDate = new Date(Math.min(...dateObjects));
-  const maxDate = new Date(Math.max(...dateObjects));
+  const dateObjects = weightHistory.map((e) => new Date(e.date + "T00:00:00"));
+  const minDate = new Date(Math.min(...dateObjects) + "T00:00:00");
+  const maxDate = new Date(Math.max(...dateObjects) + "T00:00:00");
 
   let xMin, xMax;
 
@@ -138,17 +138,17 @@ export function renderWeightChart(weightHistory, chartContainer) {
     // Add some buffer around the single date (e.g., 7 days before and after)
     const singleDate = minDate;
     const bufferDays = 7;
-    xMin = new Date(singleDate);
+    xMin = singleDate;
     xMin.setDate(xMin.getDate() - bufferDays);
 
-    xMax = new Date(singleDate);
+    xMax = singleDate;
     xMax.setDate(xMax.getDate() + bufferDays);
   } else {
     const dateBufferDays = 3;
-    xMin = new Date(minDate);
+    xMin = minDate;
     xMin.setDate(xMin.getDate() - dateBufferDays);
 
-    xMax = new Date(maxDate);
+    xMax = maxDate;
     xMax.setDate(xMax.getDate() + dateBufferDays);
   }
 

@@ -135,8 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function updateCurrentStreak() {
-    const previousDate = new Date(lastWorkout.date);
-    previousDate.setHours(0, 0, 0, 0);
+    const previousDate = new Date(lastWorkout.date + "T00:00:00");
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);

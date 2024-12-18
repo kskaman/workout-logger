@@ -160,8 +160,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Validate date inputs before filtering
       if (fromDateInput && toDateInput) {
-        if (new Date(fromDateInput) > new Date(toDateInput)) {
-          alert("Please ensure the 'From' date is earlier than the 'To' date.");
+        if (
+          new Date(fromDateInput + "T00:00:00") >
+          new Date(toDateInput + "T00:00:00")
+        ) {
           return;
         }
       }
@@ -172,15 +174,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Filter by name
         if (nameFilterInput) {
-          match = match && workout.name.toLowerCase() === nameFilterInput;
+          match = match && workout.name.toLowerCase().includes(nameFilterInput);
         }
 
         const workoutDate = workout.date; // 'YYYY-MM-DD' format
-        console.log(workout);
-        // Filter by from date
-        console.log(workoutDate);
-        console.log(fromDateInput);
-        console.log(toDateInput);
         if (fromDateInput) {
           match = match && workoutDate >= fromDateInput;
         }

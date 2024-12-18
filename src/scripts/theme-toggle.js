@@ -72,7 +72,6 @@ function updateChartsTheme(theme) {
   }
 
   const weightChart = getWeightChartInstance();
-  //console.log(weightChart);
   if (weightChart) {
     const dataset = weightChart.data.datasets[0];
     dataset.borderColor = lineColor;

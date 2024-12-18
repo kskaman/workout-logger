@@ -31,12 +31,10 @@ export function updateUserStats(user) {
 
   // Calculate current streak
   let tempCurrentStreak = 1;
-  let lastWorkoutDate = new Date(workouts[0].date);
-  lastWorkoutDate.setHours(0, 0, 0, 0);
+  let lastWorkoutDate = new Date(workouts[0].date + "T00:00:00");
 
   for (let i = 1; i < workouts.length; i++) {
-    const workoutDate = new Date(workouts[i].date);
-    workoutDate.setHours(0, 0, 0, 0);
+    const workoutDate = new Date(workouts[i].date + "T00:00:00");
 
     const diffInDays = Math.round(
       (lastWorkoutDate - workoutDate) / (1000 * 60 * 60 * 24)
@@ -46,7 +44,7 @@ export function updateUserStats(user) {
       tempCurrentStreak++;
       lastWorkoutDate = workoutDate;
     } else {
-      break; // Streak broken
+      break;
     }
   }
 
@@ -64,12 +62,10 @@ export function updateUserStats(user) {
   // Calculate max streak
   let tempStreak = 1;
   workouts.forEach((workout, i) => {
-    const workoutDate = new Date(workout.date);
-    workoutDate.setHours(0, 0, 0, 0);
+    const workoutDate = new Date(workout.date + "T00:00:00");
 
     if (i > 0) {
-      const previousDate = new Date(workouts[i - 1].date);
-      previousDate.setHours(0, 0, 0, 0);
+      const previousDate = new Date(workouts[i - 1].date + "T00:00:00");
 
       const diffInDays = Math.round(
         (previousDate - workoutDate) / (1000 * 60 * 60 * 24)
@@ -125,7 +121,7 @@ export function updateUserStats(user) {
   }
 
   workouts.forEach((w) => {
-    const wDate = new Date(w.date);
+    const wDate = new Date(w.date + "T00:00:00");
     const wMonthName = wDate.toLocaleString("default", { month: "long" });
     const wYear = wDate.getFullYear();
     const key = `${wMonthName} ${wYear}`;
