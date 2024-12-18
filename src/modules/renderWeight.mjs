@@ -1,4 +1,4 @@
-import { addDeleteButton } from "./deleteWeightHistory";
+import { addDeleteButton } from "./deleteWeightHistory.mjs";
 import { renderWeightChart } from "./renderGraphs.mjs";
 
 export function renderWeightContainer(parent) {
