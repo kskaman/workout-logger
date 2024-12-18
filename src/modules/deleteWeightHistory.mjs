@@ -70,6 +70,9 @@ export function addDeleteButton(parent) {
 
       // Hide the modal after deletion
       deleteWeightModal.style.display = "none";
+
+      // reload to window to avoid data discrepancy
+      window.location.reload();
     }
   });
 }
